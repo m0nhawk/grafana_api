@@ -1,10 +1,10 @@
 import json
-import grafana_api.grafana_http
+from .grafana_api import GrafanaAPI
 
 
 class GrafanaFace:
     def __init__(self, host, auth):
-        self.api = grafana_api.grafana_http.GrafanaAPI(host, auth)
+        self.api = GrafanaAPI(host, auth)
 
     def user_exist(self, loginOrEmail):
         search_user_path = '/api/users/lookup?loginOrEmail=%s' % (loginOrEmail)

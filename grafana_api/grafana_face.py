@@ -3,8 +3,8 @@ from .grafana_api import GrafanaAPI
 
 
 class GrafanaFace:
-    def __init__(self, host, auth):
-        self.api = GrafanaAPI(host, auth)
+    def __init__(self, auth, host="localhost", port=None, url_path_prefix="", protocol="http"):
+        self.api = GrafanaAPI(auth, host=host, port=port, url_path_prefix=url_path_prefix, protocol=protocol)
 
     def user_exist(self, loginOrEmail):
         search_user_path = '/users/lookup?loginOrEmail=%s' % (loginOrEmail)

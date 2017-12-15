@@ -2,31 +2,35 @@ import requests
 
 
 class GrafanaAPI:
-    def __init__(self, host, auth):
-        self.host = host
+    def __init__(self, auth, host="localhost", port=None, url_path_prefix="", protocol="http"):
         self.auth = auth
+        self.url_host = host
+        self.url_port = port
+        self.url_path_prefix = url_path_prefix
+        self.url_protocol = protocol
 
-    def GET(self, url, headers=None):
-        _url = '%s%s' % (self.host, url)
-        r = requests.get(_url, headers=headers, auth=self.auth)
-        return r
+        def construct_api_url():
+            params = {
+                "protocol": self.url_protocol,
+                "host": self.url_host,
+                "url_path_prefix": self.url_path_prefix,
+            }
 
-    def POST(self, url, json=None, headers=None):
-        _url = '%s%s' % (self.host, url)
-        r = requests.post(_url, json=json, headers=headers, auth=self.auth)
-        return r
+            if self.url_port is None:
+                url_pattern = "{protocol}://{host}/{url_path_prefix}api"
+            else:
+                params["port"] = self.url_port
+                url_pattern = "{protocol}://{host}:{port}/{url_path_prefix}api"
 
-    def PUT(self, url, json=None, headers=None):
-        _url = '%s%s' % (self.host, url)
-        r = requests.put(_url, json=json, headers=headers, auth=self.auth)
-        return r
+            return url_pattern.format(**params)
 
-    def PATCH(self, url, json=None, headers=None):
-        _url = '%s%s' % (self.host, url)
-        r = requests.patch(_url, json=json, headers=headers, auth=self.auth)
-        return r
+        self.url = construct_api_url()
 
-    def DELETE(self, url, headers=None):
-        _url = '%s%s' % (self.host, url)
-        r = requests.delete(_url, headers=headers, auth=self.auth)
-        return r
+    def __getattr__(self, item):
+        def __requests_run(url, json=None, headers=None):
+            __url = "%s%s" % (self.url, url)
+            runner = getattr(requests, item.lower())
+            r = runner(__url, json=json, headers=headers, auth=self.auth)
+            return r
+
+        return __requests_run

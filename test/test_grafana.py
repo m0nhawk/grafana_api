@@ -4,7 +4,7 @@ from unittest.mock import patch, Mock
 from grafana_api.grafana_face import GrafanaFace
 
 
-class GrafanaAPITest(unittest.TestCase):
+class TestGrafanaAPI(unittest.TestCase):
     @patch('grafana_api.grafana_api.GrafanaAPI.__getattr__')
     def test_grafana_api(self, mock_get):
         mock_get.return_value = Mock()

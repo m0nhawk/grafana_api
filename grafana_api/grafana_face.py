@@ -171,3 +171,18 @@ class GrafanaFace:
         delete_dashboard_path = '/dashboards/%s' % (dashboard_slug)
         r = self.api.DELETE(delete_dashboard_path)
         return r
+
+    def get_api_keys(self):
+        get_api_keys_path = '/auth/keys'
+        r = self.api.GET(get_api_keys_path)
+        return r
+
+    def create_api_key(self, json):
+        create_api_key_path = '/auth/keys'
+        r = self.api.POST(create_api_key_path, json=json)
+        return r
+
+    def delete_api_key(self, id):
+        delete_api_key_path = '/auth/keys/%s' % (id)
+        r = self.api.DELETE(delete_api_key_path)
+        return r

@@ -22,6 +22,23 @@ Or, for Python 2.*:
 
     python -m pip install -U grafana_api
 
+## Status of REST API realization [![Coverage Status](https://coveralls.io/repos/github/m0nhawk/grafana_api/badge.svg?branch=master)](https://coveralls.io/github/m0nhawk/grafana_api?branch=master)
+
+Work on API implementation still in progress.
+
+| API | Status |
+|---|---|
+| Authorization | only API tokens |
+| Dashboards | + |
+| Datasources | + |
+| Organization (current) | partially |
+| Organizations | partially |
+| Users | partially |
+| User (actual) | partially |
+| Snapshots | - |
+| Frontend settings | - |
+| Admin | partially |
+
 ## Issue tracker
 
 Please report any bugs and enhancement ideas using the `grafana_api` issue tracker:

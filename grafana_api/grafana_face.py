@@ -44,6 +44,11 @@ class GrafanaFace:
 
         return list_of_users
 
+    def user_organisations(self):
+        get_user_organisations = '/user/orgs'
+        r = self.api.GET(get_user_organisations)
+        return r
+
     def user_star_dashboard(self, dashboard_id):
         post_star_dashboard = '/user/stars/dashboard/%s' % (dashboard_id)
         r = self.api.POST(post_star_dashboard)

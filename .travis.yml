@@ -11,6 +11,6 @@ install:
   - pip install coverage
 # command to run tests
 script:
-  - nosetests -v --with-coverage --cover-tests --cover-package=test test/test_grafana.py
+  - nosetests -v --with-coverage --cover-tests --cover-package=grafana_api test/test_grafana.py
 after_success:
   - coveralls

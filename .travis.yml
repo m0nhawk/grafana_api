@@ -1,4 +1,5 @@
 language: python
+sudo: false
 python:
   - "2.6"
   - "2.7"
@@ -8,6 +9,10 @@ python:
 # command to install dependencies
 install:
   - pip install requests
+  - pip install python-coveralls
+  - pip install coverage
 # command to run tests
 script:
-  - python -m unittest
+  - nosetests -v --with-coverage --cover-tests --cover-package=test test/test_grafana.py
+after_success:
+  - coveralls

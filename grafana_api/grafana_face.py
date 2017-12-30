@@ -38,7 +38,7 @@ class GrafanaFace:
         while users_on_page:
             show_users_path = '/users?perpage=10&page=%s' % (page)
             r = self.api.GET(show_users_path)
-            users_on_page = r.json()
+            users_on_page = r
             list_of_users += users_on_page
             page += 1
 
@@ -71,7 +71,7 @@ class GrafanaFace:
     def organisation_create(self, organisation):
         create_orgs_path = '/orgs'
         r = self.api.POST(create_orgs_path, json={'name': organisation['name']})
-        organisation_id = r.json()['orgId']
+        organisation_id = r['orgId']
         return organisation_id, r
 
     def organisation_update(self, organisation_id, organisation):
@@ -87,7 +87,7 @@ class GrafanaFace:
     def organisation_list(self):
         search_org_path = '/orgs'
         r = self.api.GET(search_org_path)
-        return r.json()
+        return r
 
     def organisation_switch(self, organisation_id):
         switch_user_organisation = '/user/using/%s' % (organisation_id)
@@ -97,7 +97,7 @@ class GrafanaFace:
     def organisation_user_list(self, organisation_id):
         users_in_org = '/orgs/%s/users' % (organisation_id)
         r = self.api.GET(users_in_org)
-        return r.json()
+        return r
 
     def organisation_user_add(self, organisation_id, user):
         add_user_path = '/orgs/%s/users' % (organisation_id)
@@ -135,7 +135,7 @@ class GrafanaFace:
     def datasource_get(self, datasource_id):
         get_datasource_path = '/datasources/%s' % (datasource_id)
         r = self.api.GET(get_datasource_path)
-        return r.json()
+        return r
 
     def datasource_create(self, datasource):
         create_datasources_path = '/datasources'
@@ -150,7 +150,7 @@ class GrafanaFace:
     def datasource_list(self):
         list_datasource = '/datasources'
         r = self.api.GET(list_datasource)
-        return r.json()
+        return r
 
     def datasource_delete(self, name):
         delete_datasource = '/datasources/name/%s' % (name)
@@ -160,12 +160,12 @@ class GrafanaFace:
     def dashboard_list(self):
         list_dashboard_path = '/search/'
         r = self.api.GET(list_dashboard_path)
-        return r.json()
+        return r
 
     def dashboard_get(self, dashboard_slug):
         get_dashboard_path = '/dashboards/%s' % (dashboard_slug)
         r = self.api.GET(get_dashboard_path)
-        return r.json()
+        return r
 
     def dashboard_put(self, dashboard):
         put_dashboard_path = '/dashboards/db'

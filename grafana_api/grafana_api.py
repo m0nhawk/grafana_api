@@ -1,6 +1,38 @@
 import requests
 
 
+class GrafanaException(Exception):
+    pass
+
+
+class GrafanaServerError(Exception):
+    """
+    5xx
+    """
+    pass
+
+
+class GrafanaClientError(Exception):
+    """
+    Invalid input (4xx errors)
+    """
+    pass
+
+
+class GrafanaBadInputError(GrafanaClientError):
+    """
+    400
+    """
+    pass
+
+
+class GrafanaUnauthorizedError(GrafanaClientError):
+    """
+    401
+    """
+    pass
+
+
 class GrafanaAPI:
     def __init__(self, auth, host='localhost', port=None, url_path_prefix='', protocol='http'):
         self.auth = auth
@@ -31,6 +63,15 @@ class GrafanaAPI:
             __url = '%s%s' % (self.url, url)
             runner = getattr(requests, item.lower())
             r = runner(__url, json=json, headers=headers, auth=self.auth)
-            return r
+
+            if 500 <= r.status_code < 600:
+                raise GrafanaServerError("Server Error {0}: {1}".format(r.status_code, r.content.decode("ascii", "replace")))
+            elif r.status_code == 400:
+                raise GrafanaBadInputError("Bad Input: `{0}`".format(r.text))
+            elif r.status_code == 401:
+                raise GrafanaUnauthorizedError('Unauthorized')
+            elif 400 <= r.status_code < 500:
+                raise GrafanaClientError("Client Error {0}: {1}".format(r.status_code, r.text))
+            return r.json()
 
         return __requests_run

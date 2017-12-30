@@ -6,6 +6,36 @@ class GrafanaFace:
     def __init__(self, auth, host="localhost", port=None, url_path_prefix="", protocol="http"):
         self.api = GrafanaAPI(auth, host=host, port=port, url_path_prefix=url_path_prefix, protocol=protocol)
 
+    def get_grafana_settings(self):
+        get_settings_path = '/admin/settings'
+        r = self.api.GET(get_settings_path)
+        return r
+
+    def get_grafana_stats(self):
+        get_stats_path = '/admin/stats'
+        r = self.api.GET(get_stats_path)
+        return r
+
+    def create_user(self, user):
+        create_user_path = '/admin/users'
+        r = self.api.POST(create_user_path, json=user)
+        return r
+
+    def change_user_password(self, user_id, password):
+        change_user_password_path = '/admin/users/%s/password' % (user_id)
+        r = self.api.PUT(change_user_password_path, json={'password': password})
+        return r
+
+    def change_user_permissions(self, user_id, is_grafana_admin):
+        change_user_permissions = '/api/admin/users/%s/permissions' % (user_id)
+        r = self.api.PUT(change_user_permissions, json={'isGrafanaAdmin': is_grafana_admin})
+        return r
+
+    def delete_user(self, user_id):
+        delete_user_path = '/admin/users/%s' % (user_id)
+        r = self.api.DELETE(delete_user_path)
+        return r
+
     def user_exist(self, loginOrEmail):
         search_user_path = '/users/lookup?loginOrEmail=%s' % (loginOrEmail)
         r = self.api.GET(search_user_path)
@@ -15,19 +45,9 @@ class GrafanaFace:
             return resp['id']
         return -1
 
-    def user_create(self, user):
-        create_user_path = '/admin/users'
-        r = self.api.POST(create_user_path, json=user)
-        return r
-
     def user_update(self, user_id, user):
         update_user_path = '/users/%s' % (user_id)
         r = self.api.PUT(update_user_path, json=user)
-        return r
-
-    def user_delete(self, user_id):
-        delete_user_path = '/admin/users/%s' % (user_id)
-        r = self.api.DELETE(delete_user_path)
         return r
 
     def user_list(self):

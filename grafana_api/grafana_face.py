@@ -39,10 +39,8 @@ class GrafanaFace:
     def find_user(self, loginOrEmail):
         search_user_path = '/users/lookup?loginOrEmail=%s' % (loginOrEmail)
         r = self.api.GET(search_user_path)
-
-        resp = json.loads(r.content)
-        if 'id' in resp:
-            return resp['id']
+        if 'id' in r:
+            return r['id']
         return -1
 
     def update_user(self, user_id, user):
@@ -55,7 +53,7 @@ class GrafanaFace:
         users_on_page = None
         page = 1
 
-        while users_on_page:
+        while users_on_page != []:
             show_users_path = '/users?perpage=10&page=%s' % (page)
             users_on_page = self.api.GET(show_users_path)
             list_of_users += users_on_page
@@ -81,10 +79,8 @@ class GrafanaFace:
     def find_organisation(self, org_name):
         get_org_path = '/orgs/name/%s' % (org_name)
         r = self.api.GET(get_org_path)
-
-        resp = json.loads(r.content)
-        if 'id' in resp:
-            return resp['id']
+        if 'id' in r:
+            return r['id']
         return -1
 
     def create_organisation(self, organisation):
@@ -145,10 +141,8 @@ class GrafanaFace:
     def find_datasource(self, datasource_name):
         get_datasource_path = '/datasources/name/%s' % (datasource_name)
         r = self.api.GET(get_datasource_path)
-
-        resp = json.loads(r.content)
-        if 'id' in resp:
-            return resp['id']
+        if 'id' in r:
+            return r['id']
         return -1
 
     def get_datasource(self, datasource_id):

@@ -8,7 +8,7 @@ class TestGrafanaAPI(unittest.TestCase):
     @patch('grafana_api.grafana_api.GrafanaAPI.__getattr__')
     def test_grafana_api(self, mock_get):
         mock_get.return_value = Mock()
-        mock_get.return_value.return_value.content = """{
+        mock_get.return_value.return_value = """{
   "email": "user@mygraf.com",
   "name": "admin",
   "login": "admin",

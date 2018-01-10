@@ -36,7 +36,7 @@ class GrafanaFace:
         r = self.api.DELETE(delete_user_path)
         return r
 
-    def user_exist(self, loginOrEmail):
+    def find_user(self, loginOrEmail):
         search_user_path = '/users/lookup?loginOrEmail=%s' % (loginOrEmail)
         r = self.api.GET(search_user_path)
 
@@ -45,20 +45,19 @@ class GrafanaFace:
             return resp['id']
         return -1
 
-    def user_update(self, user_id, user):
+    def update_user(self, user_id, user):
         update_user_path = '/users/%s' % (user_id)
         r = self.api.PUT(update_user_path, json=user)
         return r
 
-    def user_list(self):
+    def list_user(self):
         list_of_users = []
         users_on_page = None
         page = 1
 
         while users_on_page:
             show_users_path = '/users?perpage=10&page=%s' % (page)
-            r = self.api.GET(show_users_path)
-            users_on_page = r
+            users_on_page = self.api.GET(show_users_path)
             list_of_users += users_on_page
             page += 1
 
@@ -69,17 +68,17 @@ class GrafanaFace:
         r = self.api.GET(get_user_organisations)
         return r
 
-    def user_star_dashboard(self, dashboard_id):
+    def star_user_dashboard(self, dashboard_id):
         post_star_dashboard = '/user/stars/dashboard/%s' % (dashboard_id)
         r = self.api.POST(post_star_dashboard)
         return r
 
-    def user_unstar_dashboard(self, dashboard_id):
+    def unstar_user_dashboard(self, dashboard_id):
         delete_unstar_dashboard = '/user/stars/dashboard/%s' % (dashboard_id)
         r = self.api.DELETE(delete_unstar_dashboard)
         return r
 
-    def organisation_exist(self, org_name):
+    def find_organisation(self, org_name):
         get_org_path = '/orgs/name/%s' % (org_name)
         r = self.api.GET(get_org_path)
 
@@ -88,28 +87,28 @@ class GrafanaFace:
             return resp['id']
         return -1
 
-    def organisation_create(self, organisation):
+    def create_organisation(self, organisation):
         create_orgs_path = '/orgs'
         r = self.api.POST(create_orgs_path, json={'name': organisation['name']})
         organisation_id = r['orgId']
         return organisation_id, r
 
-    def organisation_update(self, organisation_id, organisation):
+    def update_organisation(self, organisation_id, organisation):
         update_org_path = '/orgs/%s' % (organisation_id)
         r = self.api.PUT(update_org_path, json=organisation)
         return organisation_id, r
 
-    def organisation_delete(self, organisation_id):
+    def delete_organisation(self, organisation_id):
         delete_org_path = '/orgs/%s' % (organisation_id)
         r = self.api.DELETE(delete_org_path)
         return r
 
-    def organisation_list(self):
+    def list_organisation(self):
         search_org_path = '/orgs'
         r = self.api.GET(search_org_path)
         return r
 
-    def organisation_switch(self, organisation_id):
+    def switch_organisation(self, organisation_id):
         switch_user_organisation = '/user/using/%s' % (organisation_id)
         r = self.api.POST(switch_user_organisation)
         return r
@@ -143,7 +142,7 @@ class GrafanaFace:
         })
         return r
 
-    def datasource_exist(self, datasource_name):
+    def find_datasource(self, datasource_name):
         get_datasource_path = '/datasources/name/%s' % (datasource_name)
         r = self.api.GET(get_datasource_path)
 
@@ -152,47 +151,47 @@ class GrafanaFace:
             return resp['id']
         return -1
 
-    def datasource_get(self, datasource_id):
+    def get_datasource(self, datasource_id):
         get_datasource_path = '/datasources/%s' % (datasource_id)
         r = self.api.GET(get_datasource_path)
         return r
 
-    def datasource_create(self, datasource):
+    def create_datasource(self, datasource):
         create_datasources_path = '/datasources'
         r = self.api.POST(create_datasources_path, json=datasource)
         return r
 
-    def datasource_update(self, datasource_id, datasource):
+    def update_datasource(self, datasource_id, datasource):
         update_datasource = '/datasources/%s' % (datasource_id)
         r = self.api.PUT(update_datasource, json=datasource)
         return r
 
-    def datasource_list(self):
+    def list_datasource(self):
         list_datasource = '/datasources'
         r = self.api.GET(list_datasource)
         return r
 
-    def datasource_delete(self, name):
+    def delete_datasource(self, name):
         delete_datasource = '/datasources/name/%s' % (name)
         r = self.api.DELETE(delete_datasource)
         return r
 
-    def dashboard_list(self):
+    def list_dashboard(self):
         list_dashboard_path = '/search/'
         r = self.api.GET(list_dashboard_path)
         return r
 
-    def dashboard_get(self, dashboard_slug):
+    def get_dashboard(self, dashboard_slug):
         get_dashboard_path = '/dashboards/%s' % (dashboard_slug)
         r = self.api.GET(get_dashboard_path)
         return r
 
-    def dashboard_put(self, dashboard):
+    def update_dashboard(self, dashboard):
         put_dashboard_path = '/dashboards/db'
         r = self.api.POST(put_dashboard_path, json=dashboard)
         return r
 
-    def dashboard_delete(self, dashboard_slug):
+    def delete_dashboard(self, dashboard_slug):
         delete_dashboard_path = '/dashboards/%s' % (dashboard_slug)
         r = self.api.DELETE(delete_dashboard_path)
         return r

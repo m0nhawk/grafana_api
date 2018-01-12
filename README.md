@@ -16,11 +16,7 @@ You need either 2nd or 3rd version of Python and only the `requests` library ins
 
 It's available in PyPi repository:
 
-    python3 -m pip install -U grafana_api
-
-Or, for Python 2.*:
-
-    python -m pip install -U grafana_api
+    pip install -U grafana_api
 
 ## Status of REST API realization [![Coverage Status](https://coveralls.io/repos/github/m0nhawk/grafana_api/badge.svg?branch=master)](https://coveralls.io/github/m0nhawk/grafana_api?branch=master)
 

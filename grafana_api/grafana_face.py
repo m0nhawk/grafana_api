@@ -205,6 +205,18 @@ class GrafanaFace:
         r = self.api.DELETE(unstar_dashboard)
         return r
 
+    def find_organisation(self, org_name):
+        """
+
+        :param org_name:
+        :return:
+        """
+        get_org_path = '/orgs/name/%s' % (org_name)
+        r = self.api.GET(get_org_path)
+        if 'id' in r:
+            return r['id']
+        return -1
+
     def get_current_organisation(self):
         """
 

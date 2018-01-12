@@ -7,31 +7,61 @@ class GrafanaFace:
         self.api = GrafanaAPI(auth, host=host, port=port, url_path_prefix=url_path_prefix, protocol=protocol)
 
     def get_grafana_settings(self):
+        """
+
+        :return:
+        """
         get_settings_path = '/admin/settings'
         r = self.api.GET(get_settings_path)
         return r
 
     def get_grafana_stats(self):
+        """
+
+        :return:
+        """
         get_stats_path = '/admin/stats'
         r = self.api.GET(get_stats_path)
         return r
 
     def create_user(self, user):
+        """
+
+        :param user:
+        :return:
+        """
         create_user_path = '/admin/users'
         r = self.api.POST(create_user_path, json=user)
         return r
 
     def change_user_password(self, user_id, password):
+        """
+
+        :param user_id:
+        :param password:
+        :return:
+        """
         change_user_password_path = '/admin/users/%s/password' % (user_id)
         r = self.api.PUT(change_user_password_path, json={'password': password})
         return r
 
     def change_user_permissions(self, user_id, is_grafana_admin):
+        """
+
+        :param user_id:
+        :param is_grafana_admin:
+        :return:
+        """
         change_user_permissions = '/api/admin/users/%s/permissions' % (user_id)
         r = self.api.PUT(change_user_permissions, json={'isGrafanaAdmin': is_grafana_admin})
         return r
 
     def delete_user(self, user_id):
+        """
+
+        :param user_id:
+        :return:
+        """
         delete_user_path = '/admin/users/%s' % (user_id)
         r = self.api.DELETE(delete_user_path)
         return r

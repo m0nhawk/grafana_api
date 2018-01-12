@@ -27,8 +27,8 @@ Work on API implementation still in progress.
 | Authorization | only API tokens |
 | Dashboards | + |
 | Datasources | + |
-| Organization (current) | partially |
-| Organizations | partially |
+| Organization (current) | + |
+| Organizations | + |
 | Users | + |
 | User (actual) | + |
 | Snapshots | - |

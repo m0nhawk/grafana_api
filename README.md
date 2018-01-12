@@ -29,8 +29,8 @@ Work on API implementation still in progress.
 | Datasources | + |
 | Organization (current) | partially |
 | Organizations | partially |
-| Users | partially |
-| User (actual) | partially |
+| Users | + |
+| User (actual) | + |
 | Snapshots | - |
 | Frontend settings | - |
 | Admin | partially |

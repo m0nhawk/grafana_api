@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='grafana_api',
-      version='0.2.1',
+      version='0.2.2',
       description='Yet another Python library for Grafana API',
       url='https://github.com/m0nhawk/grafana_api',
       author='Andrew Prokhorenkov',

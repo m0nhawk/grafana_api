@@ -1,5 +1,12 @@
 language: python
 sudo: false
+
+addons:
+  sonarcloud:
+    organization: "m0nhawk-github"
+    token:
+      secure: $SONAR_TOKEN
+
 python:
   - "3.6"
   - "3.7-dev"  # 3.7 development branch
@@ -9,8 +16,11 @@ install:
   - pip install requests
   - pip install python-coveralls
   - pip install coverage
+
 # command to run tests
 script:
   - nosetests -v --with-coverage --cover-tests --cover-package=grafana_api test/test_grafana.py
+
 after_success:
   - coveralls
+  - sonar-scanner

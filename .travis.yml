@@ -9,8 +9,7 @@ addons:
 
 python:
   - "3.6"
-  - "3.7-dev"  # 3.7 development branch
-  - "nightly"
+
 # command to install dependencies
 install:
   - pip install requests

@@ -24,16 +24,22 @@ Work on API implementation still in progress.
 
 | API | Status |
 |---|---|
-| Authorization | only API tokens |
-| Dashboards | + |
-| Datasources | + |
-| Organization (current) | + |
-| Organizations | + |
-| Users | + |
-| User (actual) | + |
-| Snapshots | - |
-| Frontend settings | - |
-| Admin | partially |
+| Authentication | - |
+| Dashboard | + |
+| Dashboard Versions | - |
+| Dashboard Permissions | - |
+| Folder | - |
+| Folder Permissions | - |
+| Folder/Dashboard Search | - |
+| Data Source | + |
+| Organisation | + |
+| Snapshot | - |
+| Annotations | - |
+| Alerting | - |
+| User | + |
+| Admin | +- |
+| Preferences | + |
+| Other | - |
 
 ## Issue tracker
 

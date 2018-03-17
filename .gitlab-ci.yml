@@ -1,0 +1,42 @@
+image: python:3-alpine
+
+# advise GitLab that these environment vars should be loaded from the Variables config
+variables:
+    PYPI_USER: SECURE
+    PYPI_PASSWORD: SECURE
+
+stages:
+  - test
+  - deploy
+  - cleanup
+
+unittest:
+  stage: test
+  script:
+    - echo #
+    - pip install requests
+    - python -m unittest discover -f -s test/ -t ./
+    - echo #
+
+deploy_pypi:
+  stage: deploy
+  script:
+    - echo "[pypi]" >> ~/.pypirc
+    - echo "username =" ${PYPI_USER} >> ~/.pypirc
+    - echo "password =" ${PYPI_PASSWORD} >> ~/.pypirc
+    - python setup.py check sdist bdist
+    - pip install -U twine --pre
+    - twine upload dist/*
+    - echo "" > ~/.pypirc && rm ~/.pypirc
+  only:
+    - /^v\d+\.\d+\.\d+([abc]\d*)?$/  # PEP-440 compliant version (tags)
+    - triggers
+    - schedules
+  except:
+    - branches
+
+cleanup_pypirc:
+   stage: cleanup
+   when: always
+   script:
+    - rm -vf ~/.pypirc

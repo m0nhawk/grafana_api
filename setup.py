@@ -1,8 +1,13 @@
 from setuptools import setup
 
+with open('README.md') as file:
+    long_description = file.read()
+
 setup(name='grafana_api',
-      version='0.2.2',
+      version='0.2.6',
       description='Yet another Python library for Grafana API',
+      long_description=long_description,
+      long_description_content_type='text/markdown',
       url='https://github.com/m0nhawk/grafana_api',
       author='Andrew Prokhorenkov',
       author_email='andrew.prokhorenkov@gmail.com',

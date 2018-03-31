@@ -1,4 +1,3 @@
-import json
 from .grafana_api import GrafanaAPI
 
 

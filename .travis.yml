@@ -15,6 +15,7 @@ install:
   - pip install requests
   - pip install python-coveralls
   - pip install coverage
+  - pip install nose
 
 # command to run tests
 script:

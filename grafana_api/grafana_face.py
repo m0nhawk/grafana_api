@@ -1,4 +1,3 @@
-import json
 from .grafana_api import GrafanaAPI
 
 
@@ -565,14 +564,14 @@ class GrafanaFace:
         r = self.api.GET(get_api_keys_path)
         return r
 
-    def create_api_key(self, json):
+    def create_api_key(self, json_data):
         """
 
-        :param json:
+        :param json_data:
         :return:
         """
         create_api_key_path = '/auth/keys'
-        r = self.api.POST(create_api_key_path, json=json)
+        r = self.api.POST(create_api_key_path, json=json_data)
         return r
 
     def delete_api_key(self, id):

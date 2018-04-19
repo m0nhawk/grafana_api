@@ -39,7 +39,7 @@ Work on API implementation still in progress.
 | User | + |
 | Admin | +- |
 | Preferences | + |
-| Other | - |
+| Other | + |
 
 ## Issue tracker
 

@@ -583,3 +583,22 @@ class GrafanaFace:
         delete_api_key_path = '/auth/keys/%s' % (id)
         r = self.api.DELETE(delete_api_key_path)
         return r
+
+# Other section
+    def get_frontend_settings(self):
+        """
+
+        :return:
+        """
+        get_frontend_settings_path = '/frontend/settings'
+        r = self.api.GET(get_frontend_settings_path)
+        return r
+
+    def get_login_ping(self):
+        """
+
+        :return:
+        """
+        get_login_ping_path = '/login/ping'
+        r = self.api.GET(get_login_ping_path)
+        return r

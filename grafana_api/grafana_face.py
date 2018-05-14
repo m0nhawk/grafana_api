@@ -555,6 +555,22 @@ class GrafanaFace:
         r = self.api.GET(get_dashboards_tags_path)
         return r
 
+    # folder
+
+    def create_folder(self, title, uid=None):
+        """
+        Creates a new folder.
+
+        :param title: The title of the folder.
+        :param uid: Optional unique identifier.
+        """
+        json_data = dict(title=title)
+        if uid is not None:
+            json_data['uid'] = uid
+        return self.api.POST('/folders', json=json_data)
+
+    # api
+
     def get_api_keys(self):
         """
 

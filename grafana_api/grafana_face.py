@@ -557,6 +557,14 @@ class GrafanaFace:
 
     # dashboard permission
 
+    def get_dashboard_permissions(self, dashboardId):
+        """
+        Gets all existing permissions for the dashboard with the given dashboardId.
+
+        :param dashboardId:
+        """
+        return self.api.GET('/dashboards/id/%s/permissions' % dashboardId)
+
     def update_dashboard_permissions(self, dashboardId, items):
         """
         Updates permissions for a dashboard.

@@ -555,6 +555,19 @@ class GrafanaFace:
         r = self.api.GET(get_dashboards_tags_path)
         return r
 
+    # dashboard permission
+
+    def update_dashboard_permissions(self, dashboardId, items):
+        """
+        Updates permissions for a dashboard.
+
+        This operation will remove existing permissions if they’re not included in the request.
+
+        :param dashboardId: Dashboard id
+        """
+        # TODO really relevant to return something?
+        return self.api.POST('/dashboards/id/%s/permissions' % dashboardId, json=dict(items=items))
+
     # folder
 
     def create_folder(self, title, uid=None):

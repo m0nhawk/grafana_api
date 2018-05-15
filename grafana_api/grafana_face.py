@@ -590,6 +590,19 @@ class GrafanaFace:
             json_data['uid'] = uid
         return self.api.POST('/folders', json=json_data)
 
+    # folder permission
+
+    def update_folder_permissions(self, uid, items):
+        """
+        Updates permissions for a folder.
+
+        This operation will remove existing permissions if they’re not included in the request.
+
+        :param uid: Folder uid
+        """
+        # TODO really relevant to return something?
+        return self.api.POST('/folders/%s/permissions' % uid, json=dict(items=items))
+
     # api
 
     def get_api_keys(self):

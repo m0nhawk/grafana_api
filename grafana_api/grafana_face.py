@@ -555,6 +555,56 @@ class GrafanaFace:
         r = self.api.GET(get_dashboards_tags_path)
         return r
 
+    # dashboard permission
+
+    def get_dashboard_permissions(self, dashboardId):
+        """
+        Gets all existing permissions for the dashboard with the given dashboardId.
+
+        :param dashboardId:
+        """
+        return self.api.GET('/dashboards/id/%s/permissions' % dashboardId)
+
+    def update_dashboard_permissions(self, dashboardId, items):
+        """
+        Updates permissions for a dashboard.
+
+        This operation will remove existing permissions if they’re not included in the request.
+
+        :param dashboardId: Dashboard id
+        """
+        # TODO really relevant to return something?
+        return self.api.POST('/dashboards/id/%s/permissions' % dashboardId, json=dict(items=items))
+
+    # folder
+
+    def create_folder(self, title, uid=None):
+        """
+        Creates a new folder.
+
+        :param title: The title of the folder.
+        :param uid: Optional unique identifier.
+        """
+        json_data = dict(title=title)
+        if uid is not None:
+            json_data['uid'] = uid
+        return self.api.POST('/folders', json=json_data)
+
+    # folder permission
+
+    def update_folder_permissions(self, uid, items):
+        """
+        Updates permissions for a folder.
+
+        This operation will remove existing permissions if they’re not included in the request.
+
+        :param uid: Folder uid
+        """
+        # TODO really relevant to return something?
+        return self.api.POST('/folders/%s/permissions' % uid, json=dict(items=items))
+
+    # api
+
     def get_api_keys(self):
         """
 

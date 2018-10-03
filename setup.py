@@ -4,7 +4,7 @@ with open('README.md') as file:
     long_description = file.read()
 
 setup(name='grafana_api',
-      version='0.2.8',
+      version='0.2.9',
       description='Yet another Python library for Grafana API',
       long_description=long_description,
       long_description_content_type='text/markdown',
@@ -28,5 +28,6 @@ setup(name='grafana_api',
           'Programming Language :: Python :: 2.7',
           'Programming Language :: Python :: 3',
           'Programming Language :: Python :: 3.6',
+          'Programming Language :: Python :: 3.7',
       ],
       zip_safe=False)

@@ -59,7 +59,7 @@ class GrafanaAPI:
         self.url = construct_api_url()
 
     def __getattr__(self, item):
-        def __requests_run(url, json=None, headers=None):
+        def __request_runnner(url, json=None, headers=None):
             __url = '%s%s' % (self.url, url)
             runner = getattr(requests, item.lower())
             r = runner(__url, json=json, headers=headers, auth=self.auth)
@@ -74,4 +74,4 @@ class GrafanaAPI:
                 raise GrafanaClientError("Client Error {0}: {1}".format(r.status_code, r.text))
             return r.json()
 
-        return __requests_run
+        return __request_runnner

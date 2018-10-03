@@ -21,11 +21,12 @@ unittest:
 deploy_pypi:
   stage: deploy
   script:
+    - apk add build-base libffi-dev
     - echo "[pypi]" >> ~/.pypirc
     - echo "username =" ${PYPI_USER} >> ~/.pypirc
     - echo "password =" ${PYPI_PASSWORD} >> ~/.pypirc
-    - python setup.py check sdist bdist
-    - pip install -U twine --pre
+    - python setup.py check sdist bdist_wheel
+    - pip install -U twine
     - twine upload dist/*
     - echo "" > ~/.pypirc && rm ~/.pypirc
   only:

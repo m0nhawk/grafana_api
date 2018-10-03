@@ -8,7 +8,13 @@ addons:
       secure: $SONAR_TOKEN
 
 python:
+  - "2.7"
   - "3.6"
+  - "3.7"
+
+matrix:
+ allow_failures:
+   - python: "2.7"
 
 # command to install dependencies
 install:

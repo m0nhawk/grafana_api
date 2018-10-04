@@ -1,4 +1,4 @@
-image: python:3-alpine
+image: python:3-slim
 
 # advise GitLab that these environment vars should be loaded from the Variables config
 variables:
@@ -21,12 +21,13 @@ unittest:
 deploy_pypi:
   stage: deploy
   script:
-    - apk add build-base libffi-dev
+    - apt-get update
+    - apt-get install -y libffi-dev build-essential
     - echo "[pypi]" >> ~/.pypirc
     - echo "username =" ${PYPI_USER} >> ~/.pypirc
     - echo "password =" ${PYPI_PASSWORD} >> ~/.pypirc
     - python setup.py check sdist bdist_wheel
-    - pip install -U twine
+    - pip install twine
     - twine upload dist/*
     - echo "" > ~/.pypirc && rm ~/.pypirc
   only:

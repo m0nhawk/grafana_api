@@ -24,22 +24,23 @@ Work on API implementation still in progress.
 
 | API | Status |
 |---|---|
-| Authentication | - |
+| Admin | + |
+| Alerting | - |
+| Annotations | - |
+| Authentication | +- |
 | Dashboard | + |
 | Dashboard Versions | - |
-| Dashboard Permissions | - |
-| Folder | - |
-| Folder Permissions | - |
-| Folder/Dashboard Search | - |
+| Dashboard Permissions | + |
 | Data Source | + |
+| Folder | + |
+| Folder Permissions | + |
+| Folder/Dashboard Search | +- |
 | Organisation | + |
-| Snapshot | - |
-| Annotations | - |
-| Alerting | - |
-| User | + |
-| Admin | +- |
-| Preferences | + |
 | Other | + |
+| Preferences | + |
+| Snapshot | - |
+| Teams | - |
+| User | + |
 
 ## Issue tracker
 

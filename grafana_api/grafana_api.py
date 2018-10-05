@@ -1,4 +1,5 @@
 import requests
+import requests.auth
 
 
 class GrafanaException(Exception):
@@ -33,6 +34,17 @@ class GrafanaUnauthorizedError(GrafanaClientError):
     pass
 
 
+class TokenAuth(requests.auth.AuthBase):
+    def __init__(self, token):
+        self.token = token
+
+    def __call__(self, request):
+        request.headers.update({
+            "Authorization": "Bearer {0}".format(self.token)
+        })
+        return request
+
+
 class GrafanaAPI:
     def __init__(self, auth, host='localhost', port=None, url_path_prefix='', protocol='http'):
         self.auth = auth
@@ -58,10 +70,16 @@ class GrafanaAPI:
 
         self.url = construct_api_url()
 
+        self.s = requests.Session()
+        if isinstance(self.auth, tuple):
+            self.s.auth = TokenAuth(self.auth)
+        else:
+            self.s.auth = requests.auth.HTTPBasicAuth(*self.auth)
+
     def __getattr__(self, item):
         def __request_runnner(url, json=None, headers=None):
             __url = '%s%s' % (self.url, url)
-            runner = getattr(requests, item.lower())
+            runner = getattr(self.s, item.lower())
             r = runner(__url, json=json, headers=headers, auth=self.auth)
 
             if 500 <= r.status_code < 600:

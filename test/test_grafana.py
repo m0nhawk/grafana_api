@@ -17,7 +17,7 @@ class TestGrafanaAPI(unittest.TestCase):
   "isGrafanaAdmin": true
 }"""
         cli = GrafanaFace(('admin', 'admin'), host='localhost', url_path_prefix='', protocol='https')
-        cli.find_user('test@test.com')
+        cli.users.find_user('test@test.com')
 
 
 if __name__ == '__main__':

@@ -12,7 +12,10 @@ setup(name='grafana_api',
       author='Andrew Prokhorenkov',
       author_email='andrew.prokhorenkov@gmail.com',
       license='MIT',
-      packages=['grafana_api'],
+      packages=[
+          'grafana_api',
+          'grafana_api.api'
+      ],
       install_requires=[
           'requests',
       ],

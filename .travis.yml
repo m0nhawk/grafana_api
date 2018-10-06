@@ -15,6 +15,7 @@ python:
 matrix:
  allow_failures:
    - python: "2.7"
+   - python: "3.7"
 
 # command to install dependencies
 install:

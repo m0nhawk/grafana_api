@@ -4,7 +4,7 @@ with open('README.md') as file:
     long_description = file.read()
 
 setup(name='grafana_api',
-      version='0.3.1',
+      version='0.3.2',
       description='Yet another Python library for Grafana API',
       long_description=long_description,
       long_description_content_type='text/markdown',
@@ -12,7 +12,10 @@ setup(name='grafana_api',
       author='Andrew Prokhorenkov',
       author_email='andrew.prokhorenkov@gmail.com',
       license='MIT',
-      packages=['grafana_api'],
+      packages=[
+          'grafana_api',
+          'grafana_api.api'
+      ],
       install_requires=[
           'requests',
       ],

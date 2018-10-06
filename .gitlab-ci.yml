@@ -1,17 +1,12 @@
-image: python:3-slim
-
-# advise GitLab that these environment vars should be loaded from the Variables config
-variables:
-    PYPI_USER: SECURE
-    PYPI_PASSWORD: SECURE
-
 stages:
   - test
-  - deploy
+  - deploy_pypi
+  - deploy_conda
   - cleanup
 
 unittest:
   stage: test
+  image: python:3-slim
   script:
     - echo #
     - pip install requests
@@ -19,15 +14,21 @@ unittest:
     - echo #
 
 deploy_pypi:
-  stage: deploy
-  script:
+  stage: deploy_pypi
+  image: python:3-slim
+  # advise GitLab that these environment vars should be loaded from the Variables config
+  variables:
+    PYPI_USER: SECURE
+    PYPI_PASSWORD: SECURE
+  before_script:
     - apt-get update
     - apt-get install -y libffi-dev build-essential
     - echo "[pypi]" >> ~/.pypirc
     - echo "username =" ${PYPI_USER} >> ~/.pypirc
     - echo "password =" ${PYPI_PASSWORD} >> ~/.pypirc
-    - python setup.py check sdist bdist_wheel
     - pip install twine
+  script:
+    - python setup.py check sdist bdist_wheel
     - twine upload dist/*
     - echo "" > ~/.pypirc && rm ~/.pypirc
   only:
@@ -37,8 +38,33 @@ deploy_pypi:
   except:
     - branches
 
+deploy_conda:
+  stage: deploy_conda
+  image: continuumio/anaconda:5.3.0
+  # advise GitLab that these environment vars should be loaded from the Variables config
+  variables:
+    ANACONDA_USER: SECURE
+    ANACONDA_PASSWORD: SECURE
+    CONDA_BUILD_DIR: /opt/conda/conda-bld/
+  before_script:
+    - mkdir conda_build
+    - cd conda_build
+    - conda skeleton pypi grafana_api
+    - anaconda login --username $ANACONDA_USER --password $ANACONDA_PASSWORD
+  script:
+    - conda-build grafana_api
+    - conda convert --platform all $CONDA_BUILD_DIR/linux-64/grafana_api-0.3.2-py27_0.tar.bz2 -o $CONDA_BUILD_DIR
+    - anaconda upload $CONDA_BUILD_DIR/**/*.tar.bz2
+  only:
+    - /^v\d+\.\d+\.\d+([abc]\d*)?$/  # PEP-440 compliant version (tags)
+    - triggers
+    - schedules
+  except:
+    - branches
+
 cleanup_pypirc:
    stage: cleanup
+   image: python:3-slim
    when: always
    script:
     - rm -vf ~/.pypirc

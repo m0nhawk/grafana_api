@@ -26,8 +26,9 @@ install:
 
 # command to run tests
 script:
-  - nosetests -v --with-coverage --cover-tests --cover-package=grafana_api test/test_grafana.py
+  - nosetests -v --with-xunit --with-coverage --cover-xml --cover-package=grafana_api,api test/test_grafana.py
 
 after_success:
   - coveralls
+  - git fetch --unshallow
   - sonar-scanner

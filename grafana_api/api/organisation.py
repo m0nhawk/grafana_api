@@ -13,7 +13,7 @@ class Organisation(Base):
         :param org_name:
         :return:
         """
-        get_org_path = '/orgs/name/%s' % (org_name)
+        get_org_path = '/orgs/name/%s' % org_name
         r = self.api.GET(get_org_path)
         if 'id' in r:
             return r['id']
@@ -75,7 +75,7 @@ class Organisation(Base):
         :param user:
         :return:
         """
-        update_user_current_organisation_path = '/org/users/%s' % (user_id)
+        update_user_current_organisation_path = '/org/users/%s' % user_id
         r = self.api.PATCH(update_user_current_organisation_path, json=user)
         return r
 
@@ -85,7 +85,7 @@ class Organisation(Base):
         :param user_id:
         :return:
         """
-        delete_user_current_organisation_path = '/org/users/%s' % (user_id)
+        delete_user_current_organisation_path = '/org/users/%s' % user_id
         r = self.api.DELETE(delete_user_current_organisation_path)
         return r
 
@@ -103,7 +103,7 @@ class Organisations(Base):
         :param organisation:
         :return:
         """
-        update_org_path = '/orgs/%s' % (organisation_id)
+        update_org_path = '/orgs/%s' % organisation_id
         r = self.api.PUT(update_org_path, json=organisation)
         return organisation_id, r
 
@@ -113,7 +113,7 @@ class Organisations(Base):
         :param organisation_id:
         :return:
         """
-        delete_org_path = '/orgs/%s' % (organisation_id)
+        delete_org_path = '/orgs/%s' % organisation_id
         r = self.api.DELETE(delete_org_path)
         return r
 
@@ -132,7 +132,7 @@ class Organisations(Base):
         :param organisation_id:
         :return:
         """
-        switch_user_organisation = '/user/using/%s' % (organisation_id)
+        switch_user_organisation = '/user/using/%s' % organisation_id
         r = self.api.POST(switch_user_organisation)
         return r
 
@@ -142,7 +142,7 @@ class Organisations(Base):
         :param organisation_id:
         :return:
         """
-        users_in_org = '/orgs/%s/users' % (organisation_id)
+        users_in_org = '/orgs/%s/users' % organisation_id
         r = self.api.GET(users_in_org)
         return r
 
@@ -153,7 +153,7 @@ class Organisations(Base):
         :param user:
         :return:
         """
-        add_user_path = '/orgs/%s/users' % (organisation_id)
+        add_user_path = '/orgs/%s/users' % organisation_id
         r = self.api.POST(add_user_path, json=user)
         return r
 

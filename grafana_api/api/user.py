@@ -21,7 +21,7 @@ class Users(Base):
                 # TODO: escape the query
                 show_users_path = '/users?perpage=10&page=%s&query=%s' % (page, query)
             else:
-                show_users_path = '/users?perpage=10&page=%s' % (page)
+                show_users_path = '/users?perpage=10&page=%s' % page
             users_on_page = self.api.GET(show_users_path)
             list_of_users += users_on_page
             page += 1
@@ -34,17 +34,17 @@ class Users(Base):
         :param user_id:
         :return:
         """
-        get_user_path = '/users/%s' % (user_id)
+        get_user_path = '/users/%s' % user_id
         r = self.api.GET(get_user_path)
         return r
 
-    def find_user(self, loginOrEmail):
+    def find_user(self, login_or_email):
         """
 
-        :param loginOrEmail:
+        :param login_or_email:
         :return:
         """
-        search_user_path = '/users/lookup?loginOrEmail=%s' % (loginOrEmail)
+        search_user_path = '/users/lookup?loginOrEmail=%s' % login_or_email
         r = self.api.GET(search_user_path)
         if 'id' in r:
             return r['id']
@@ -57,7 +57,7 @@ class Users(Base):
         :param user:
         :return:
         """
-        update_user_path = '/users/%s' % (user_id)
+        update_user_path = '/users/%s' % user_id
         r = self.api.PUT(update_user_path, json=user)
         return r
 
@@ -67,7 +67,7 @@ class Users(Base):
         :param user_id:
         :return:
         """
-        get_user_organisations_path = '/users/%s/orgs' % (user_id)
+        get_user_organisations_path = '/users/%s/orgs' % user_id
         r = self.api.GET(get_user_organisations_path)
         return r
 
@@ -120,7 +120,7 @@ class User(Base):
         :param organisation_id:
         :return:
         """
-        switch_actual_user_organisation_path = '/user/using/%s' % (organisation_id)
+        switch_actual_user_organisation_path = '/user/using/%s' % organisation_id
         r = self.api.POST(switch_actual_user_organisation_path)
         return r
 
@@ -139,7 +139,7 @@ class User(Base):
         :param dashboard_id:
         :return:
         """
-        star_dashboard = '/user/stars/dashboard/%s' % (dashboard_id)
+        star_dashboard = '/user/stars/dashboard/%s' % dashboard_id
         r = self.api.POST(star_dashboard)
         return r
 
@@ -149,6 +149,6 @@ class User(Base):
         :param dashboard_id:
         :return:
         """
-        unstar_dashboard = '/user/stars/dashboard/%s' % (dashboard_id)
+        unstar_dashboard = '/user/stars/dashboard/%s' % dashboard_id
         r = self.api.DELETE(unstar_dashboard)
         return r

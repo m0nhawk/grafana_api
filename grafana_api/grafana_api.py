@@ -83,7 +83,8 @@ class GrafanaAPI:
             r = runner(__url, json=json, headers=headers, auth=self.auth)
 
             if 500 <= r.status_code < 600:
-                raise GrafanaServerError("Server Error {0}: {1}".format(r.status_code, r.content.decode("ascii", "replace")))
+                raise GrafanaServerError("Server Error {0}: {1}".format(r.status_code,
+                                                                        r.content.decode("ascii", "replace")))
             elif r.status_code == 400:
                 raise GrafanaBadInputError("Bad Input: `{0}`".format(r.text))
             elif r.status_code == 401:

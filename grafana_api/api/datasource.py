@@ -13,7 +13,7 @@ class Datasource(Base):
         :param datasource_name:
         :return:
         """
-        get_datasource_path = '/datasources/name/%s' % (datasource_name)
+        get_datasource_path = '/datasources/name/%s' % datasource_name
         r = self.api.GET(get_datasource_path)
         if 'id' in r:
             return r['id']
@@ -25,7 +25,7 @@ class Datasource(Base):
         :param datasource_id:
         :return:
         """
-        get_datasource_path = '/datasources/%s' % (datasource_id)
+        get_datasource_path = '/datasources/%s' % datasource_id
         r = self.api.GET(get_datasource_path)
         return r
 
@@ -35,7 +35,7 @@ class Datasource(Base):
         :param datasource_name:
         :return:
         """
-        get_datasource_path = '/datasources/name/%s' % (datasource_name)
+        get_datasource_path = '/datasources/name/%s' % datasource_name
         r = self.api.GET(get_datasource_path)
         return r
 
@@ -45,7 +45,7 @@ class Datasource(Base):
         :param datasource_name:
         :return:
         """
-        get_datasource_path = '/datasources/id/%s' % (datasource_name)
+        get_datasource_path = '/datasources/id/%s' % datasource_name
         r = self.api.GET(get_datasource_path)
         return r
 
@@ -66,7 +66,7 @@ class Datasource(Base):
         :param datasource:
         :return:
         """
-        update_datasource = '/datasources/%s' % (datasource_id)
+        update_datasource = '/datasources/%s' % datasource_id
         r = self.api.PUT(update_datasource, json=datasource)
         return r
 
@@ -85,7 +85,7 @@ class Datasource(Base):
         :param datasource_id:
         :return:
         """
-        delete_datasource = '/datasources/%s' % (datasource_id)
+        delete_datasource = '/datasources/%s' % datasource_id
         r = self.api.DELETE(delete_datasource)
         return r
 
@@ -95,6 +95,6 @@ class Datasource(Base):
         :param datasource_name:
         :return:
         """
-        delete_datasource = '/datasources/name/%s' % (datasource_name)
+        delete_datasource = '/datasources/name/%s' % datasource_name
         r = self.api.DELETE(delete_datasource)
         return r

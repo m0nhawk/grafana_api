@@ -8,12 +8,21 @@ class Folder(Base):
         self.path = '/users'
 
     def get_all_folders(self):
+        """
+
+        :return:
+        """
         path = '/folders'
         r = self.api.GET(path)
         return r
 
     def get_folder(self, uid):
-        path = '/folders/%s' % (uid)
+        """
+
+        :param uid:
+        :return:
+        """
+        path = '/folders/%s' % uid
         r = self.api.GET(path)
         return r
 
@@ -30,34 +39,54 @@ class Folder(Base):
         return self.api.POST('/folders', json=json_data)
 
     def update_folder(self, uid, title):
-        path = '/folders' % (uid)
+        """
+
+        :param uid:
+        :param title:
+        :return:
+        """
+        path = '/folders' % uid
         r = self.api.PUT(path, json={
             "title": title
         })
         return r
 
     def delete_folder(self, uid):
-        path = '/folders/%s' % (uid)
+        """
+
+        :param uid:
+        :return:
+        """
+        path = '/folders/%s' % uid
         r = self.api.DELETE(path)
         return r
 
-    def get_folder_by_id(self, id):
-        path = '/folders/id/%s' % (id)
+    def get_folder_by_id(self, folder_id):
+        """
+
+        :param folder_id:
+        :return:
+        """
+        path = '/folders/id/%s' % folder_id
         r = self.api.GET(path)
         return r
 
     def get_folder_permissions(self):
+        """
+
+        :return:
+        """
         path = '/folders/%s/permissions'
         r = self.api.GET(path)
         return r
 
     def update_folder_permissions(self, uid, items):
         """
-        Updates permissions for a folder.
 
-        This operation will remove existing permissions if they’re not included in the request.
-
-        :param uid: Folder uid
+        :param uid:
+        :param items:
+        :return:
         """
-        # TODO really relevant to return something?
-        return self.api.POST('/folders/%s/permissions' % uid, json=dict(items=items))
+        update_folder_permissions_path = '/folders/%s/permissions' % uid
+        r = self.api.POST(update_folder_permissions_path, json=items)
+        return r

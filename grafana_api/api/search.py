@@ -20,16 +20,16 @@ class Search(Base):
         params = []
 
         if query:
-            params.append('query=%s' % (query))
+            params.append('query=%s' % query)
 
         if tag:
-            params.append('tag=%s' % (tag))
+            params.append('tag=%s' % tag)
 
         if starred:
-            params.append('starred=%s' % (starred))
+            params.append('starred=%s' % starred)
 
         if tagcloud:
-            params.append('tagcloud=%s' % (tagcloud))
+            params.append('tagcloud=%s' % tagcloud)
 
         list_dashboard_path += '&'.join(params)
 

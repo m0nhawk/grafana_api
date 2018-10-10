@@ -5,7 +5,6 @@ class Organisation(Base):
     def __init__(self, api):
         super().__init__(api)
         self.api = api
-        self.path = '/users'
 
     def find_organisation(self, org_name):
         """
@@ -15,9 +14,7 @@ class Organisation(Base):
         """
         get_org_path = '/orgs/name/%s' % org_name
         r = self.api.GET(get_org_path)
-        if 'id' in r:
-            return r['id']
-        return -1
+        return r
 
     def get_current_organisation(self):
         """
@@ -36,8 +33,7 @@ class Organisation(Base):
         """
         create_orgs_path = '/orgs'
         r = self.api.POST(create_orgs_path, json={'name': organisation['name']})
-        organisation_id = r['orgId']
-        return organisation_id, r
+        return r
 
     def update_current_organisation(self, organisation):
         """
@@ -105,7 +101,7 @@ class Organisations(Base):
         """
         update_org_path = '/orgs/%s' % organisation_id
         r = self.api.PUT(update_org_path, json=organisation)
-        return organisation_id, r
+        return r
 
     def delete_organisation(self, organisation_id):
         """

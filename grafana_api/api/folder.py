@@ -5,7 +5,6 @@ class Folder(Base):
     def __init__(self, api):
         super().__init__(api)
         self.api = api
-        self.path = '/users'
 
     def get_all_folders(self):
         """
@@ -28,10 +27,10 @@ class Folder(Base):
 
     def create_folder(self, title, uid=None):
         """
-        Creates a new folder.
 
-        :param title: The title of the folder.
-        :param uid: Optional unique identifier.
+        :param title:
+        :param uid:
+        :return:
         """
         json_data = dict(title=title)
         if uid is not None:

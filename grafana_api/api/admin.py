@@ -5,15 +5,14 @@ class Admin(Base):
     def __init__(self, api):
         super().__init__(api)
         self.api = api
-        self.path = '/admin'
 
     def settings(self):
         """
 
         :return:
         """
-        path = 'settings'
-        r = self.api.GET('/'.join([self.path, path]))
+        path = '/admin/settings'
+        r = self.api.GET(path)
         return r
 
     def stats(self):
@@ -21,8 +20,8 @@ class Admin(Base):
 
         :return:
         """
-        path = 'stats'
-        r = self.api.GET('/'.join([self.path, path]))
+        path = '/admin/stats'
+        r = self.api.GET(path)
         return r
 
     def create_user(self, user):

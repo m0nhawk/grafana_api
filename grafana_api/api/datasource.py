@@ -5,7 +5,6 @@ class Datasource(Base):
     def __init__(self, api):
         super().__init__(api)
         self.api = api
-        self.path = '/users'
 
     def find_datasource(self, datasource_name):
         """
@@ -15,9 +14,7 @@ class Datasource(Base):
         """
         get_datasource_path = '/datasources/name/%s' % datasource_name
         r = self.api.GET(get_datasource_path)
-        if 'id' in r:
-            return r['id']
-        return -1
+        return r
 
     def get_datasource_by_id(self, datasource_id):
         """

@@ -5,7 +5,6 @@ class Dashboard(Base):
     def __init__(self, api):
         super().__init__(api)
         self.api = api
-        self.path = '/users'
 
     def get_dashboard(self, dashboard_uid):
         """

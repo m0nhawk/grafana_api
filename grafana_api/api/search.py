@@ -5,18 +5,21 @@ class Search(Base):
     def __init__(self, api):
         super().__init__(api)
         self.api = api
-        self.path = '/users'
 
-    def list_dashboard(self, query=None, tag=None, starred=None, tagcloud=None):
+    def search_dashboards(self, query=None, tag=None, type_=None, dashboard_ids=None, folder_ids=None, starred=None,
+                          limit=None):
         """
 
         :param query:
         :param tag:
+        :param type_:
+        :param dashboard_ids:
+        :param folder_ids:
         :param starred:
-        :param tagcloud:
+        :param limit:
         :return:
         """
-        list_dashboard_path = '/search?'
+        list_dashboard_path = '/search'
         params = []
 
         if query:
@@ -25,12 +28,25 @@ class Search(Base):
         if tag:
             params.append('tag=%s' % tag)
 
+        if type_:
+            params.append('type=%s' % type_)
+
+        if dashboard_ids:
+            params.append('dashboardIds=%s' % dashboard_ids)
+
+        if folder_ids:
+            params.append('folderIds=%s' % folder_ids)
+
+        if tag:
+            params.append('tag=%s' % tag)
+
         if starred:
             params.append('starred=%s' % starred)
 
-        if tagcloud:
-            params.append('tagcloud=%s' % tagcloud)
+        if limit:
+            params.append('limit=%s' % limit)
 
+        list_dashboard_path += '?'
         list_dashboard_path += '&'.join(params)
 
         r = self.api.GET(list_dashboard_path)

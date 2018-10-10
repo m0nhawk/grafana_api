@@ -5,26 +5,42 @@ class Users(Base):
     def __init__(self, api):
         super().__init__(api)
         self.api = api
-        self.path = '/users'
 
-    def search_users(self, query=None):
+    def search_users(self, query=None, page=None, perpage=None):
         """
 
         :return:
         """
         list_of_users = []
         users_on_page = None
-        page = 1
+        show_users_path = '/users'
+        params = []
 
-        while users_on_page != []:
-            if query:
-                # TODO: escape the query
-                show_users_path = '/users?perpage=10&page=%s&query=%s' % (page, query)
-            else:
-                show_users_path = '/users?perpage=10&page=%s' % page
+        if query:
+            params.append('query=%s' % query)
+
+        if page:
+            iterate = False
+            params.append('page=%s' % page)
+        else:
+            iterate = True
+            params.append('page=%s')
+            page = 1
+
+        if perpage:
+            params.append('perpage=%s' % perpage)
+
+        show_users_path += '?'
+        show_users_path += '&'.join(params)
+
+        if iterate:
+            while users_on_page != []:
+                users_on_page = self.api.GET(show_users_path % page)
+                list_of_users += users_on_page
+                page += 1
+        else:
             users_on_page = self.api.GET(show_users_path)
             list_of_users += users_on_page
-            page += 1
 
         return list_of_users
 
@@ -46,9 +62,7 @@ class Users(Base):
         """
         search_user_path = '/users/lookup?loginOrEmail=%s' % login_or_email
         r = self.api.GET(search_user_path)
-        if 'id' in r:
-            return r['id']
-        return -1
+        return r
 
     def update_user(self, user_id, user):
         """

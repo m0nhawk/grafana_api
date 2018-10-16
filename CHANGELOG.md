@@ -1,5 +1,13 @@
 # Change Log
 
+## [v0.3.4](https://github.com/m0nhawk/grafana_api/tree/v0.3.4) (2018-10-16)
+[Full Changelog](https://github.com/m0nhawk/grafana_api/compare/v0.3.3...v0.3.4)
+
+**Merged pull requests:**
+
+- Pass verify into requests.get to support unverified ssl [\#7](https://github.com/m0nhawk/grafana_api/pull/7) ([asalkeld](https://github.com/asalkeld))
+- Fix token based auth [\#6](https://github.com/m0nhawk/grafana_api/pull/6) ([asalkeld](https://github.com/asalkeld))
+
 ## [v0.3.3](https://github.com/m0nhawk/grafana_api/tree/v0.3.3) (2018-10-10)
 [Full Changelog](https://github.com/m0nhawk/grafana_api/compare/v0.3.2...v0.3.3)
 

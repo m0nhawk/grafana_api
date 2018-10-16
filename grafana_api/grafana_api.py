@@ -46,8 +46,9 @@ class TokenAuth(requests.auth.AuthBase):
 
 
 class GrafanaAPI:
-    def __init__(self, auth, host='localhost', port=None, url_path_prefix='', protocol='http'):
+    def __init__(self, auth, host='localhost', port=None, url_path_prefix='', protocol='http', verify=True):
         self.auth = auth
+        self.verify = verify
         self.url_host = host
         self.url_port = port
         self.url_path_prefix = url_path_prefix
@@ -80,7 +81,7 @@ class GrafanaAPI:
         def __request_runnner(url, json=None, headers=None):
             __url = '%s%s' % (self.url, url)
             runner = getattr(self.s, item.lower())
-            r = runner(__url, json=json, headers=headers, auth=self.auth)
+            r = runner(__url, json=json, headers=headers, auth=self.auth, verify=self.verify)
 
             if 500 <= r.status_code < 600:
                 raise GrafanaServerError("Server Error {0}: {1}".format(r.status_code,

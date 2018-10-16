@@ -16,6 +16,7 @@ unittest:
 deploy_pypi:
   stage: deploy_pypi
   image: python:3-slim
+  when: always
   # advise GitLab that these environment vars should be loaded from the Variables config
   variables:
     PYPI_USER: SECURE
@@ -41,6 +42,7 @@ deploy_pypi:
 deploy_conda:
   stage: deploy_conda
   image: continuumio/anaconda:5.3.0
+  when: always
   # advise GitLab that these environment vars should be loaded from the Variables config
   variables:
     ANACONDA_USER: SECURE
@@ -63,8 +65,8 @@ deploy_conda:
     - branches
 
 cleanup_pypirc:
-   stage: cleanup
-   image: python:3-slim
-   when: always
-   script:
+  stage: cleanup
+  image: python:3-slim
+  when: always
+  script:
     - rm -vf ~/.pypirc

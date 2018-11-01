@@ -41,7 +41,7 @@ class Admin(Base):
         :param password:
         :return:
         """
-        change_user_password_path = self.path + '/users/%s/password' % user_id
+        change_user_password_path = '/admin/users/%s/password' % user_id
         r = self.api.PUT(change_user_password_path, json={'password': password})
         return r
 
@@ -52,7 +52,7 @@ class Admin(Base):
         :param is_grafana_admin:
         :return:
         """
-        change_user_permissions = self.path + '/users/%s/permissions' % user_id
+        change_user_permissions = '/admin/users/%s/permissions' % user_id
         r = self.api.PUT(change_user_permissions, json={'isGrafanaAdmin': is_grafana_admin})
         return r
 

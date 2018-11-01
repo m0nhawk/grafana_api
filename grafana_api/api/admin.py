@@ -30,7 +30,7 @@ class Admin(Base):
         :param user:
         :return:
         """
-        create_user_path = 'users'
+        create_user_path = 'admin/users'
         r = self.api.POST(create_user_path, json=user)
         return r
 

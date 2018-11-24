@@ -49,12 +49,11 @@ deploy_conda:
   before_script:
     - mkdir conda_build
     - cd conda_build
-    - conda skeleton pypi grafana_api
-    - anaconda login --username $ANACONDA_USER --password $ANACONDA_PASSWORD
+    - conda skeleton pypi grafana_api --noarch-python
+    - conda config --set anaconda_upload yes
+    - "{ yes || :; } | anaconda login --username $ANACONDA_USER --password $ANACONDA_PASSWORD"
   script:
     - conda-build grafana_api
-    - conda convert --platform all $CONDA_BUILD_DIR/linux-64/grafana_api-0.3.2-py27_0.tar.bz2 -o $CONDA_BUILD_DIR
-    - anaconda upload $CONDA_BUILD_DIR/**/*.tar.bz2
   only:
     - /^v\d+\.\d+\.\d+([abc]\d*)?$/  # PEP-440 compliant version (tags)
     - triggers

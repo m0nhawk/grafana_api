@@ -13,7 +13,7 @@ class Teams(Base):
         """
         list_of_teams = []
         teams_on_page = None
-        show_teams_path = '/teams'
+        search_teams_path = '/teams/search'
         params = []
 
         if query:
@@ -30,17 +30,19 @@ class Teams(Base):
         if perpage:
             params.append('perpage=%s' % perpage)
 
-        show_teams_path += '?'
-        show_teams_path += '&'.join(params)
+        search_teams_path += '?'
+        search_teams_path += '&'.join(params)
 
         if iterate:
-            while teams_on_page != []:
-                teams_on_page = self.api.GET(show_teams_path % page)
-                list_of_teams += teams_on_page
+            while True:
+                teams_on_page = self.api.GET(search_teams_path % page)
+                list_of_teams += teams_on_page["teams"]
+                if len(list_of_teams) == teams_on_page["totalCount"]:
+                    break
                 page += 1
         else:
-            teams_on_page = self.api.GET(show_teams_path)
-            list_of_teams += teams_on_page
+            teams_on_page = self.api.GET(search_teams_path)
+            list_of_teams += teams_on_page["teams"]
 
         return list_of_teams
 
@@ -52,7 +54,6 @@ class Teams(Base):
         """
         get_team_path = '/teams/%s' % team_id
         r = self.api.GET(get_team_path)
-        print(r)
         return r
 
     def add_team(self, team):

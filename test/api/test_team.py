@@ -9,6 +9,86 @@ class TeamsTestCase(unittest.TestCase):
                 url_path_prefix='', protocol='http')
 
     @requests_mock.Mocker()
+    def test_search_teams_url_encodes_query(self, m):
+        m.get('http://localhost/api/teams/search?query=my%20team&page=1', json=
+            {"totalCount": 1,
+                "teams": [
+                    {
+                        "id": 1,
+                        "orgId": 1,
+                        "name": "MyTestTeam",
+                        "email": "",
+                        "avatarUrl": "\/avatar\/3f49c15916554246daa714b9bd0ee398",
+                        "memberCount": 1
+                        }
+                    ],
+                "page": 1,
+                "perPage": 1000
+                })
+        teams = self.cli.teams.search_teams('my team')
+        self.assertEqual(teams[0]["name"], "MyTestTeam")
+        self.assertEqual(len(teams), 1)
+
+    @requests_mock.Mocker()
+    def test_search_teams_loads_all_pages(self, m):
+        m.get('http://localhost/api/teams/search?query=team&page=1', json=
+            {"totalCount": 2,
+                "teams": [
+                    {
+                        "id": 1,
+                        "orgId": 1,
+                        "name": "MyTestTeam",
+                        "email": "",
+                        "avatarUrl": "\/avatar\/3f49c15916554246daa714b9bd0ee398",
+                        "memberCount": 1
+                        }
+                    ],
+                "page": 1,
+                "perPage": 1
+                })
+
+        m.get('http://localhost/api/teams/search?query=team&page=2', json=
+            {"totalCount": 2,
+                "teams": [
+                    {
+                        "id": 2,
+                        "orgId": 1,
+                        "name": "SecondTeam",
+                        "email": "",
+                        "avatarUrl": "\/avatar\/3f49c15916554246daa714b9bd0ee398",
+                        "memberCount": 23
+                        }
+                    ],
+                "page": 2,
+                "perPage": 1
+                })
+        teams = self.cli.teams.search_teams('team')
+        self.assertEqual(teams[0]["name"], "MyTestTeam")
+        self.assertEqual(teams[1]["name"], "SecondTeam")
+        self.assertEqual(len(teams), 2)
+
+    @requests_mock.Mocker()
+    def test_search_teams_only_loads_requested_page(self, m):
+        m.get('http://localhost/api/teams/search?query=my%20team&page=2', json=
+            {"totalCount": 10,
+                "teams": [
+                    {
+                        "id": 2,
+                        "orgId": 1,
+                        "name": "MyTestTeam",
+                        "email": "",
+                        "avatarUrl": "\/avatar\/3f49c15916554246daa714b9bd0ee398",
+                        "memberCount": 1
+                        }
+                    ],
+                "page": 1,
+                "perPage": 1
+                })
+        teams = self.cli.teams.search_teams('my team', 2)
+        self.assertEqual(teams[0]["name"], "MyTestTeam")
+        self.assertEqual(len(teams), 1)
+
+    @requests_mock.Mocker()
     def test_get_team(self, m):
         m.get('http://localhost/api/teams/1', json=
         {"id": 1,

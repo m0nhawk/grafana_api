@@ -33,6 +33,9 @@ setup(name='grafana_api',
           'requests',
           'pyyaml',
       ],
+      tests_require=[
+          'requests-mock',
+      ],
       classifiers=[
           'Development Status :: 3 - Alpha',
           'Intended Audience :: Developers',

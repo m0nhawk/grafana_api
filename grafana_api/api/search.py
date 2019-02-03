@@ -37,9 +37,6 @@ class Search(Base):
         if folder_ids:
             params.append('folderIds=%s' % folder_ids)
 
-        if tag:
-            params.append('tag=%s' % tag)
-
         if starred:
             params.append('starred=%s' % starred)
 

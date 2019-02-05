@@ -54,6 +54,8 @@ deploy_conda:
     - "{ yes || :; } | anaconda login --username $ANACONDA_USER --password $ANACONDA_PASSWORD"
   script:
     - conda-build grafana_api
+  after_script:
+    - anaconda logout
   only:
     - /^v\d+\.\d+\.\d+([abc]\d*)?$/  # PEP-440 compliant version (tags)
     - triggers

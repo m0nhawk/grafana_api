@@ -3,6 +3,8 @@
 
 [![PyPI](https://img.shields.io/pypi/v/grafana_api.svg?style=flat)](https://pypi.org/project/grafana-api/) [![PyPI](https://img.shields.io/pypi/wheel/grafana_api.svg?style=flat)](https://pypi.org/project/grafana-api/) [![PyPI](https://img.shields.io/pypi/pyversions/grafana_api.svg?style=flat)](https://pypi.org/project/grafana-api/) [![PyPI](https://img.shields.io/pypi/status/grafana_api.svg?style=flat)](https://pypi.org/project/grafana-api/)
 
+[![Conda](https://anaconda.org/m0nhawk/grafana_api/badges/version.svg)](https://anaconda.org/m0nhawk/grafana_api) [![Platform](https://anaconda.org/m0nhawk/grafana_api/badges/platforms.svg)](https://anaconda.org/m0nhawk/grafana_api) [![Downloads](https://anaconda.org/m0nhawk/grafana_api/badges/downloads.svg)](https://anaconda.org/m0nhawk/grafana_api) [![Last Updated](https://anaconda.org/m0nhawk/grafana_api/badges/latest_release_relative_date.svg)](https://anaconda.org/m0nhawk/grafana_api)
+
 
 ## What is this library for?
 

@@ -1,5 +1,11 @@
 import unittest
-from unittest.mock import patch, Mock
+import sys
+
+if (sys.version_info > (3, 0)):
+    from unittest.mock import patch, Mock
+else:
+    from mock import patch, Mock
+
 import requests
 
 from grafana_api.grafana_face import GrafanaFace

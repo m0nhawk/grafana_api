@@ -1,0 +1,13 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "grafana_api"
+
+[packages]
+requests = "*"
+
+
+[dev-packages]
+nose = "*"
+python-coveralls = "*"
+coverage = "*"

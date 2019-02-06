@@ -1,0 +1,28 @@
+version: 2
+
+jobs:
+  build:
+    working_directory: ~/grafana_api
+    docker:
+      - image: circleci/python:3.7
+        environment:
+          PIPENV_VENV_IN_PROJECT: true
+    steps:
+      - checkout  # checkout source code to working directory
+      - run: sudo chown -R circleci:circleci /usr/local/bin
+      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.7/site-packages
+      - restore_cache:  # ensure this step occurs *before* installing dependencies
+          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+      - run:
+          command: |
+            sudo pip install pipenv
+            pipenv install
+            pipenv install --dev
+      - run: pipenv run nosetests -v --with-xunit --with-coverage --cover-xml --cover-package=grafana_api,api test/test_grafana.py
+      - run: pipenv run coveralls
+      - save_cache:
+          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+          paths:
+            - ".venv"
+            - "/usr/local/bin"
+            - "/usr/local/lib/python3.7/site-packages"

@@ -1,10 +1,6 @@
-# grafana_api [![Travis](https://img.shields.io/travis/m0nhawk/grafana_api.svg?style=flat)](https://travis-ci.org/m0nhawk/grafana_api)
-[![GitHub issues](https://img.shields.io/github/issues/m0nhawk/grafana_api.svg?style=flat)](https://github.com/m0nhawk/grafana_api/issues) [![GitHub forks](https://img.shields.io/github/forks/m0nhawk/grafana_api.svg?style=flat)](https://github.com/m0nhawk/grafana_api/network) [![GitHub stars](https://img.shields.io/github/stars/m0nhawk/grafana_api.svg?style=flat)](https://github.com/m0nhawk/grafana_api/stargazers) [![GitHub license](https://img.shields.io/github/license/m0nhawk/grafana_api.svg?style=flat)](https://github.com/m0nhawk/grafana_api/blob/master/LICENSE)
+# grafana_api [![CircleCI](https://img.shields.io/circleci/project/github/m0nhawk/grafana_api.svg?style=flat-square&logo=circleci)](https://circleci.com/gh/m0nhawk/workflows/grafana_api/tree/master) [![GitHub license](https://img.shields.io/github/license/m0nhawk/grafana_api.svg?style=flat-square)](https://github.com/m0nhawk/grafana_api/blob/master/LICENSE) [![Coveralls](https://img.shields.io/coveralls/github/m0nhawk/grafana_api.svg?style=flat-square)](https://coveralls.io/github/m0nhawk/grafana_api)
 
-[![PyPI](https://img.shields.io/pypi/v/grafana_api.svg?style=flat)](https://pypi.org/project/grafana-api/) [![PyPI](https://img.shields.io/pypi/wheel/grafana_api.svg?style=flat)](https://pypi.org/project/grafana-api/) [![PyPI](https://img.shields.io/pypi/pyversions/grafana_api.svg?style=flat)](https://pypi.org/project/grafana-api/) [![PyPI](https://img.shields.io/pypi/status/grafana_api.svg?style=flat)](https://pypi.org/project/grafana-api/)
-
-[![Conda](https://anaconda.org/m0nhawk/grafana_api/badges/version.svg)](https://anaconda.org/m0nhawk/grafana_api) [![Platform](https://anaconda.org/m0nhawk/grafana_api/badges/platforms.svg)](https://anaconda.org/m0nhawk/grafana_api) [![Downloads](https://anaconda.org/m0nhawk/grafana_api/badges/downloads.svg)](https://anaconda.org/m0nhawk/grafana_api) [![Last Updated](https://anaconda.org/m0nhawk/grafana_api/badges/latest_release_relative_date.svg)](https://anaconda.org/m0nhawk/grafana_api)
-
+[![PyPI](https://img.shields.io/pypi/v/grafana_api.svg?style=flat-square)](https://pypi.org/project/grafana-api/) [![Conda](https://img.shields.io/conda/v/m0nhawk/grafana_api.svg?style=flat-square)](https://anaconda.org/m0nhawk/grafana_api)
 
 ## What is this library for?
 

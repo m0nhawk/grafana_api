@@ -23,10 +23,11 @@ install:
   - pip install python-coveralls
   - pip install coverage
   - pip install nose
+  - pip install requests-mock
 
 # command to run tests
 script:
-  - nosetests -v --with-xunit --with-coverage --cover-xml --cover-package=grafana_api,api test/test_grafana.py
+  - nosetests -v --with-xunit --with-coverage --cover-xml --cover-package=grafana_api,api test/
 
 after_success:
   - coveralls

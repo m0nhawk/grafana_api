@@ -87,3 +87,58 @@ class Teams(Base):
         r = self.api.DELETE(delete_team_path)
         return True
 
+    def get_team_members(self, team_id):
+        """
+
+        :param team_id:
+        :return:
+        """
+        get_team_members_path = '/teams/%s/members' % team_id
+        r = self.api.GET(get_team_members_path)
+        return r
+
+    def add_team_member(self, team_id, user_id):
+        """
+
+        :param team_id:
+        :param user_id:
+        :return:
+        """
+        add_team_member_path = '/teams/%s/members' % team_id
+        payload = {
+           "userId": user_id
+        }
+        r = self.api.POST(add_team_member_path, json=payload)
+        return r
+
+    def remove_team_member(self, team_id, user_id):
+        """
+
+        :param team_id:
+        :param user_id:
+        :return:
+        """
+        remove_team_member_path = '/teams/%s/members/%s' % (team_id, user_id)
+        r = self.api.DELETE(remove_team_member_path)
+        return r
+
+    def get_team_preferences(self, team_id):
+        """
+
+        :param team_id:
+        :return:
+        """
+        get_team_preferences_path = '/teams/%s/preferences' % team_id
+        r = self.api.GET(get_team_preferences_path)
+        return r
+
+    def update_team_preferences(self, team_id, preferences):
+        """
+
+        :param team_id:
+        :param preferences:
+        :return:
+        """
+        update_team_preferences_path = '/teams/%s/preferences' % team_id
+        r = self.api.PUT(update_team_preferences_path, json=preferences)
+        return r

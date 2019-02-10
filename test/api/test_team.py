@@ -135,3 +135,66 @@ class TeamsTestCase(unittest.TestCase):
         })
         response = self.cli.teams.delete_team(3)
         self.assertEqual(response, True)
+
+    @requests_mock.Mocker()
+    def test_get_team_members(self, m):
+        m.get('http://localhost/api/teams/1/members', json=
+        [{
+            "orgId": 1,
+            "teamId": 1,
+            "userId": 3,
+            "email": "user1@email.com",
+            "login": "user1",
+            "avatarUrl": "\/avatar\/1b3c32f6386b0185c40d359cdc733a79"
+            }])
+        members = self.cli.teams.get_team_members('1')
+        self.assertEqual(members[0]["login"], "user1")
+
+    @requests_mock.Mocker()
+    def test_add_team_member(self, m):
+        m.post('http://localhost/api/teams/1/members', json=
+        {
+            "message":"Member added to Team"
+        })
+        history = m.request_history
+        add_res = self.cli.teams.add_team_member('1', '3')
+        self.assertEqual(history[0].json()["userId"], '3')
+        self.assertEqual(add_res["message"], "Member added to Team")
+
+    @requests_mock.Mocker()
+    def test_remove_team_member(self, m):
+        m.delete('http://localhost/api/teams/13/members/2', json=
+        {
+            "message":"Team member removed"
+        })
+        remove_res = self.cli.teams.remove_team_member('13', '2')
+        self.assertEqual(remove_res["message"], "Team member removed")
+
+    @requests_mock.Mocker()
+    def test_get_team_preferences(self, m):
+        m.get('http://localhost/api/teams/1/preferences', json=
+        {
+            "theme": "",
+            "homeDashboardId": 0,
+            "timezone": ""
+        })
+        prefs = self.cli.teams.get_team_preferences('1')
+        self.assertEqual(prefs["homeDashboardId"], 0)
+
+    @requests_mock.Mocker()
+    def test_update_team_preferences(self, m):
+        m.put('http://localhost/api/teams/1/preferences', json=
+        {
+            "message":"Preferences updated"
+        })
+        prefs = {
+            "theme": "light",
+            "homeDashboardId": 0,
+            "timezone": ""
+        }
+
+        updates = self.cli.teams.update_team_preferences('1', prefs)
+        history = m.request_history
+        json_payload = history[0].json()
+        self.assertEqual(json_payload["theme"], 'light')
+        self.assertEqual(updates["message"], 'Preferences updated')

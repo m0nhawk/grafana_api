@@ -12,9 +12,31 @@ You need either 2nd or 3rd version of Python and only the `requests` library ins
 
 ## Quick start
 
-It's available in PyPi repository:
+Install the pip package:
 
-    pip install -U grafana_api
+```
+pip install -U grafana_api
+```
+
+And then connect to your Grafana API endpoint:
+
+```python
+from grafana_api.grafana_face import GrafanaFace
+
+grafana_api = GrafanaFace(auth='abcde....', host='api.my-grafana-host.com')
+
+# Search dashboards based on tag
+grafana_api.search.search_dashboards(tag='applications')
+
+# Find a user by email
+grafana_api.users.find_user('test@test.com')
+
+# Create or update a dashboard
+grafana_api.dashboard.update_dashboard(dashboard={'dashboard': {...}, 'folderId': 0, 'overwrite': True})
+
+# Delete a dashboard by UID
+grafana_api.dashboard.delete_dashboard(dashboard_uid='abcdefgh')
+```
 
 ## Status of REST API realization [![Coverage Status](https://coveralls.io/repos/github/m0nhawk/grafana_api/badge.svg?branch=master)](https://coveralls.io/github/m0nhawk/grafana_api?branch=master)
 

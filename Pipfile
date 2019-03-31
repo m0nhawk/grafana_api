@@ -4,10 +4,10 @@ verify_ssl = true
 name = "grafana_api"
 
 [packages]
-requests = "*"
-pyyaml = "==5.1b1"
+pyyaml = "==5.1"
+requests = "~=2.21"
 
 [dev-packages]
-nose = "*"
-python-coveralls = "*"
 coverage = "*"
+python-coveralls = "~=2.9"
+unittest-xml-reporting = "~=2.5"

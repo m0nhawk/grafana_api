@@ -8,6 +8,6 @@ pyyaml = "==5.1"
 requests = "~=2.21"
 
 [dev-packages]
-coverage = "*"
-coveralls = "~=1.7"
+codecov = "~=2.0"
+coverage = "~=4.5"
 unittest-xml-reporting = "~=2.5"

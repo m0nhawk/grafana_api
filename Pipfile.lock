@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "e3ec5f24dd15d2ea907b77b39509980d82c60c395ab9c4c28c22f272f7bba04c"
+            "sha256": "b5c7023afd300a295fbd6e733be249a1dc100275da2254e49af1f281e84f644a"
         },
         "pipfile-spec": 6,
         "requires": {},
@@ -83,6 +83,14 @@
             ],
             "version": "==3.0.4"
         },
+        "codecov": {
+            "hashes": [
+                "sha256:8ed8b7c6791010d359baed66f84f061bba5bd41174bf324c31311e8737602788",
+                "sha256:ae00d68e18d8a20e9c3288ba3875ae03db3a8e892115bf9b83ef20507732bed4"
+            ],
+            "index": "grafana_api",
+            "version": "==2.0.15"
+        },
         "coverage": {
             "hashes": [
                 "sha256:3684fabf6b87a369017756b551cef29e505cb155ddb892a7a29277b978da88b9",
@@ -119,20 +127,6 @@
             ],
             "index": "grafana_api",
             "version": "==4.5.3"
-        },
-        "coveralls": {
-            "hashes": [
-                "sha256:baa26648430d5c2225ab12d7e2067f75597a4b967034bba7e3d5ab7501d207a1",
-                "sha256:ff9b7823b15070f26f654837bb02a201d006baaf2083e0514ffd3b34a3ffed81"
-            ],
-            "index": "grafana_api",
-            "version": "==1.7.0"
-        },
-        "docopt": {
-            "hashes": [
-                "sha256:49b3a825280bd66b3aa83585ef59c4a8c82f2c8a522dbe754a8bc8d08c85c491"
-            ],
-            "version": "==0.6.2"
         },
         "idna": {
             "hashes": [

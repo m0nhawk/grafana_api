@@ -64,16 +64,6 @@ class TestGrafanaAPI(unittest.TestCase):
         self.assertTrue(isinstance(cli.api.auth, TokenAuth))
 
 
-    def test_grafana_api_basic_auth(self):
-        cli = GrafanaFace(('admin', 'admin'), host='localhost',
-                          url_path_prefix='', protocol='https')
-        self.assertTrue(isinstance(cli.api.auth, requests.auth.HTTPBasicAuth))
-
-    def test_grafana_api_token_auth(self):
-        cli = GrafanaFace('alongtoken012345etc', host='localhost',
-                          url_path_prefix='', protocol='https')
-        self.assertTrue(isinstance(cli.api.auth, TokenAuth))
-
-
 if __name__ == '__main__':
-    unittest.main()
+    import xmlrunner
+    unittest.main(testRunner=xmlrunner.XMLTestRunner(output='test-reports'))

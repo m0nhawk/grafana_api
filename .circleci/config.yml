@@ -18,7 +18,7 @@ jobs:
             sudo pip install pipenv
             pipenv install
             pipenv install --dev
-      - run: pipenv run python -m xmlrunner test.test_grafana -o test-reports
+      - run: pipenv run coverage run -m xmlrunner test.test_grafana -o test-reports
       - run: pipenv run coveralls
       - save_cache:
           key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}

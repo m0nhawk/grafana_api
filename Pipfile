@@ -9,5 +9,5 @@ requests = "~=2.21"
 
 [dev-packages]
 coverage = "*"
-python-coveralls = "~=2.9"
+coveralls = "~=1.7"
 unittest-xml-reporting = "~=2.5"

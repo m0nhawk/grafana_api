@@ -9,8 +9,10 @@ unittest:
   image: python:3-slim
   script:
     - echo #
-    - pip install requests
-    - python -m unittest discover -f -s test/ -t ./
+    - pip install pipenv
+    - pipenv install
+    - pipenv install --dev
+    - pipenv run coverage run -m xmlrunner test.test_grafana -o test-reports
     - echo #
 
 deploy_pypi:

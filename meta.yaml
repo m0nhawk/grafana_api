@@ -9,7 +9,7 @@ package:
   version: "{{ version }}"
 
 source:
-  path: ..
+  path: .
 
 build:
   noarch: python

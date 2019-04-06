@@ -1,6 +1,9 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+### Feat
+- **auto-deploy:** build package automatically
+
 ### Fix
 - **organization:** fix [#11](https://github.com/m0nhawk/grafana_api/issues/11), rename to “Organization” the same as in Grafana API
 

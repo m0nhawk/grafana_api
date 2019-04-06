@@ -38,7 +38,7 @@ grafana_api.dashboard.update_dashboard(dashboard={'dashboard': {...}, 'folderId'
 grafana_api.dashboard.delete_dashboard(dashboard_uid='abcdefgh')
 ```
 
-## Status of REST API realization [![Coverage Status](https://coveralls.io/repos/github/m0nhawk/grafana_api/badge.svg?branch=master)](https://coveralls.io/github/m0nhawk/grafana_api?branch=master)
+## Status of REST API realization
 
 Work on API implementation still in progress.
 

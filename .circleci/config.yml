@@ -1,7 +1,7 @@
 version: 2
 
 jobs:
-  build:
+  tests:
     working_directory: ~/grafana_api
     docker:
       - image: circleci/python:3.7
@@ -30,3 +30,48 @@ jobs:
           path: test-reports
       - store_artifacts:
           path: test-reports
+
+  build:
+    docker:
+      - image: circleci/python:3.7
+    steps:
+      - checkout
+      - run:
+          name: "Build package"
+          command: |
+            python setup.py sdist
+            python setup.py bdist_wheel
+      - persist_to_workspace:
+          root: .
+          paths:
+            - dist
+
+  publish-github-release:
+    docker:
+      - image: cibuilds/github:0.10
+    steps:
+      - attach_workspace:
+          at: ./dist
+      - run:
+          name: "Publish Release on GitHub"
+          command: |
+            VERSION=$(git describe --abbrev=0 --tags)
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./dist/
+
+workflows:
+  version: 2
+  main:
+    jobs:
+      - tests
+      - build:
+          filters:
+            tags:
+              only: /^\d+\.\d+\.\d+$/
+      - publish-github-release:
+          requires:
+            - build
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^\d+\.\d+\.\d+$/

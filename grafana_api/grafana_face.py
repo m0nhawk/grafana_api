@@ -4,13 +4,13 @@ from .api import (Admin, Dashboard, Datasource, Folder, Organization, Organizati
 
 class GrafanaFace:
     def __init__(self, auth, host="localhost", port=None, url_path_prefix="", protocol="http", verify=True):
-        api = GrafanaAPI(auth, host=host, port=port, url_path_prefix=url_path_prefix, protocol=protocol, verify=verify)
-        self.admin = Admin(api)
-        self.dashboard = Dashboard(api)
-        self.datasource = Datasource(api)
-        self.folder = Folder(api)
-        self.organization = Organization(api)
-        self.organizations = Organizations(api)
-        self.search = Search(api)
-        self.user = User(api)
-        self.users = Users(api)
+        self.api = GrafanaAPI(auth, host=host, port=port, url_path_prefix=url_path_prefix, protocol=protocol, verify=verify)
+        self.admin = Admin(self.api)
+        self.dashboard = Dashboard(self.api)
+        self.datasource = Datasource(self.api)
+        self.folder = Folder(self.api)
+        self.organization = Organization(self.api)
+        self.organizations = Organizations(self.api)
+        self.search = Search(self.api)
+        self.user = User(self.api)
+        self.users = Users(self.api)

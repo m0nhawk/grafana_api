@@ -4,7 +4,7 @@ verify_ssl = true
 name = "grafana_api"
 
 [packages]
-pyyaml = "==5.1"
+pyyaml = "~=5.1"
 requests = "~=2.21"
 
 [dev-packages]

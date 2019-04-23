@@ -1,8 +1,28 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+### Chore
+- **changelog:** v0.7.1
+
+
+<a name="0.7.1"></a>
+## [0.7.1] - 2019-04-22
+### Chore
+- **dependency:** fix "urllib3" version
+
+### Feat
+- **circleci:** remove debug statements
+
+### Fix
+- **README:** remove coveralls badge
+- **circleci:** do not put VERSION file to Github release
+
+
+<a name="0.7.0"></a>
+## [0.7.0] - 2019-04-05
 ### Feat
 - **auto-deploy:** build package automatically
+- **circleci:** pre-create git version
 
 ### Fix
 - **organization:** fix [#11](https://github.com/m0nhawk/grafana_api/issues/11), rename to “Organization” the same as in Grafana API
@@ -105,7 +125,9 @@
 - always deploy
 
 
-[Unreleased]: https://github.com/m0nhawk/grafana_api/compare/0.6.0...HEAD
+[Unreleased]: https://github.com/m0nhawk/grafana_api/compare/0.7.1...HEAD
+[0.7.1]: https://github.com/m0nhawk/grafana_api/compare/0.7.0...0.7.1
+[0.7.0]: https://github.com/m0nhawk/grafana_api/compare/0.6.0...0.7.0
 [0.6.0]: https://github.com/m0nhawk/grafana_api/compare/v0.5.2...0.6.0
 [v0.5.2]: https://github.com/m0nhawk/grafana_api/compare/v0.5.1...v0.5.2
 [v0.5.1]: https://github.com/m0nhawk/grafana_api/compare/v0.5.0...v0.5.1

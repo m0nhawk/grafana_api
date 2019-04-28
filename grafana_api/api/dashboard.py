@@ -3,7 +3,7 @@ from .base import Base
 
 class Dashboard(Base):
     def __init__(self, api):
-        super().__init__(api)
+        super(Dashboard,self).__init__(api)
         self.api = api
 
     def get_dashboard(self, dashboard_uid):

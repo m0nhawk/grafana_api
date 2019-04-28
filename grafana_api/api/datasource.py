@@ -3,7 +3,7 @@ from .base import Base
 
 class Datasource(Base):
     def __init__(self, api):
-        super().__init__(api)
+        super(Datasource,self).__init__(api)
         self.api = api
 
     def find_datasource(self, datasource_name):

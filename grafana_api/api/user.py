@@ -3,7 +3,7 @@ from .base import Base
 
 class Users(Base):
     def __init__(self, api):
-        super().__init__(api)
+        super(Users,self).__init__(api)
         self.api = api
 
     def search_users(self, query=None, page=None, perpage=None):
@@ -88,7 +88,7 @@ class Users(Base):
 
 class User(Base):
     def __init__(self, api):
-        super().__init__(api)
+        super(User,self).__init__(api)
         self.api = api
         self.path = '/user'
 

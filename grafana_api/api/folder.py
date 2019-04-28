@@ -3,7 +3,7 @@ from .base import Base
 
 class Folder(Base):
     def __init__(self, api):
-        super().__init__(api)
+        super(Folder,self).__init__(api)
         self.api = api
 
     def get_all_folders(self):

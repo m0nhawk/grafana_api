@@ -3,7 +3,7 @@ from .base import Base
 
 class Admin(Base):
     def __init__(self, api):
-        super().__init__(api)
+        super(Admin, self).__init__(api)
         self.api = api
 
     def settings(self):

@@ -3,7 +3,7 @@ from .base import Base
 
 class Search(Base):
     def __init__(self, api):
-        super().__init__(api)
+        super(Search,self).__init__(api)
         self.api = api
 
     def search_dashboards(self, query=None, tag=None, type_=None, dashboard_ids=None, folder_ids=None, starred=None,

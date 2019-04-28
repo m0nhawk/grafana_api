@@ -3,7 +3,7 @@ from .base import Base
 
 class Organization(Base):
     def __init__(self, api):
-        super().__init__(api)
+        super(Organization,self).__init__(api)
         self.api = api
 
     def find_organization(self, org_name):
@@ -88,7 +88,7 @@ class Organization(Base):
 
 class Organizations(Base):
     def __init__(self, api):
-        super().__init__(api)
+        super(Organizations,self).__init__(api)
         self.api = api
         self.path = '/users'
 

@@ -89,6 +89,27 @@ class TeamsTestCase(unittest.TestCase):
         self.assertEqual(len(teams), 1)
 
     @requests_mock.Mocker()
+    def test_get_team_by_name(self, m):
+        m.get('http://localhost/api/teams/search?name=my%20team', json=
+            {"totalCount": 1,
+                "teams": [
+                    {
+                        "id": 2,
+                        "orgId": 1,
+                        "name": "my team",
+                        "email": "",
+                        "avatarUrl": "\/avatar\/3f49c15916554246daa714b9bd0ee398",
+                        "memberCount": 1
+                        }
+                    ],
+                "page": 1,
+                "perPage": 1000
+                })
+        teams = self.cli.teams.get_team_by_name('my team')
+        self.assertEqual(teams[0]["name"], "my team")
+        self.assertEqual(len(teams), 1)
+
+    @requests_mock.Mocker()
     def test_get_team(self, m):
         m.get('http://localhost/api/teams/1', json=
         {"id": 1,

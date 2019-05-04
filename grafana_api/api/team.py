@@ -46,6 +46,19 @@ class Teams(Base):
 
         return list_of_teams
 
+    def get_team_by_name(self, team_name):
+        """
+
+        :param team_name:
+        :return:
+        """
+        search_teams_path = '/teams/search'
+
+        search_teams_path += '?name=%s' % team_name
+
+        teams_on_page = self.api.GET(search_teams_path)
+        return teams_on_page["teams"]
+
     def get_team(self, team_id):
         """
 

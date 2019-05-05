@@ -6,3 +6,4 @@ from .folder import Folder
 from .organization import Organization, Organizations
 from .search import Search
 from .user import User, Users
+from .team import Teams

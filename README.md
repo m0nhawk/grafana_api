@@ -29,7 +29,10 @@ grafana_api = GrafanaFace(auth='abcde....', host='api.my-grafana-host.com')
 grafana_api.search.search_dashboards(tag='applications')
 
 # Find a user by email
-grafana_api.users.find_user('test@test.com')
+user = grafana_api.users.find_user('test@test.com')
+
+# Add user to team 2
+grafana_api.teams.add_team_member(2, user["id"])
 
 # Create or update a dashboard
 grafana_api.dashboard.update_dashboard(dashboard={'dashboard': {...}, 'folderId': 0, 'overwrite': True})
@@ -59,7 +62,7 @@ Work on API implementation still in progress.
 | Other | + |
 | Preferences | + |
 | Snapshot | - |
-| Teams | - |
+| Teams | + |
 | User | + |
 
 ## Issue tracker

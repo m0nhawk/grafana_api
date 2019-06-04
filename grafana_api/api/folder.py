@@ -3,7 +3,7 @@ from .base import Base
 
 class Folder(Base):
     def __init__(self, api):
-        super(Folder,self).__init__(api)
+        super(Folder, self).__init__(api)
         self.api = api
 
     def get_all_folders(self):
@@ -44,7 +44,7 @@ class Folder(Base):
         :param title:
         :return:
         """
-        path = '/folders' % uid
+        path = '/folders/%s' % uid
         r = self.api.PUT(path, json={
             "title": title
         })

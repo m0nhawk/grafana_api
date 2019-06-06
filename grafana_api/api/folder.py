@@ -37,15 +37,23 @@ class Folder(Base):
             json_data["uid"] = uid
         return self.api.POST("/folders", json=json_data)
 
-    def update_folder(self, uid, title):
+    def update_folder(self, uid, title, version=None, overwrite=False):
         """
 
         :param uid:
         :param title:
+        :param version:
+        :param overwrite:
         :return:
         """
+        body = {"title": title}
+        if version is not None:
+            body['version'] = version
+        if overwrite:
+            body['overwrite'] = True
+
         path = "/folders/%s" % uid
-        r = self.api.PUT(path, json={"title": title})
+        r = self.api.PUT(path, json=body)
         return r
 
     def delete_folder(self, uid):

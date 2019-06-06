@@ -3,7 +3,7 @@ from .base import Base
 
 class Teams(Base):
     def __init__(self, api):
-        super().__init__(api)
+        super(Teams, self).__init__(api)
         self.api = api
 
     def search_teams(self, query=None, page=None, perpage=None):

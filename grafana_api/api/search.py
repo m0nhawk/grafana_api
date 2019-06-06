@@ -3,11 +3,19 @@ from .base import Base
 
 class Search(Base):
     def __init__(self, api):
-        super(Search,self).__init__(api)
+        super(Search, self).__init__(api)
         self.api = api
 
-    def search_dashboards(self, query=None, tag=None, type_=None, dashboard_ids=None, folder_ids=None, starred=None,
-                          limit=None):
+    def search_dashboards(
+        self,
+        query=None,
+        tag=None,
+        type_=None,
+        dashboard_ids=None,
+        folder_ids=None,
+        starred=None,
+        limit=None,
+    ):
         """
 
         :param query:
@@ -19,32 +27,32 @@ class Search(Base):
         :param limit:
         :return:
         """
-        list_dashboard_path = '/search'
+        list_dashboard_path = "/search"
         params = []
 
         if query:
-            params.append('query=%s' % query)
+            params.append("query=%s" % query)
 
         if tag:
-            params.append('tag=%s' % tag)
+            params.append("tag=%s" % tag)
 
         if type_:
-            params.append('type=%s' % type_)
+            params.append("type=%s" % type_)
 
         if dashboard_ids:
-            params.append('dashboardIds=%s' % dashboard_ids)
+            params.append("dashboardIds=%s" % dashboard_ids)
 
         if folder_ids:
-            params.append('folderIds=%s' % folder_ids)
+            params.append("folderIds=%s" % folder_ids)
 
         if starred:
-            params.append('starred=%s' % starred)
+            params.append("starred=%s" % starred)
 
         if limit:
-            params.append('limit=%s' % limit)
+            params.append("limit=%s" % limit)
 
-        list_dashboard_path += '?'
-        list_dashboard_path += '&'.join(params)
+        list_dashboard_path += "?"
+        list_dashboard_path += "&".join(params)
 
         r = self.api.GET(list_dashboard_path)
         return r

@@ -3,7 +3,7 @@ from .base import Base
 
 class Datasource(Base):
     def __init__(self, api):
-        super(Datasource,self).__init__(api)
+        super(Datasource, self).__init__(api)
         self.api = api
 
     def find_datasource(self, datasource_name):
@@ -12,7 +12,7 @@ class Datasource(Base):
         :param datasource_name:
         :return:
         """
-        get_datasource_path = '/datasources/name/%s' % datasource_name
+        get_datasource_path = "/datasources/name/%s" % datasource_name
         r = self.api.GET(get_datasource_path)
         return r
 
@@ -22,7 +22,7 @@ class Datasource(Base):
         :param datasource_id:
         :return:
         """
-        get_datasource_path = '/datasources/%s' % datasource_id
+        get_datasource_path = "/datasources/%s" % datasource_id
         r = self.api.GET(get_datasource_path)
         return r
 
@@ -32,7 +32,7 @@ class Datasource(Base):
         :param datasource_name:
         :return:
         """
-        get_datasource_path = '/datasources/name/%s' % datasource_name
+        get_datasource_path = "/datasources/name/%s" % datasource_name
         r = self.api.GET(get_datasource_path)
         return r
 
@@ -42,7 +42,7 @@ class Datasource(Base):
         :param datasource_name:
         :return:
         """
-        get_datasource_path = '/datasources/id/%s' % datasource_name
+        get_datasource_path = "/datasources/id/%s" % datasource_name
         r = self.api.GET(get_datasource_path)
         return r
 
@@ -52,7 +52,7 @@ class Datasource(Base):
         :param datasource:
         :return:
         """
-        create_datasources_path = '/datasources'
+        create_datasources_path = "/datasources"
         r = self.api.POST(create_datasources_path, json=datasource)
         return r
 
@@ -63,7 +63,7 @@ class Datasource(Base):
         :param datasource:
         :return:
         """
-        update_datasource = '/datasources/%s' % datasource_id
+        update_datasource = "/datasources/%s" % datasource_id
         r = self.api.PUT(update_datasource, json=datasource)
         return r
 
@@ -72,7 +72,7 @@ class Datasource(Base):
 
         :return:
         """
-        list_datasources_path = '/datasources'
+        list_datasources_path = "/datasources"
         r = self.api.GET(list_datasources_path)
         return r
 
@@ -82,7 +82,7 @@ class Datasource(Base):
         :param datasource_id:
         :return:
         """
-        delete_datasource = '/datasources/%s' % datasource_id
+        delete_datasource = "/datasources/%s" % datasource_id
         r = self.api.DELETE(delete_datasource)
         return r
 
@@ -92,6 +92,6 @@ class Datasource(Base):
         :param datasource_name:
         :return:
         """
-        delete_datasource = '/datasources/name/%s' % datasource_name
+        delete_datasource = "/datasources/name/%s" % datasource_name
         r = self.api.DELETE(delete_datasource)
         return r

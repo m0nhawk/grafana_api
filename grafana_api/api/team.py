@@ -3,7 +3,7 @@ from .base import Base
 
 class Teams(Base):
     def __init__(self, api):
-        super().__init__(api)
+        super(Teams, self).__init__(api)
         self.api = api
 
     def search_teams(self, query=None, page=None, perpage=None):
@@ -12,26 +12,25 @@ class Teams(Base):
         :return:
         """
         list_of_teams = []
-        teams_on_page = None
-        search_teams_path = '/teams/search'
+        search_teams_path = "/teams/search"
         params = []
 
         if query:
-            params.append('query=%s' % query)
+            params.append("query=%s" % query)
 
         if page:
             iterate = False
-            params.append('page=%s' % page)
+            params.append("page=%s" % page)
         else:
             iterate = True
-            params.append('page=%s')
+            params.append("page=%s")
             page = 1
 
         if perpage:
-            params.append('perpage=%s' % perpage)
+            params.append("perpage=%s" % perpage)
 
-        search_teams_path += '?'
-        search_teams_path += '&'.join(params)
+        search_teams_path += "?"
+        search_teams_path += "&".join(params)
 
         if iterate:
             while True:
@@ -52,9 +51,9 @@ class Teams(Base):
         :param team_name:
         :return:
         """
-        search_teams_path = '/teams/search'
+        search_teams_path = "/teams/search"
 
-        search_teams_path += '?name=%s' % team_name
+        search_teams_path += "?name=%s" % team_name
 
         teams_on_page = self.api.GET(search_teams_path)
         return teams_on_page["teams"]
@@ -65,7 +64,7 @@ class Teams(Base):
         :param team_id:
         :return:
         """
-        get_team_path = '/teams/%s' % team_id
+        get_team_path = "/teams/%s" % team_id
         r = self.api.GET(get_team_path)
         return r
 
@@ -75,7 +74,7 @@ class Teams(Base):
         :param team:
         :return:
         """
-        add_team_path = '/teams'
+        add_team_path = "/teams"
         r = self.api.POST(add_team_path, json=team)
         return r
 
@@ -86,7 +85,7 @@ class Teams(Base):
         :param team:
         :return:
         """
-        update_team_path = '/teams/%s' % team_id
+        update_team_path = "/teams/%s" % team_id
         r = self.api.PUT(update_team_path, json=team)
         return r
 
@@ -96,7 +95,7 @@ class Teams(Base):
         :param team_id:
         :return:
         """
-        delete_team_path = '/teams/%s' % team_id
+        delete_team_path = "/teams/%s" % team_id
         r = self.api.DELETE(delete_team_path)
         return True
 
@@ -106,7 +105,7 @@ class Teams(Base):
         :param team_id:
         :return:
         """
-        get_team_members_path = '/teams/%s/members' % team_id
+        get_team_members_path = "/teams/%s/members" % team_id
         r = self.api.GET(get_team_members_path)
         return r
 
@@ -117,10 +116,8 @@ class Teams(Base):
         :param user_id:
         :return:
         """
-        add_team_member_path = '/teams/%s/members' % team_id
-        payload = {
-           "userId": user_id
-        }
+        add_team_member_path = "/teams/%s/members" % team_id
+        payload = {"userId": user_id}
         r = self.api.POST(add_team_member_path, json=payload)
         return r
 
@@ -131,7 +128,7 @@ class Teams(Base):
         :param user_id:
         :return:
         """
-        remove_team_member_path = '/teams/%s/members/%s' % (team_id, user_id)
+        remove_team_member_path = "/teams/%s/members/%s" % (team_id, user_id)
         r = self.api.DELETE(remove_team_member_path)
         return r
 
@@ -141,7 +138,7 @@ class Teams(Base):
         :param team_id:
         :return:
         """
-        get_team_preferences_path = '/teams/%s/preferences' % team_id
+        get_team_preferences_path = "/teams/%s/preferences" % team_id
         r = self.api.GET(get_team_preferences_path)
         return r
 
@@ -152,6 +149,6 @@ class Teams(Base):
         :param preferences:
         :return:
         """
-        update_team_preferences_path = '/teams/%s/preferences' % team_id
+        update_team_preferences_path = "/teams/%s/preferences" % team_id
         r = self.api.PUT(update_team_preferences_path, json=preferences)
         return r

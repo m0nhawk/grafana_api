@@ -3,7 +3,7 @@ from .base import Base
 
 class Users(Base):
     def __init__(self, api):
-        super(Users,self).__init__(api)
+        super(Users, self).__init__(api)
         self.api = api
 
     def search_users(self, query=None, page=None, perpage=None):
@@ -13,28 +13,28 @@ class Users(Base):
         """
         list_of_users = []
         users_on_page = None
-        show_users_path = '/users'
+        show_users_path = "/users"
         params = []
 
         if query:
-            params.append('query=%s' % query)
+            params.append("query=%s" % query)
 
         if page:
             iterate = False
-            params.append('page=%s' % page)
+            params.append("page=%s" % page)
         else:
             iterate = True
-            params.append('page=%s')
+            params.append("page=%s")
             page = 1
 
         if perpage:
-            params.append('perpage=%s' % perpage)
+            params.append("perpage=%s" % perpage)
 
-        show_users_path += '?'
-        show_users_path += '&'.join(params)
+        show_users_path += "?"
+        show_users_path += "&".join(params)
 
         if iterate:
-            while users_on_page != []:
+            while users_on_page is not []:
                 users_on_page = self.api.GET(show_users_path % page)
                 list_of_users += users_on_page
                 page += 1
@@ -50,7 +50,7 @@ class Users(Base):
         :param user_id:
         :return:
         """
-        get_user_path = '/users/%s' % user_id
+        get_user_path = "/users/%s" % user_id
         r = self.api.GET(get_user_path)
         return r
 
@@ -60,7 +60,7 @@ class Users(Base):
         :param login_or_email:
         :return:
         """
-        search_user_path = '/users/lookup?loginOrEmail=%s' % login_or_email
+        search_user_path = "/users/lookup?loginOrEmail=%s" % login_or_email
         r = self.api.GET(search_user_path)
         return r
 
@@ -71,7 +71,7 @@ class Users(Base):
         :param user:
         :return:
         """
-        update_user_path = '/users/%s' % user_id
+        update_user_path = "/users/%s" % user_id
         r = self.api.PUT(update_user_path, json=user)
         return r
 
@@ -81,23 +81,23 @@ class Users(Base):
         :param user_id:
         :return:
         """
-        get_user_organisations_path = '/users/%s/orgs' % user_id
+        get_user_organisations_path = "/users/%s/orgs" % user_id
         r = self.api.GET(get_user_organisations_path)
         return r
 
 
 class User(Base):
     def __init__(self, api):
-        super(User,self).__init__(api)
+        super(User, self).__init__(api)
         self.api = api
-        self.path = '/user'
+        self.path = "/user"
 
     def get_actual_user(self):
         """
 
         :return:
         """
-        get_actual_user_path = '/user'
+        get_actual_user_path = "/user"
         r = self.api.GET(get_actual_user_path)
         return r
 
@@ -108,13 +108,15 @@ class User(Base):
         :param new_password:
         :return:
         """
-        change_actual_user_password_path = '/user/password'
+        change_actual_user_password_path = "/user/password"
         change_actual_user_password_json = {
             "oldPassword": old_password,
             "newPassword": new_password,
-            "confirmNew": new_password
+            "confirmNew": new_password,
         }
-        r = self.api.PUT(change_actual_user_password_path, json=change_actual_user_password_json)
+        r = self.api.PUT(
+            change_actual_user_password_path, json=change_actual_user_password_json
+        )
         return r
 
     def switch_user_organisation(self, user_id, organisation_id):
@@ -124,7 +126,10 @@ class User(Base):
         :param organisation_id:
         :return:
         """
-        switch_user_organisation_path = '/users/%s/using/%s' % (user_id, organisation_id)
+        switch_user_organisation_path = "/users/%s/using/%s" % (
+            user_id,
+            organisation_id,
+        )
         r = self.api.POST(switch_user_organisation_path)
         return r
 
@@ -134,7 +139,7 @@ class User(Base):
         :param organisation_id:
         :return:
         """
-        switch_actual_user_organisation_path = '/user/using/%s' % organisation_id
+        switch_actual_user_organisation_path = "/user/using/%s" % organisation_id
         r = self.api.POST(switch_actual_user_organisation_path)
         return r
 
@@ -143,7 +148,7 @@ class User(Base):
 
         :return:
         """
-        get_actual_user_organisations_path = '/user/orgs'
+        get_actual_user_organisations_path = "/user/orgs"
         r = self.api.GET(get_actual_user_organisations_path)
         return r
 
@@ -153,7 +158,7 @@ class User(Base):
         :param dashboard_id:
         :return:
         """
-        star_dashboard = '/user/stars/dashboard/%s' % dashboard_id
+        star_dashboard = "/user/stars/dashboard/%s" % dashboard_id
         r = self.api.POST(star_dashboard)
         return r
 
@@ -163,6 +168,6 @@ class User(Base):
         :param dashboard_id:
         :return:
         """
-        unstar_dashboard = '/user/stars/dashboard/%s' % dashboard_id
+        unstar_dashboard = "/user/stars/dashboard/%s" % dashboard_id
         r = self.api.DELETE(unstar_dashboard)
         return r

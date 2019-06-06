@@ -3,7 +3,7 @@ from .base import Base
 
 class Organization(Base):
     def __init__(self, api):
-        super(Organization,self).__init__(api)
+        super(Organization, self).__init__(api)
         self.api = api
 
     def find_organization(self, org_name):
@@ -12,7 +12,7 @@ class Organization(Base):
         :param org_name:
         :return:
         """
-        get_org_path = '/orgs/name/%s' % org_name
+        get_org_path = "/orgs/name/%s" % org_name
         r = self.api.GET(get_org_path)
         return r
 
@@ -21,7 +21,7 @@ class Organization(Base):
 
         :return:
         """
-        get_current_organization_path = '/org'
+        get_current_organization_path = "/org"
         r = self.api.GET(get_current_organization_path)
         return r
 
@@ -31,8 +31,8 @@ class Organization(Base):
         :param organization:
         :return:
         """
-        create_orgs_path = '/orgs'
-        r = self.api.POST(create_orgs_path, json={'name': organization['name']})
+        create_orgs_path = "/orgs"
+        r = self.api.POST(create_orgs_path, json={"name": organization["name"]})
         return r
 
     def update_current_organization(self, organization):
@@ -41,7 +41,7 @@ class Organization(Base):
         :param organization:
         :return:
         """
-        update_current_organization_path = '/org'
+        update_current_organization_path = "/org"
         r = self.api.PUT(update_current_organization_path, json=organization)
         return r
 
@@ -50,7 +50,7 @@ class Organization(Base):
 
         :return:
         """
-        get_current_organization_users_path = '/org/users'
+        get_current_organization_users_path = "/org/users"
         r = self.api.GET(get_current_organization_users_path)
         return r
 
@@ -60,7 +60,7 @@ class Organization(Base):
         :param user:
         :return:
         """
-        add_user_current_organization_path = '/org/users'
+        add_user_current_organization_path = "/org/users"
         r = self.api.POST(add_user_current_organization_path, json=user)
         return r
 
@@ -71,7 +71,7 @@ class Organization(Base):
         :param user:
         :return:
         """
-        update_user_current_organization_path = '/org/users/%s' % user_id
+        update_user_current_organization_path = "/org/users/%s" % user_id
         r = self.api.PATCH(update_user_current_organization_path, json=user)
         return r
 
@@ -81,16 +81,16 @@ class Organization(Base):
         :param user_id:
         :return:
         """
-        delete_user_current_organization_path = '/org/users/%s' % user_id
+        delete_user_current_organization_path = "/org/users/%s" % user_id
         r = self.api.DELETE(delete_user_current_organization_path)
         return r
 
 
 class Organizations(Base):
     def __init__(self, api):
-        super(Organizations,self).__init__(api)
+        super(Organizations, self).__init__(api)
         self.api = api
-        self.path = '/users'
+        self.path = "/users"
 
     def update_organization(self, organization_id, organization):
         """
@@ -99,7 +99,7 @@ class Organizations(Base):
         :param organization:
         :return:
         """
-        update_org_path = '/orgs/%s' % organization_id
+        update_org_path = "/orgs/%s" % organization_id
         r = self.api.PUT(update_org_path, json=organization)
         return r
 
@@ -109,7 +109,7 @@ class Organizations(Base):
         :param organization_id:
         :return:
         """
-        delete_org_path = '/orgs/%s' % organization_id
+        delete_org_path = "/orgs/%s" % organization_id
         r = self.api.DELETE(delete_org_path)
         return r
 
@@ -118,7 +118,7 @@ class Organizations(Base):
 
         :return:
         """
-        search_org_path = '/orgs'
+        search_org_path = "/orgs"
         r = self.api.GET(search_org_path)
         return r
 
@@ -128,7 +128,7 @@ class Organizations(Base):
         :param organization_id:
         :return:
         """
-        switch_user_organization = '/user/using/%s' % organization_id
+        switch_user_organization = "/user/using/%s" % organization_id
         r = self.api.POST(switch_user_organization)
         return r
 
@@ -138,7 +138,7 @@ class Organizations(Base):
         :param organization_id:
         :return:
         """
-        users_in_org = '/orgs/%s/users' % organization_id
+        users_in_org = "/orgs/%s/users" % organization_id
         r = self.api.GET(users_in_org)
         return r
 
@@ -149,7 +149,7 @@ class Organizations(Base):
         :param user:
         :return:
         """
-        add_user_path = '/orgs/%s/users' % organization_id
+        add_user_path = "/orgs/%s/users" % organization_id
         r = self.api.POST(add_user_path, json=user)
         return r
 
@@ -161,8 +161,8 @@ class Organizations(Base):
         :param user_role:
         :return:
         """
-        patch_user = '/orgs/%s/users/%s' % (organization_id, user_id)
-        r = self.api.PATCH(patch_user, json={'role': user_role})
+        patch_user = "/orgs/%s/users/%s" % (organization_id, user_id)
+        r = self.api.PATCH(patch_user, json={"role": user_role})
         return r
 
     def organization_user_delete(self, organization_id, user_id):
@@ -172,7 +172,7 @@ class Organizations(Base):
         :param user_id:
         :return:
         """
-        delete_user = '/orgs/%s/users/%s' % (organization_id, user_id)
+        delete_user = "/orgs/%s/users/%s" % (organization_id, user_id)
         r = self.api.DELETE(delete_user)
         return r
 
@@ -180,11 +180,13 @@ class Organizations(Base):
         """
         :return:
         """
-        update_preference = '/org/preferences'
+        update_preference = "/org/preferences"
         r = self.api.GET(update_preference)
         return r
 
-    def organization_preference_update(self, theme='', home_dashboard_id=0, timezone='utc'):
+    def organization_preference_update(
+        self, theme="", home_dashboard_id=0, timezone="utc"
+    ):
         """
 
         :param theme:
@@ -192,10 +194,13 @@ class Organizations(Base):
         :param timezone:
         :return:
         """
-        update_preference = '/org/preferences'
-        r = self.api.PUT(update_preference, json={
-            "theme": theme,
-            "homeDashboardId": home_dashboard_id,
-            "timezone": timezone
-        })
+        update_preference = "/org/preferences"
+        r = self.api.PUT(
+            update_preference,
+            json={
+                "theme": theme,
+                "homeDashboardId": home_dashboard_id,
+                "timezone": timezone,
+            },
+        )
         return r

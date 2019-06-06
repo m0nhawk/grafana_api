@@ -3,7 +3,7 @@ from .base import Base
 
 class Folder(Base):
     def __init__(self, api):
-        super(Folder,self).__init__(api)
+        super(Folder, self).__init__(api)
         self.api = api
 
     def get_all_folders(self):
@@ -11,7 +11,7 @@ class Folder(Base):
 
         :return:
         """
-        path = '/folders'
+        path = "/folders"
         r = self.api.GET(path)
         return r
 
@@ -21,7 +21,7 @@ class Folder(Base):
         :param uid:
         :return:
         """
-        path = '/folders/%s' % uid
+        path = "/folders/%s" % uid
         r = self.api.GET(path)
         return r
 
@@ -34,8 +34,8 @@ class Folder(Base):
         """
         json_data = dict(title=title)
         if uid is not None:
-            json_data['uid'] = uid
-        return self.api.POST('/folders', json=json_data)
+            json_data["uid"] = uid
+        return self.api.POST("/folders", json=json_data)
 
     def update_folder(self, uid, title):
         """
@@ -44,10 +44,8 @@ class Folder(Base):
         :param title:
         :return:
         """
-        path = '/folders' % uid
-        r = self.api.PUT(path, json={
-            "title": title
-        })
+        path = "/folders/%s" % uid
+        r = self.api.PUT(path, json={"title": title})
         return r
 
     def delete_folder(self, uid):
@@ -56,7 +54,7 @@ class Folder(Base):
         :param uid:
         :return:
         """
-        path = '/folders/%s' % uid
+        path = "/folders/%s" % uid
         r = self.api.DELETE(path)
         return r
 
@@ -66,7 +64,7 @@ class Folder(Base):
         :param folder_id:
         :return:
         """
-        path = '/folders/id/%s' % folder_id
+        path = "/folders/id/%s" % folder_id
         r = self.api.GET(path)
         return r
 
@@ -75,7 +73,7 @@ class Folder(Base):
 
         :return:
         """
-        path = '/folders/%s/permissions'
+        path = "/folders/%s/permissions"
         r = self.api.GET(path)
         return r
 
@@ -86,6 +84,6 @@ class Folder(Base):
         :param items:
         :return:
         """
-        update_folder_permissions_path = '/folders/%s/permissions' % uid
+        update_folder_permissions_path = "/folders/%s/permissions" % uid
         r = self.api.POST(update_folder_permissions_path, json=items)
         return r

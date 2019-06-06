@@ -2,7 +2,19 @@
 ## [Unreleased]
 
 ### Chore
+- **changelog:** 0.7.4
+
+
+<a name="0.7.4"></a>
+## [0.7.4] - 2019-06-05
+### Chore
 - **changelog:** 0.7.3
+- **codestyle:** reformat
+- **dep:** update
+- **deps:** bump requests from 2.21.0 to 2.22.0
+
+### Fix
+- **api:** python2 Teams support, fix [#24](https://github.com/m0nhawk/grafana_api/issues/24)
 
 
 <a name="0.7.3"></a>
@@ -137,7 +149,8 @@
 - always deploy
 
 
-[Unreleased]: https://github.com/m0nhawk/grafana_api/compare/0.7.3...HEAD
+[Unreleased]: https://github.com/m0nhawk/grafana_api/compare/0.7.4...HEAD
+[0.7.4]: https://github.com/m0nhawk/grafana_api/compare/0.7.3...0.7.4
 [0.7.3]: https://github.com/m0nhawk/grafana_api/compare/0.7.2...0.7.3
 [0.7.2]: https://github.com/m0nhawk/grafana_api/compare/0.7.1...0.7.2
 [0.7.1]: https://github.com/m0nhawk/grafana_api/compare/0.7.0...0.7.1

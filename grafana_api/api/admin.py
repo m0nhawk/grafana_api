@@ -11,7 +11,7 @@ class Admin(Base):
 
         :return:
         """
-        path = '/admin/settings'
+        path = "/admin/settings"
         r = self.api.GET(path)
         return r
 
@@ -20,7 +20,7 @@ class Admin(Base):
 
         :return:
         """
-        path = '/admin/stats'
+        path = "/admin/stats"
         r = self.api.GET(path)
         return r
 
@@ -30,7 +30,7 @@ class Admin(Base):
         :param user:
         :return:
         """
-        create_user_path = '/admin/users'
+        create_user_path = "/admin/users"
         r = self.api.POST(create_user_path, json=user)
         return r
 
@@ -41,8 +41,8 @@ class Admin(Base):
         :param password:
         :return:
         """
-        change_user_password_path = '/admin/users/%s/password' % user_id
-        r = self.api.PUT(change_user_password_path, json={'password': password})
+        change_user_password_path = "/admin/users/%s/password" % user_id
+        r = self.api.PUT(change_user_password_path, json={"password": password})
         return r
 
     def change_user_permissions(self, user_id, is_grafana_admin):
@@ -52,8 +52,10 @@ class Admin(Base):
         :param is_grafana_admin:
         :return:
         """
-        change_user_permissions = '/admin/users/%s/permissions' % user_id
-        r = self.api.PUT(change_user_permissions, json={'isGrafanaAdmin': is_grafana_admin})
+        change_user_permissions = "/admin/users/%s/permissions" % user_id
+        r = self.api.PUT(
+            change_user_permissions, json={"isGrafanaAdmin": is_grafana_admin}
+        )
         return r
 
     def delete_user(self, user_id):
@@ -62,7 +64,7 @@ class Admin(Base):
         :param user_id:
         :return:
         """
-        delete_user_path = '/admin/users/%s' % user_id
+        delete_user_path = "/admin/users/%s" % user_id
         r = self.api.DELETE(delete_user_path)
         return r
 
@@ -72,6 +74,6 @@ class Admin(Base):
         :param pause:
         :return:
         """
-        change_user_permissions = self.path + '/pause-all-alerts'
-        r = self.api.POST(change_user_permissions, json={'paused': pause})
+        change_user_permissions = self.path + "/pause-all-alerts"
+        r = self.api.POST(change_user_permissions, json={"paused": pause})
         return r

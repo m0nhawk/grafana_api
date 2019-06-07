@@ -2,6 +2,12 @@
 ## [Unreleased]
 
 ### Chore
+- **changelog:** 0.7.5
+
+
+<a name="0.7.5"></a>
+## [0.7.5] - 2019-06-06
+### Chore
 - **changelog:** 0.7.4
 
 
@@ -149,7 +155,8 @@
 - always deploy
 
 
-[Unreleased]: https://github.com/m0nhawk/grafana_api/compare/0.7.4...HEAD
+[Unreleased]: https://github.com/m0nhawk/grafana_api/compare/0.7.5...HEAD
+[0.7.5]: https://github.com/m0nhawk/grafana_api/compare/0.7.4...0.7.5
 [0.7.4]: https://github.com/m0nhawk/grafana_api/compare/0.7.3...0.7.4
 [0.7.3]: https://github.com/m0nhawk/grafana_api/compare/0.7.2...0.7.3
 [0.7.2]: https://github.com/m0nhawk/grafana_api/compare/0.7.1...0.7.2

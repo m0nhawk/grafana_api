@@ -10,5 +10,6 @@ requests = "~=2.22"
 [dev-packages]
 codecov = "~=2.0"
 coverage = "~=4.5"
-unittest-xml-reporting = "~=2.5"
+mock = "~=3.0"
 requests-mock = "~=1.6"
+unittest-xml-reporting = "~=2.5"

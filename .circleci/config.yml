@@ -1,18 +1,17 @@
 version: 2
 
 jobs:
-  tests:
+  tests-3.7: &test-template
     working_directory: ~/grafana_api
     docker:
       - image: circleci/python:3.7
         environment:
           PIPENV_VENV_IN_PROJECT: true
+          PYTHON_VER: python3.7
     steps:
       - checkout  # checkout source code to working directory
-      - run: sudo chown -R circleci:circleci /usr/local/bin
-      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.7/site-packages
       - restore_cache:  # ensure this step occurs *before* installing dependencies
-          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+          key: py-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
       - run:
           command: |
             sudo pip install pipenv
@@ -21,15 +20,23 @@ jobs:
       - run: pipenv run coverage run --source grafana_api -m xmlrunner test.test_grafana test.api.test_team -o test-reports
       - run: pipenv run codecov
       - save_cache:
-          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+          key: py-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
           paths:
             - ".venv"
-            - "/usr/local/bin"
-            - "/usr/local/lib/python3.7/site-packages"
       - store_test_results:
           path: test-reports
       - store_artifacts:
           path: test-reports
+
+  tests-3.6:
+    <<: *test-template
+    docker:
+      - image: circleci/python:3.6
+
+  tests-2.7:
+    <<: *test-template
+    docker:
+      - image: circleci/python:2.7
 
   build:
     docker:
@@ -65,7 +72,9 @@ workflows:
   version: 2
   main:
     jobs:
-      - tests
+      - tests-3.7
+      - tests-3.6
+      - tests-2.7
       - build:
           filters:
             tags:

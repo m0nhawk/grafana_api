@@ -88,7 +88,7 @@ class AnnotationsTestCase(unittest.TestCase):
         self.assertEqual(annotation["message"], "Annotation updated")
 
     @requests_mock.Mocker()
-    def test_add_annotation(self, m):
+    def test_add_annotation_graphite(self, m):
         m.post(
             "http://localhost/api/annotations/graphite",
             json={"message": "Graphite annotation added", "id": 1},

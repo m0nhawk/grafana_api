@@ -82,7 +82,7 @@ class AnnotationsTestCase(unittest.TestCase):
             json={"endId": 80, "id": 79, "message": "Annotation updated"},
         )
         annotation = self.cli.annotations.update_annotation(time_from=1563183710618, time_to=1563185212275
-                                                         , is_region=True, tags="tags-test", text="Test")
+                                                            , is_region=True, tags="tags-test", text="Test")
         self.assertEqual(annotation["endId"], 80)
         self.assertEqual(annotation["id"], 79)
         self.assertEqual(annotation["message"], "Annotation updated")
@@ -93,8 +93,8 @@ class AnnotationsTestCase(unittest.TestCase):
             "http://localhost/api/annotations/graphite",
             json={"message": "Graphite annotation added", "id": 1},
         )
-        annotation = self.cli.annotations.add_annotation_graphite(what="Event - deploy", tags="deploy, production", when=1467844481, data="Data")
+        annotation = self.cli.annotations.add_annotation_graphite(what="Event - deploy", tags="deploy, production",
+                                                                  when=1467844481, data="Data")
 
         self.assertEqual(annotation["id"], 1)
         self.assertEqual(annotation["message"], "Graphite annotation added")
-

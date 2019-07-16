@@ -171,7 +171,7 @@ class Annotations(Base):
         :param annotations_id:
         :return:
         """
-        annotations_path = "/api/annotations/{}".format(annotations_id)
+        annotations_path = "/annotations/{}".format(annotations_id)
         r = self.api.DELETE(annotations_path)
 
         return r

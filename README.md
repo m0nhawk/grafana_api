@@ -49,7 +49,7 @@ Work on API implementation still in progress.
 |---|---|
 | Admin | + |
 | Alerting | - |
-| Annotations | - |
+| Annotations | + |
 | Authentication | +- |
 | Dashboard | + |
 | Dashboard Versions | - |

@@ -61,7 +61,7 @@ class AnnotationsTestCase(unittest.TestCase):
     def test_delete_annotations_by_id(self, m):
         m.delete("http://localhost/api/annotations/99", json={"message": "Annotation deleted"})
         response = self.cli.annotations.delete_annotations_by_id(99)
-        self.assertEqual(response['message'], "Annotation deleted'")
+        self.assertEqual(response['message'], "Annotation deleted")
 
     @requests_mock.Mocker()
     def test_add_annotation(self, m):

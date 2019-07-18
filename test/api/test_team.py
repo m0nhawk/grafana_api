@@ -38,7 +38,7 @@ class TeamsTestCase(unittest.TestCase):
     @requests_mock.Mocker()
     def test_search_teams_loads_all_pages(self, m):
         m.get(
-            "http://localhost/api/teams/search?query=team&page=1",
+            "http://localhost/api/teams/search?query=team&page=1&perpage=1",
             json={
                 "totalCount": 2,
                 "teams": [
@@ -57,7 +57,7 @@ class TeamsTestCase(unittest.TestCase):
         )
 
         m.get(
-            "http://localhost/api/teams/search?query=team&page=2",
+            "http://localhost/api/teams/search?query=team&page=2&perpage=1",
             json={
                 "totalCount": 2,
                 "teams": [
@@ -74,7 +74,7 @@ class TeamsTestCase(unittest.TestCase):
                 "perPage": 1,
             },
         )
-        teams = self.cli.teams.search_teams("team")
+        teams = self.cli.teams.search_teams("team",perpage=1)
         self.assertEqual(teams[0]["name"], "MyTestTeam")
         self.assertEqual(teams[1]["name"], "SecondTeam")
         self.assertEqual(len(teams), 2)

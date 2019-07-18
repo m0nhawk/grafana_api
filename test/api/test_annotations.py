@@ -3,6 +3,7 @@ import unittest
 import requests_mock
 
 from grafana_api.grafana_face import GrafanaFace
+from grafana_api.grafana_api import GrafanaServerError,GrafanaClientError,GrafanaUnauthorizedError,GrafanaBadInputError
 
 
 class AnnotationsTestCase(unittest.TestCase):
@@ -62,6 +63,34 @@ class AnnotationsTestCase(unittest.TestCase):
         m.delete("http://localhost/api/annotations/99", json={"message": "Annotation deleted"})
         response = self.cli.annotations.delete_annotations_by_id(99)
         self.assertEqual(response['message'], "Annotation deleted")
+
+    @requests_mock.Mocker()
+    def test_delete_annotations_by_id(self, m):
+        m.delete("http://localhost/api/annotations/None", json={"message": "Could not find annotation to update"},status_code=500)
+        response = self.cli.annotations.delete_annotations_by_id(annotations_id=None)
+        self.assertRaises(GrafanaServerError)
+
+    @requests_mock.Mocker()
+    def test_delete_annotations_by_id_forbidden(self, m):
+        m.delete("http://localhost/api/annotations/None", json={"message": "Forbidden"},
+                 status_code=403)
+        response = self.cli.annotations.delete_annotations_by_id(annotations_id=None)
+        self.assertRaises(GrafanaClientError)
+
+    @requests_mock.Mocker()
+    def test_delete_annotations_by_id_forbidden(self, m):
+        m.delete("http://localhost/api/annotations/None", json={"message": "Unauthorized"},
+                     status_code=401)
+        response = self.cli.annotations.delete_annotations_by_id(annotations_id=None)
+        self.assertRaises(GrafanaUnauthorizedError)
+
+    @requests_mock.Mocker()
+    def test_delete_annotations_by_id_forbidden(self, m):
+        m.delete("http://localhost/api/annotations/None", json={"message": "Bad Input"},
+                 status_code=400)
+        response = self.cli.annotations.delete_annotations_by_id(annotations_id=None)
+        self.assertRaises(GrafanaBadInputError)
+
 
     @requests_mock.Mocker()
     def test_add_annotation(self, m):

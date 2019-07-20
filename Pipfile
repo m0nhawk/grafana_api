@@ -8,6 +8,6 @@ name = "grafana_api"
 [dev-packages]
 codecov = "~=2.0"
 coverage = "~=4.5"
-pylint = "~=2.3.1"
+pylint = ">=1.9"
 requests-mock = "~=1.6"
 unittest-xml-reporting = "~=2.5"

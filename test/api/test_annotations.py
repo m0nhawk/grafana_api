@@ -53,6 +53,38 @@ class AnnotationsTestCase(unittest.TestCase):
         self.assertEqual(len(annotations), 1)
 
     @requests_mock.Mocker()
+    def test_annotations_with_out_param(self, m):
+        m.get(
+            "http://localhost/api/annotations",
+            json=[
+                {
+                    "id": 80,
+                    "alertId": 11,
+                    "alertName": "",
+                    "dashboardId": 111,
+                    "panelId": 22,
+                    "userId": 0,
+                    "newState": "",
+                    "prevState": "",
+                    "created": 1563280160455,
+                    "updated": 1563280160455,
+                    "time": 1563156456006,
+                    "text": "Annotation Description",
+                    "regionId": 79,
+                    "tags": [
+                        "tags-test"
+                    ],
+                    "login": "",
+                    "email": "",
+                    "avatarUrl": "",
+                    "data": {}
+                },
+            ]
+        )
+        annotations = self.cli.annotations.get_annotation()
+        self.assertEqual(len(annotations), 1)
+
+    @requests_mock.Mocker()
     def test_delete_annotations_by_region_id(self, m):
         m.delete("http://localhost/api/annotations/region/99", json={"message": "Annotation region deleted"})
         response = self.cli.annotations.delete_annotations_by_region_id(99)
@@ -60,9 +92,9 @@ class AnnotationsTestCase(unittest.TestCase):
 
     @requests_mock.Mocker()
     def test_delete_annotations_by_id(self, m):
-        m.delete("http://localhost/api/annotations/99", json={"message": "Annotation deleted"})
-        response = self.cli.annotations.delete_annotations_by_id(99)
-        self.assertEqual(response['message'], "Annotation deleted")
+        m.delete('http://localhost/api/annotations/99', json={"message": "Annotation deleted"})
+        annotation = self.cli.annotations.delete_annotations_by_id(annotations_id=99)
+        self.assertEqual(annotation['message'], "Annotation deleted")
 
     @requests_mock.Mocker()
     def test_delete_annotations_by_id(self, m):

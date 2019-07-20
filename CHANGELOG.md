@@ -2,7 +2,19 @@
 ## [Unreleased]
 
 ### Chore
+- **changelog:** 0.8.0
+
+
+<a name="0.8.0"></a>
+## [0.8.0] - 2019-07-20
+### Chore
 - **changelog:** 0.7.5
+- **dep:** improve dependency handling
+
+### Feat
+- **circleci:** test on Python 2.7, 3.6 & 3.7
+- **dep:** adding missing dependency for Python 2 testing
+- **travis:** remove
 
 
 <a name="0.7.5"></a>
@@ -155,7 +167,8 @@
 - always deploy
 
 
-[Unreleased]: https://github.com/m0nhawk/grafana_api/compare/0.7.5...HEAD
+[Unreleased]: https://github.com/m0nhawk/grafana_api/compare/0.8.0...HEAD
+[0.8.0]: https://github.com/m0nhawk/grafana_api/compare/0.7.5...0.8.0
 [0.7.5]: https://github.com/m0nhawk/grafana_api/compare/0.7.4...0.7.5
 [0.7.4]: https://github.com/m0nhawk/grafana_api/compare/0.7.3...0.7.4
 [0.7.3]: https://github.com/m0nhawk/grafana_api/compare/0.7.2...0.7.3

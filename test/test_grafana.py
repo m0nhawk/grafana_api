@@ -71,7 +71,7 @@ class TestGrafanaAPI(unittest.TestCase):
 
     def test_grafana_api_basic_auth(self):
         cli = GrafanaFace(
-            ("admin", "admin"), host="localhost", url_path_prefix="", protocol="https"
+            ("admin", "admin"), host="localhost", url_path_prefix="", protocol="https",port="3000"
         )
         self.assertTrue(isinstance(cli.api.auth, requests.auth.HTTPBasicAuth))
 

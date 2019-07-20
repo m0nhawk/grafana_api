@@ -74,6 +74,6 @@ class Admin(Base):
         :param pause:
         :return:
         """
-        change_user_permissions = self.path + "/pause-all-alerts"
+        change_user_permissions = "/admin/pause-all-alerts"
         r = self.api.POST(change_user_permissions, json={"paused": pause})
         return r

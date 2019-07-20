@@ -97,7 +97,7 @@ class AnnotationsTestCase(unittest.TestCase):
         self.assertEqual(annotation['message'], "Annotation deleted")
 
     @requests_mock.Mocker()
-    def test_delete_annotations_by_id(self, m):
+    def test_delete_annotations_by_id_could_not_find(self, m):
         m.delete("http://localhost/api/annotations/None", json={"message": "Could not find annotation to update"},status_code=500)
         response = self.cli.annotations.delete_annotations_by_id(annotations_id=None)
         self.assertRaises(GrafanaServerError)
@@ -110,14 +110,14 @@ class AnnotationsTestCase(unittest.TestCase):
         self.assertRaises(GrafanaClientError)
 
     @requests_mock.Mocker()
-    def test_delete_annotations_by_id_forbidden(self, m):
+    def test_delete_annotations_by_id_unauthorized(self, m):
         m.delete("http://localhost/api/annotations/None", json={"message": "Unauthorized"},
                      status_code=401)
         response = self.cli.annotations.delete_annotations_by_id(annotations_id=None)
         self.assertRaises(GrafanaUnauthorizedError)
 
     @requests_mock.Mocker()
-    def test_delete_annotations_by_id_forbidden(self, m):
+    def test_delete_annotations_by_id_bad_input(self, m):
         m.delete("http://localhost/api/annotations/None", json={"message": "Bad Input"},
                  status_code=400)
         response = self.cli.annotations.delete_annotations_by_id(annotations_id=None)

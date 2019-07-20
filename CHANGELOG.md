@@ -1,8 +1,16 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+
+<a name="0.8.1"></a>
+## [0.8.1] - 2019-07-20
 ### Chore
 - **changelog:** 0.8.0
+- **dep:** remove Pipfile, now in .gitignore
+- **dep:** Python 2 compatible pylint version
+- **release:** release body with latest changes
+- **test:** run all the tests
+- **ver:** 0.8.1
 
 
 <a name="0.8.0"></a>
@@ -167,7 +175,8 @@
 - always deploy
 
 
-[Unreleased]: https://github.com/m0nhawk/grafana_api/compare/0.8.0...HEAD
+[Unreleased]: https://github.com/m0nhawk/grafana_api/compare/0.8.1...HEAD
+[0.8.1]: https://github.com/m0nhawk/grafana_api/compare/0.8.0...0.8.1
 [0.8.0]: https://github.com/m0nhawk/grafana_api/compare/0.7.5...0.8.0
 [0.7.5]: https://github.com/m0nhawk/grafana_api/compare/0.7.4...0.7.5
 [0.7.4]: https://github.com/m0nhawk/grafana_api/compare/0.7.3...0.7.4

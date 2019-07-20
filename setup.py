@@ -30,8 +30,8 @@ setup(
     author_email="andrew.prokhorenkov@gmail.com",
     license="MIT",
     packages=find_packages(),
-    install_requires=["requests", "pyyaml"],
-    tests_require=["requests-mock"],
+    install_requires=["pyyaml", "requests"],
+    tests_require=["unittest-xml-reporting", "requests-mock"],
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",

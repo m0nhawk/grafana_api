@@ -7,11 +7,10 @@ jobs:
       - image: circleci/python:3.7
         environment:
           PIPENV_VENV_IN_PROJECT: true
-          PYTHON_VER: python3.7
     steps:
       - checkout  # checkout source code to working directory
       - restore_cache:  # ensure this step occurs *before* installing dependencies
-          key: py-{{ .Branch }}-{{ checksum "Pipfile" }}
+          key: py-{{ .Environment.CIRCLE_JOB }}-{{ .Branch }}-{{ checksum "Pipfile" }}
       - run:
           command: |
             sudo pip install pipenv
@@ -20,7 +19,7 @@ jobs:
       - run: pipenv run coverage run --source grafana_api -m xmlrunner discover -o test-reports
       - run: pipenv run codecov
       - save_cache:
-          key: py-{{ .Branch }}-{{ checksum "Pipfile" }}
+          key: py-{{ .Environment.CIRCLE_JOB }}-{{ .Branch }}-{{ checksum "Pipfile" }}
           paths:
             - ".venv"
       - store_test_results:
@@ -32,11 +31,15 @@ jobs:
     <<: *test-template
     docker:
       - image: circleci/python:3.6
+        environment:
+          PIPENV_VENV_IN_PROJECT: true
 
   tests-2.7:
     <<: *test-template
     docker:
       - image: circleci/python:2.7
+        environment:
+          PIPENV_VENV_IN_PROJECT: true
 
   build:
     docker:
@@ -47,7 +50,10 @@ jobs:
           name: "Build package"
           command: |
             mkdir -p ./dist/
-            echo $(git describe --abbrev=0 --tags) > ./dist/VERSION
+            export VERSION=$(git describe --abbrev=0 --tags)
+            echo ${VERSION} > ./dist/VERSION
+            export PREV_VERSION=$(git describe --tags --abbrev=0 ${VERSION}^)
+            sed '/"'${VERSION}'"/,/"'${PREV_VERSION}'"/!d;/"'${PREV_VERSION}'"/q' CHANGELOG.md | tail -n+2 | head -n-3 > ./dist/CHANGELOG
             python setup.py sdist
             python setup.py bdist_wheel
       - persist_to_workspace:
@@ -57,7 +63,7 @@ jobs:
 
   publish-github-release:
     docker:
-      - image: cibuilds/github:0.10
+      - image: cibuilds/github:0.12
     steps:
       - attach_workspace:
           at: ./dist
@@ -66,7 +72,7 @@ jobs:
           command: |
             VERSION=$(<./dist/dist/VERSION)
             rm ./dist/dist/VERSION
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./dist/dist/
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -b "$(<./dist/dist/CHANGELOG)" -delete ${VERSION} ./dist/dist/
 
 workflows:
   version: 2

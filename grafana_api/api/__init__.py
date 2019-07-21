@@ -8,3 +8,5 @@ from .search import Search
 from .user import User, Users
 from .team import Teams
 from .annotations import Annotations
+from .snapshots import Snapshots
+

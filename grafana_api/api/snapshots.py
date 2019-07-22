@@ -62,3 +62,31 @@ class Snapshots(Base):
         path = "/snapshots/%s" % key
         r = self.api.GET(path)
         return r
+
+    def delete_snapshot_by_key(
+            self,
+            snapshot_id=None
+    ):
+        """
+
+        :param snapshot_id:
+        :return:
+        """
+        path = "/snapshots/{}".format(snapshot_id)
+        r = self.api.DELETE(path)
+
+        return r
+
+    def delete_snapshot_by_delete_key(
+            self,
+            snapshot_delete_key=None
+    ):
+        """
+
+        :param snapshot_delete_key:
+        :return:
+        """
+        path = "/snapshots-delete/{}".format(snapshot_delete_key)
+        r = self.api.DELETE(path)
+
+        return r

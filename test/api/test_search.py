@@ -36,3 +36,15 @@ class AnnotationsTestCase(unittest.TestCase):
                                                    type_="dash-folder", dashboard_ids=163, limit=10)
         self.assertEqual(result[0]["id"], 163)
         self.assertEqual(len(result), 1)
+
+    @requests_mock.Mocker()
+    def test_search_dashboards_with_out_filter(self, m):
+        m.get(
+            "http://localhost/api/search",
+            json={
+                "message": "Not found"
+            }, status_code=400
+        )
+
+        result = self.cli.search.search_dashboards()
+        self.assertRaises(GrafanaBadInputError)

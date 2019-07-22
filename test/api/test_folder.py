@@ -3,6 +3,7 @@ import unittest
 import requests_mock
 
 from grafana_api.grafana_face import GrafanaFace
+from grafana_api.grafana_api import GrafanaBadInputError
 
 
 class FolderTestCase(unittest.TestCase):
@@ -84,6 +85,17 @@ class FolderTestCase(unittest.TestCase):
         self.assertEqual(folder["uid"], "nErXDvCkzz")
 
     @requests_mock.Mocker()
+    def test_create_folder_empty_uid(self, m):
+        m.post(
+            "http://localhost/api/folders",
+            json={
+                "message": "Folder title cannot be empty"
+            }, status_code=400
+        )
+        folder = self.cli.folder.create_folder(title="Departmenet ABC")
+        self.assertRaises(GrafanaBadInputError)
+
+    @requests_mock.Mocker()
     def test_update_folder(self, m):
         m.put(
             "http://localhost/api/folders/nErXDvCkzz",
@@ -104,6 +116,29 @@ class FolderTestCase(unittest.TestCase):
             }
         )
         folder = self.cli.folder.update_folder(title="Departmenet DEF", uid="nErXDvCkzz", version=1, overwrite=True)
+        self.assertEqual(folder["title"], "Departmenet DEF")
+
+    @requests_mock.Mocker()
+    def test_update_folder_some_param(self, m):
+        m.put(
+            "http://localhost/api/folders/nErXDvCkzz",
+            json={
+                "id": 1,
+                "uid": "nErXDvCkzz",
+                "title": "Departmenet DEF",
+                "url": "/dashboards/f/nErXDvCkzz/department-def",
+                "hasAcl": "false",
+                "canSave": "false",
+                "canEdit": "false",
+                "canAdmin": "false",
+                "createdBy": "admin",
+                "created": "2018-01-31T17:43:12+01:00",
+                "updatedBy": "admin",
+                "updated": "2018-01-31T17:43:12+01:00",
+                "version": 1
+            }
+        )
+        folder = self.cli.folder.update_folder(title="Departmenet DEF", uid="nErXDvCkzz")
         self.assertEqual(folder["title"], "Departmenet DEF")
 
     @requests_mock.Mocker()

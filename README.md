@@ -61,7 +61,7 @@ Work on API implementation still in progress.
 | Organisation | + |
 | Other | + |
 | Preferences | + |
-| Snapshot | - |
+| Snapshot | + |
 | Teams | + |
 | User | + |
 

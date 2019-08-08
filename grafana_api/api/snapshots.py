@@ -87,6 +87,6 @@ class Snapshots(Base):
         :return:
         """
         path = "/snapshots-delete/{}".format(snapshot_delete_key)
-        r = self.api.DELETE(path)
+        r = self.api.GET(path)
 
         return r

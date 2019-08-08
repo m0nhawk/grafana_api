@@ -144,7 +144,7 @@ class SnapshotTestCase(unittest.TestCase):
 
     @requests_mock.Mocker()
     def test_delete_snapshot_by_delete_key(self, m):
-        m.delete('http://localhost/api/snapshots-delete/XXXXXXX', json={"message": "Snapshot deleted. It might take an hour "
+        m.get('http://localhost/api/snapshots-delete/XXXXXXX', json={"message": "Snapshot deleted. It might take an hour "
                                                                             "before it's cleared from any CDN "
                                                                             "caches."})
         annotation = self.cli.snapshots.delete_snapshot_by_delete_key(snapshot_delete_key="XXXXXXX")

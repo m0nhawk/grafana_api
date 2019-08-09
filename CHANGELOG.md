@@ -2,6 +2,12 @@
 ## [Unreleased]
 
 
+<a name="0.8.3"></a>
+## [0.8.3] - 2019-08-08
+### Chore
+- **ver:** 0.8.3
+
+
 <a name="0.8.2"></a>
 ## [0.8.2] - 2019-07-23
 ### Chore
@@ -181,7 +187,8 @@
 - always deploy
 
 
-[Unreleased]: https://github.com/m0nhawk/grafana_api/compare/0.8.2...HEAD
+[Unreleased]: https://github.com/m0nhawk/grafana_api/compare/0.8.3...HEAD
+[0.8.3]: https://github.com/m0nhawk/grafana_api/compare/0.8.2...0.8.3
 [0.8.2]: https://github.com/m0nhawk/grafana_api/compare/0.8.1...0.8.2
 [0.8.1]: https://github.com/m0nhawk/grafana_api/compare/0.8.0...0.8.1
 [0.8.0]: https://github.com/m0nhawk/grafana_api/compare/0.7.5...0.8.0

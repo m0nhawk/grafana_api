@@ -2,6 +2,89 @@
 ## [Unreleased]
 
 
+<a name="0.8.4"></a>
+## [0.8.4] - 2019-08-19
+### Chore
+- **changelog:** 0.7.3
+- **changelog:** v0.7.1
+- **changelog:** 0.8.0
+- **changelog:** 0.7.4
+- **changelog:** 0.7.2
+- **changelog:** 0.8.2
+- **changelog:** 0.7.5
+- **ci:** converted main.workflow to Actions V2 yml files
+- **ci:** workflow fix
+- **codestyle:** reformat
+- **dep:** remove Pipfile, now in .gitignore
+- **dep:** Python 2 compatible pylint version
+- **dep:** improve dependency handling
+- **dep:** update
+- **dependency:** fix "urllib3" version
+- **deps:** bump requests from 2.21.0 to 2.22.0
+- **format:** Pipfile reformat
+- **release:** release body with latest changes
+- **test:** run all the tests
+- **ver:** 0.8.1
+- **ver:** 0.8.3
+- **ver:** 0.8.4
+
+### Feat
+- **auto-deploy:** build package automatically
+- **circleci:** test on Python 2.7, 3.6 & 3.7
+- **circleci:** remove debug statements
+- **circleci:** pre-create git version
+- **dep:** adding missing dependency for Python 2 testing
+- **travis:** remove
+
+### Fix
+- **README:** remove coveralls badge
+- **api:** python2 Teams support, fix [#24](https://github.com/m0nhawk/grafana_api/issues/24)
+- **circleci:** do not put VERSION file to Github release
+- **organization:** fix [#11](https://github.com/m0nhawk/grafana_api/issues/11), rename to “Organization” the same as in Grafana API
+- **python:** error handling which doesn't hide exceptions, addresses [#37](https://github.com/m0nhawk/grafana_api/issues/37)
+
+
+<a name="v0.5.3"></a>
+## [v0.5.3] - 2019-08-19
+### Chore
+- **anaconda:** anaconda package configuration
+- **deploy:** add Python package deployment
+- **gitlab:** remove Gitlab CI
+- **setup:** more configurable Python package configuration
+
+### Feat
+- **deploy:** setup Github actions for deployment
+- **test:** store Artifacts
+- **test:** JUnit reporting for CircleCI
+- **tests:** improve coverage for SonarCloud
+
+### Test
+- **codecov:** update badge
+- **codecov:** move to Codecov
+- **coverage:** alternative Python library for coveralls
+- **coverage:** remove sonacloud
+- **coverage:** include only “grafana_api” folder for coverage
+- **coverage:** coveralls support
+- **gitlab:** update Gitlab CI
+- **test:** test file
+- **test:** remove test file
+
+### Workaround
+- always deploy
+
+
+<a name="v0.3.2"></a>
+## [v0.3.2] - 2019-08-19
+
+<a name="v0.2.7"></a>
+## [v0.2.7] - 2019-08-19
+
+<a name="v0.1.1"></a>
+## [v0.1.1] - 2019-08-19
+
+<a name="v0.1.2"></a>
+## [v0.1.2] - 2019-08-19
+
 <a name="0.8.3"></a>
 ## [0.8.3] - 2019-08-08
 ### Chore
@@ -187,7 +270,13 @@
 - always deploy
 
 
-[Unreleased]: https://github.com/m0nhawk/grafana_api/compare/0.8.3...HEAD
+[Unreleased]: https://github.com/m0nhawk/grafana_api/compare/0.8.4...HEAD
+[0.8.4]: https://github.com/m0nhawk/grafana_api/compare/v0.5.3...0.8.4
+[v0.5.3]: https://github.com/m0nhawk/grafana_api/compare/v0.3.2...v0.5.3
+[v0.3.2]: https://github.com/m0nhawk/grafana_api/compare/v0.2.7...v0.3.2
+[v0.2.7]: https://github.com/m0nhawk/grafana_api/compare/v0.1.1...v0.2.7
+[v0.1.1]: https://github.com/m0nhawk/grafana_api/compare/v0.1.2...v0.1.1
+[v0.1.2]: https://github.com/m0nhawk/grafana_api/compare/0.8.3...v0.1.2
 [0.8.3]: https://github.com/m0nhawk/grafana_api/compare/0.8.2...0.8.3
 [0.8.2]: https://github.com/m0nhawk/grafana_api/compare/0.8.1...0.8.2
 [0.8.1]: https://github.com/m0nhawk/grafana_api/compare/0.8.0...0.8.1

@@ -99,29 +99,29 @@ class AnnotationsTestCase(unittest.TestCase):
     @requests_mock.Mocker()
     def test_delete_annotations_by_id_could_not_find(self, m):
         m.delete("http://localhost/api/annotations/None", json={"message": "Could not find annotation to update"},status_code=500)
-        response = self.cli.annotations.delete_annotations_by_id(annotations_id=None)
-        self.assertRaises(GrafanaServerError)
+        with self.assertRaises(GrafanaServerError):
+            response = self.cli.annotations.delete_annotations_by_id(annotations_id=None)
 
     @requests_mock.Mocker()
     def test_delete_annotations_by_id_forbidden(self, m):
         m.delete("http://localhost/api/annotations/None", json={"message": "Forbidden"},
                  status_code=403)
-        response = self.cli.annotations.delete_annotations_by_id(annotations_id=None)
-        self.assertRaises(GrafanaClientError)
+        with self.assertRaises(GrafanaClientError):
+            response = self.cli.annotations.delete_annotations_by_id(annotations_id=None)
 
     @requests_mock.Mocker()
     def test_delete_annotations_by_id_unauthorized(self, m):
         m.delete("http://localhost/api/annotations/None", json={"message": "Unauthorized"},
                      status_code=401)
-        response = self.cli.annotations.delete_annotations_by_id(annotations_id=None)
-        self.assertRaises(GrafanaUnauthorizedError)
+        with self.assertRaises(GrafanaUnauthorizedError):
+            response = self.cli.annotations.delete_annotations_by_id(annotations_id=None)
 
     @requests_mock.Mocker()
     def test_delete_annotations_by_id_bad_input(self, m):
         m.delete("http://localhost/api/annotations/None", json={"message": "Bad Input"},
                  status_code=400)
-        response = self.cli.annotations.delete_annotations_by_id(annotations_id=None)
-        self.assertRaises(GrafanaBadInputError)
+        with self.assertRaises(GrafanaBadInputError):
+            response = self.cli.annotations.delete_annotations_by_id(annotations_id=None)
 
 
     @requests_mock.Mocker()

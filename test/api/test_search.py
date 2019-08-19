@@ -46,5 +46,5 @@ class AnnotationsTestCase(unittest.TestCase):
             }, status_code=400
         )
 
-        result = self.cli.search.search_dashboards()
-        self.assertRaises(GrafanaBadInputError)
+        with self.assertRaises(GrafanaBadInputError):
+            result = self.cli.search.search_dashboards()

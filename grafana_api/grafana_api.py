@@ -94,25 +94,17 @@ class GrafanaAPI:
             r = runner(
                 __url, json=json, headers=headers, auth=self.auth, verify=self.verify
             )
-            try:
-
-                if 500 <= r.status_code < 600:
-                    raise GrafanaServerError(
-                        "Client Error {0}: {1}".format(r.status_code, r.json()['message'])
-                    )
-                elif r.status_code == 400:
-                    raise GrafanaBadInputError("Bad Input: `{0}`".format(r.text))
-                elif r.status_code == 401:
-                    raise GrafanaUnauthorizedError("Unauthorized")
-                elif 400 <= r.status_code < 500:
-                    raise GrafanaClientError(
-                        "Client Error {0}: {1}".format(r.status_code, r.text)
-                    )
-                return r.json()
-
-            except Exception as error:
-                print('Caught this error: ' + repr(error))
-
-
-
+            if 500 <= r.status_code < 600:
+                raise GrafanaServerError(
+                    "Client Error {0}: {1}".format(r.status_code, r.json()['message'])
+                )
+            elif r.status_code == 400:
+                raise GrafanaBadInputError("Bad Input: `{0}`".format(r.text))
+            elif r.status_code == 401:
+                raise GrafanaUnauthorizedError("Unauthorized")
+            elif 400 <= r.status_code < 500:
+                raise GrafanaClientError(
+                    "Client Error {0}: {1}".format(r.status_code, r.text)
+                )
+            return r.json()
         return __request_runnner

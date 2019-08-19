@@ -92,8 +92,8 @@ class FolderTestCase(unittest.TestCase):
                 "message": "Folder title cannot be empty"
             }, status_code=400
         )
-        folder = self.cli.folder.create_folder(title="Departmenet ABC")
-        self.assertRaises(GrafanaBadInputError)
+        with self.assertRaises(GrafanaBadInputError):
+            folder = self.cli.folder.create_folder(title="Departmenet ABC")
 
     @requests_mock.Mocker()
     def test_update_folder(self, m):

@@ -16,6 +16,6 @@ jobs:
         TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
     - name: publish-to-conda
       uses: m0nhawk/conda-package-publish-action@master
-      env:
-        ANACONDA_PASSWORD: ${{ secrets.ANACONDA_PASSWORD }}
-        ANACONDA_USERNAME: ${{ secrets.ANACONDA_USERNAME }}
+      with:
+        AnacondaUsername: ${{ secrets.ANACONDA_PASSWORD }}
+        AnacondaPassword: ${{ secrets.ANACONDA_USERNAME }}

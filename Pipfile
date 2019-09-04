@@ -10,5 +10,5 @@ codecov = "~=2.0"
 coverage = "~=4.5"
 mock = {version = "*",markers = "python_version <= '2.7'"}
 pylint = ">=1.9"
-requests-mock = "~=1.6"
+requests-mock = "~=1.7"
 unittest-xml-reporting = "~=2.5"

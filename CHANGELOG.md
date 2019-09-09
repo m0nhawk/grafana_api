@@ -2,6 +2,14 @@
 ## [Unreleased]
 
 
+<a name="0.8.5"></a>
+## [0.8.5] - 2019-09-09
+### Chore
+- **cicd:** update Github Actions syntax
+- **deps-dev:** update requests-mock requirement from ~=1.6 to ~=1.7
+- **ver:** 0.8.5
+
+
 <a name="0.8.4"></a>
 ## [0.8.4] - 2019-08-19
 ### Chore
@@ -270,7 +278,8 @@
 - always deploy
 
 
-[Unreleased]: https://github.com/m0nhawk/grafana_api/compare/0.8.4...HEAD
+[Unreleased]: https://github.com/m0nhawk/grafana_api/compare/0.8.5...HEAD
+[0.8.5]: https://github.com/m0nhawk/grafana_api/compare/0.8.4...0.8.5
 [0.8.4]: https://github.com/m0nhawk/grafana_api/compare/v0.5.3...0.8.4
 [v0.5.3]: https://github.com/m0nhawk/grafana_api/compare/v0.3.2...v0.5.3
 [v0.3.2]: https://github.com/m0nhawk/grafana_api/compare/v0.2.7...v0.3.2

@@ -56,9 +56,11 @@ class GrafanaAPI:
         url_path_prefix="",
         protocol="http",
         verify=True,
+        timeout=5.0,
     ):
         self.auth = auth
         self.verify = verify
+        self.timeout = timeout
         self.url_host = host
         self.url_port = port
         self.url_path_prefix = url_path_prefix
@@ -92,7 +94,7 @@ class GrafanaAPI:
             __url = "%s%s" % (self.url, url)
             runner = getattr(self.s, item.lower())
             r = runner(
-                __url, json=json, headers=headers, auth=self.auth, verify=self.verify
+                __url, json=json, headers=headers, auth=self.auth, verify=self.verify, timeout=self.timeout
             )
             if 500 <= r.status_code < 600:
                 raise GrafanaServerError(

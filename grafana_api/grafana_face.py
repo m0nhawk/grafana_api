@@ -24,6 +24,7 @@ class GrafanaFace:
         url_path_prefix="",
         protocol="http",
         verify=True,
+        timeout=5.0,
     ):
         self.api = GrafanaAPI(
             auth,
@@ -32,6 +33,7 @@ class GrafanaFace:
             url_path_prefix=url_path_prefix,
             protocol=protocol,
             verify=verify,
+            timeout=timeout,
         )
         self.admin = Admin(self.api)
         self.dashboard = Dashboard(self.api)

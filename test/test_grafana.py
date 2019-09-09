@@ -67,7 +67,21 @@ class TestGrafanaAPI(unittest.TestCase):
             headers=None,
             json=None,
             verify=False,
+            timeout=5.0,
         )
+
+    def test_grafana_api_timeout(self):
+        cli = GrafanaFace(
+            ("admin", "admin"),
+            host="play.grafana.org",
+            url_path_prefix="",
+            protocol="https",
+            verify=False,
+            timeout=0.0001
+        )
+
+        with self.assertRaises(requests.exceptions.Timeout):
+            cli.folder.get_all_folders()
 
     def test_grafana_api_basic_auth(self):
         cli = GrafanaFace(

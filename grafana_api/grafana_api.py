@@ -6,7 +6,7 @@ class GrafanaException(Exception):
     pass
 
 
-class GrafanaServerError(Exception):
+class GrafanaServerError(GrafanaException):
     """
     5xx
     """
@@ -14,7 +14,7 @@ class GrafanaServerError(Exception):
     pass
 
 
-class GrafanaClientError(Exception):
+class GrafanaClientError(GrafanaException):
     """
     Invalid input (4xx errors)
     """
@@ -98,7 +98,7 @@ class GrafanaAPI:
             )
             if 500 <= r.status_code < 600:
                 raise GrafanaServerError(
-                    "Client Error {0}: {1}".format(r.status_code, r.json()['message'])
+                    "Server Error {0}: {1}".format(r.status_code, r.json()['message'])
                 )
             elif r.status_code == 400:
                 raise GrafanaBadInputError("Bad Input: `{0}`".format(r.text))

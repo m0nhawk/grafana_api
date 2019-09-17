@@ -17,5 +17,5 @@ jobs:
     - name: publish-to-conda
       uses: m0nhawk/conda-package-publish-action@master
       with:
-        AnacondaUsername: ${{ secrets.ANACONDA_PASSWORD }}
-        AnacondaPassword: ${{ secrets.ANACONDA_USERNAME }}
+        AnacondaUsername: ${{ secrets.ANACONDA_USERNAME }}
+        AnacondaPassword: ${{ secrets.ANACONDA_PASSWORD }}

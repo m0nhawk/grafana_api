@@ -119,6 +119,7 @@ class Annotations(Base):
 
     def update_annotation(
             self,
+            annotations_id,
             time_from=None,
             time_to=None,
             is_region=True,
@@ -134,7 +135,7 @@ class Annotations(Base):
         :param text:
         :return:
         """
-        annotations_path = "/annotations"
+        annotations_path = "/annotations/{}".format(annotations_id)
         payload = {
             "time": time_from,
             "timeEnd": time_to,

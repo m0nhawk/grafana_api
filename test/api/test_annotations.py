@@ -2,8 +2,10 @@ import unittest
 
 import requests_mock
 
+from grafana_api.grafana_api import (GrafanaBadInputError, GrafanaClientError,
+                                     GrafanaServerError,
+                                     GrafanaUnauthorizedError)
 from grafana_api.grafana_face import GrafanaFace
-from grafana_api.grafana_api import GrafanaServerError,GrafanaClientError,GrafanaUnauthorizedError,GrafanaBadInputError
 
 
 class AnnotationsTestCase(unittest.TestCase):
@@ -139,10 +141,10 @@ class AnnotationsTestCase(unittest.TestCase):
     @requests_mock.Mocker()
     def test_update_annotation(self, m):
         m.put(
-            "http://localhost/api/annotations",
+            "http://localhost/api/annotations/79",
             json={"endId": 80, "id": 79, "message": "Annotation updated"},
         )
-        annotation = self.cli.annotations.update_annotation(time_from=1563183710618, time_to=1563185212275
+        annotation = self.cli.annotations.update_annotation(annotations_id=79, time_from=1563183710618, time_to=1563185212275
                                                             , is_region=True, tags="tags-test", text="Test")
         self.assertEqual(annotation["endId"], 80)
         self.assertEqual(annotation["id"], 79)

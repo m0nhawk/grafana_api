@@ -151,6 +151,15 @@ class AnnotationsTestCase(unittest.TestCase):
         self.assertEqual(annotation["message"], "Annotation updated")
 
     @requests_mock.Mocker()
+    def test_partial_update_annotation(self, m):
+        m.patch(
+            "http://localhost/api/annotations/89",
+            json={"message": "Annotation patched"},
+        )
+        annotation = self.cli.annotations.partial_update_annotation(annotations_id=89, tags=["tag1", "tag2"], text="Test")
+        self.assertEqual(annotation["message"], "Annotation patched")
+
+    @requests_mock.Mocker()
     def test_add_annotation_graphite(self, m):
         m.post(
             "http://localhost/api/annotations/graphite",

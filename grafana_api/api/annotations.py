@@ -149,6 +149,42 @@ class Annotations(Base):
 
         return r
 
+    def partial_update_annotation(
+            self,
+            annotations_id,
+            time_from=None,
+            time_to=None,
+            is_region=None,
+            tags=None,
+            text=None,
+    ):
+        """
+
+        :param annotations_id:
+        :param time_from:
+        :param time_to:
+        :param is_region:
+        :param tags:
+        :param text:
+        :return:
+        """
+        annotations_path = "/annotations/{}".format(annotations_id)
+        payload = {}
+        if time_from:
+            payload['time'] = time_from
+        if time_to:
+            payload['timeEnd'] = time_to
+        if is_region:
+            payload['isRegion'] = bool(is_region)
+        if tags:
+            payload['tags'] = tags
+        if text:
+            payload['text'] = text
+
+        r = self.api.PATCH(annotations_path, json=payload)
+
+        return r
+
     def delete_annotations_by_region_id(
             self,
             region_id=None

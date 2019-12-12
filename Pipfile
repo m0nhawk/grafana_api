@@ -4,6 +4,8 @@ verify_ssl = true
 name = "grafana_api"
 
 [packages]
+requests = "*"
+mock = "*"
 
 [dev-packages]
 codecov = "~=2.0"

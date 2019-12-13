@@ -8,7 +8,7 @@ class GrafanaException(Exception):
         self.response = response
         self.message = message
         # Backwards compatible with implementations that rely on just the message.
-        super().__init__(message)
+        super(GrafanaException, self).__init__(message)
 
 
 class GrafanaServerError(GrafanaException):

@@ -3,15 +3,11 @@ import requests.auth
 
 
 class GrafanaException(Exception):
-    status_code: int
-    response: str
-    message: str
-
     def __init__(self, status_code, response, message):
         self.status_code = status_code
         self.response = response
         self.message = message
-        # Backwards compatible.
+        # Backwards compatible with implementations that rely on just the message.
         super().__init__(message)
 
 
@@ -118,14 +114,23 @@ class GrafanaAPI:
                 except ValueError:
                     response = r.text
                 message = response["message"] if "message" in response else r.text
+
                 if 500 <= r.status_code < 600:
-                    raise GrafanaServerError(r.status_code, response, message)
+                    raise GrafanaServerError(
+                        r.status_code,
+                        response,
+                        "Server Error {0}: {1}".format(r.status_code, message),
+                    )
                 elif r.status_code == 400:
                     raise GrafanaBadInputError(response)
                 elif r.status_code == 401:
                     raise GrafanaUnauthorizedError(response)
                 elif 400 <= r.status_code < 500:
-                    raise GrafanaClientError(r.status_code, response, message)
+                    raise GrafanaClientError(
+                        r.status_code,
+                        response,
+                        "Client Error {0}: {1}".format(r.status_code, message),
+                    )
             return r.json()
 
         return __request_runnner

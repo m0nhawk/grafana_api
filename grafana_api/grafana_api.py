@@ -33,7 +33,9 @@ class GrafanaBadInputError(GrafanaClientError):
     """
 
     def __init__(self, response):
-        super().__init__(400, response, "Bad Input: `{0}`".format(response))
+        super(GrafanaBadInputError, self).__init__(
+            400, response, "Bad Input: `{0}`".format(response)
+        )
 
 
 class GrafanaUnauthorizedError(GrafanaClientError):
@@ -42,7 +44,7 @@ class GrafanaUnauthorizedError(GrafanaClientError):
     """
 
     def __init__(self, response):
-        super().__init__(401, response, "Unauthorized")
+        super(GrafanaUnauthorizedError, self).__init__(401, response, "Unauthorized")
 
 
 class TokenAuth(requests.auth.AuthBase):

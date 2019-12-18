@@ -3,7 +3,12 @@ import requests.auth
 
 
 class GrafanaException(Exception):
-    pass
+    def __init__(self, status_code, response, message):
+        self.status_code = status_code
+        self.response = response
+        self.message = message
+        # Backwards compatible with implementations that rely on just the message.
+        super(GrafanaException, self).__init__(message)
 
 
 class GrafanaServerError(GrafanaException):
@@ -27,7 +32,10 @@ class GrafanaBadInputError(GrafanaClientError):
     400
     """
 
-    pass
+    def __init__(self, response):
+        super(GrafanaBadInputError, self).__init__(
+            400, response, "Bad Input: `{0}`".format(response)
+        )
 
 
 class GrafanaUnauthorizedError(GrafanaClientError):
@@ -35,7 +43,8 @@ class GrafanaUnauthorizedError(GrafanaClientError):
     401
     """
 
-    pass
+    def __init__(self, response):
+        super(GrafanaUnauthorizedError, self).__init__(401, response, "Unauthorized")
 
 
 class TokenAuth(requests.auth.AuthBase):
@@ -94,19 +103,36 @@ class GrafanaAPI:
             __url = "%s%s" % (self.url, url)
             runner = getattr(self.s, item.lower())
             r = runner(
-                __url, json=json, headers=headers, auth=self.auth, verify=self.verify, timeout=self.timeout
+                __url,
+                json=json,
+                headers=headers,
+                auth=self.auth,
+                verify=self.verify,
+                timeout=self.timeout,
             )
-            if 500 <= r.status_code < 600:
-                raise GrafanaServerError(
-                    "Server Error {0}: {1}".format(r.status_code, r.json()['message'])
-                )
-            elif r.status_code == 400:
-                raise GrafanaBadInputError("Bad Input: `{0}`".format(r.text))
-            elif r.status_code == 401:
-                raise GrafanaUnauthorizedError("Unauthorized")
-            elif 400 <= r.status_code < 500:
-                raise GrafanaClientError(
-                    "Client Error {0}: {1}".format(r.status_code, r.text)
-                )
+            if r.status_code >= 400:
+                try:
+                    response = r.json()
+                except ValueError:
+                    response = r.text
+                message = response["message"] if "message" in response else r.text
+
+                if 500 <= r.status_code < 600:
+                    raise GrafanaServerError(
+                        r.status_code,
+                        response,
+                        "Server Error {0}: {1}".format(r.status_code, message),
+                    )
+                elif r.status_code == 400:
+                    raise GrafanaBadInputError(response)
+                elif r.status_code == 401:
+                    raise GrafanaUnauthorizedError(response)
+                elif 400 <= r.status_code < 500:
+                    raise GrafanaClientError(
+                        r.status_code,
+                        response,
+                        "Client Error {0}: {1}".format(r.status_code, message),
+                    )
             return r.json()
+
         return __request_runnner

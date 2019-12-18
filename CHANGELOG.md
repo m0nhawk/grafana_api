@@ -2,6 +2,14 @@
 ## [Unreleased]
 
 
+<a name="0.9.2"></a>
+## [0.9.2] - 2019-12-17
+### Chore
+- **deps-dev:** update coverage requirement from ~=4.5 to ~=5.0
+- **github:** add Stale Github bot
+- **ver:** 0.9.2
+
+
 <a name="0.9.1"></a>
 ## [0.9.1] - 2019-10-19
 ### Chore
@@ -300,7 +308,8 @@
 - always deploy
 
 
-[Unreleased]: https://github.com/m0nhawk/grafana_api/compare/0.9.1...HEAD
+[Unreleased]: https://github.com/m0nhawk/grafana_api/compare/0.9.2...HEAD
+[0.9.2]: https://github.com/m0nhawk/grafana_api/compare/0.9.1...0.9.2
 [0.9.1]: https://github.com/m0nhawk/grafana_api/compare/0.9.0...0.9.1
 [0.9.0]: https://github.com/m0nhawk/grafana_api/compare/0.8.6...0.9.0
 [0.8.6]: https://github.com/m0nhawk/grafana_api/compare/0.8.5...0.8.6

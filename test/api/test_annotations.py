@@ -45,7 +45,7 @@ class AnnotationsTestCase(unittest.TestCase):
             ]
         )
         annotations = self.cli.annotations.get_annotation(time_from=1563183710618, time_to=1563185212275, alert_id=11,
-                                                          dashboard_id=111, panel_id=22, tags="tags-test", limit=1)
+                                                          dashboard_id=111, panel_id=22, tags=["tags-test"], limit=1)
         self.assertEqual(annotations[0]["text"], "Annotation Description")
         self.assertEqual(annotations[0]["alertId"], 11)
         self.assertEqual(annotations[0]["dashboardId"], 111)
@@ -133,7 +133,7 @@ class AnnotationsTestCase(unittest.TestCase):
             json={"endId": 80, "id": 79, "message": "Annotation added"},
         )
         annotation = self.cli.annotations.add_annotation(time_from=1563183710618, time_to=1563185212275
-                                                         , is_region=True, tags="tags-test", text="Test")
+                                                         , is_region=True, tags=["tags-test"], text="Test")
         self.assertEqual(annotation["endId"], 80)
         self.assertEqual(annotation["id"], 79)
         self.assertEqual(annotation["message"], "Annotation added")
@@ -145,7 +145,7 @@ class AnnotationsTestCase(unittest.TestCase):
             json={"endId": 80, "id": 79, "message": "Annotation updated"},
         )
         annotation = self.cli.annotations.update_annotation(annotations_id=79, time_from=1563183710618, time_to=1563185212275
-                                                            , is_region=True, tags="tags-test", text="Test")
+                                                            , is_region=True, tags=["tags-test"], text="Test")
         self.assertEqual(annotation["endId"], 80)
         self.assertEqual(annotation["id"], 79)
         self.assertEqual(annotation["message"], "Annotation updated")
@@ -165,7 +165,7 @@ class AnnotationsTestCase(unittest.TestCase):
             "http://localhost/api/annotations/graphite",
             json={"message": "Graphite annotation added", "id": 1},
         )
-        annotation = self.cli.annotations.add_annotation_graphite(what="Event - deploy", tags="deploy, production",
+        annotation = self.cli.annotations.add_annotation_graphite(what="Event - deploy", tags=["deploy", "production"],
                                                                   when=1467844481, data="Data")
 
         self.assertEqual(annotation["id"], 1)

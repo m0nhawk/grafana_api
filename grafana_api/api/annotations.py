@@ -46,7 +46,8 @@ class Annotations(Base):
             params.append("panelId=%s" % panel_id)
 
         if tags:
-            params.append("tags=%s" % tags)
+            for tag in tags:
+                params.append("tags=%s" % tag)
 
         if limit:
             params.append("limit=%s" % limit)
@@ -63,7 +64,7 @@ class Annotations(Base):
             time_from=None,
             time_to=None,
             is_region=True,
-            tags=None,
+            tags=[],
             text=None,
     ):
 
@@ -80,7 +81,7 @@ class Annotations(Base):
             "time": time_from,
             "timeEnd": time_to,
             "isRegion": bool(is_region),
-            "tags": [tags],
+            "tags": tags,
             "text": text
 
         }
@@ -92,7 +93,7 @@ class Annotations(Base):
     def add_annotation_graphite(
             self,
             what=None,
-            tags=True,
+            tags=[],
             when=None,
             data=None,
     ):
@@ -107,7 +108,7 @@ class Annotations(Base):
         annotations_path = "/annotations/graphite"
         payload = {
             "what": what,
-            "tags": [tags],
+            "tags": tags,
             "when": when,
             "data": data
 
@@ -123,7 +124,7 @@ class Annotations(Base):
             time_from=None,
             time_to=None,
             is_region=True,
-            tags=None,
+            tags=[],
             text=None,
     ):
         """
@@ -140,7 +141,7 @@ class Annotations(Base):
             "time": time_from,
             "timeEnd": time_to,
             "isRegion": bool(is_region),
-            "tags": [tags],
+            "tags": tags,
             "text": text
 
         }
@@ -155,7 +156,7 @@ class Annotations(Base):
             time_from=None,
             time_to=None,
             is_region=None,
-            tags=None,
+            tags=[],
             text=None,
     ):
         """

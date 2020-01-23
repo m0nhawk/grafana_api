@@ -2,6 +2,12 @@
 ## [Unreleased]
 
 
+<a name="0.9.3"></a>
+## [0.9.3] - 2020-01-22
+### Chore
+- 0.9.3
+
+
 <a name="0.9.2"></a>
 ## [0.9.2] - 2019-12-17
 ### Chore
@@ -308,7 +314,8 @@
 - always deploy
 
 
-[Unreleased]: https://github.com/m0nhawk/grafana_api/compare/0.9.2...HEAD
+[Unreleased]: https://github.com/m0nhawk/grafana_api/compare/0.9.3...HEAD
+[0.9.3]: https://github.com/m0nhawk/grafana_api/compare/0.9.2...0.9.3
 [0.9.2]: https://github.com/m0nhawk/grafana_api/compare/0.9.1...0.9.2
 [0.9.1]: https://github.com/m0nhawk/grafana_api/compare/0.9.0...0.9.1
 [0.9.0]: https://github.com/m0nhawk/grafana_api/compare/0.8.6...0.9.0

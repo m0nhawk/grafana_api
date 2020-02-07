@@ -1,10 +1,8 @@
+<!-- Change a name for Pull Request -->
 # Pull Request Template
 
 ## Description
-
-Please include a summary of the change and which issue is fixed.
-
-Fixes #(issue)
+<!-- Please include a summary of the change or which issue is fixed (fixes #(issue)). -->
 
 ## Have you written tests?
 

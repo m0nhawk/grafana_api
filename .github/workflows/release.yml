@@ -8,14 +8,12 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: publish-to-pypi
-      uses: mariamrf/py-package-publish-action@master
-      env:
-        BRANCH: master
-        PYTHON_VERSION: 3.7.0
-        TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
-        TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
+    - uses: actions/checkout@v2
+    - name: Publish package
+      uses: pypa/gh-action-pypi-publish@master
+      with:
+        user: __token__
+        password: ${{ secrets.PYPI_TOKEN }}
     - name: publish-to-conda
       uses: m0nhawk/conda-package-publish-action@master
       with:

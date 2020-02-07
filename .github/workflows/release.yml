@@ -1,26 +1,41 @@
-name: Publish
+name: Release
 
 on:
-  release:
-    types: [published]
+  push:
+    tags:
+      - '*'
 
 jobs:
-  publish:
+  release:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Install release dependencies
+    - name: tags
       run: |
-        python -m pip install --upgrade pip
-        pip install setuptools wheel twine
-        python setup.py sdist bdist_wheel
-    - name: Publish package
-      uses: pypa/gh-action-pypi-publish@master
-      with:
-        user: __token__
-        password: ${{ secrets.PYPI_TOKEN }}
-    - name: publish-to-conda
-      uses: m0nhawk/conda-package-publish-action@master
-      with:
-        AnacondaUsername: ${{ secrets.ANACONDA_USERNAME }}
-        AnacondaPassword: ${{ secrets.ANACONDA_PASSWORD }}
+        git fetch --tags
+    - name: version
+      id: version
+      run: |
+        echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
+    - name: install
+      run: |
+        go get github.com/git-chglog/git-chglog/cmd/git-chglog
+        go get github.com/itchio/gothub
+    - name: changelog
+      run: |
+        # https://github.com/git-chglog/git-chglog#git-chglog
+        $(go env GOPATH)/bin/git-chglog \
+          --config .chglog/RELEASE_NOTES-config.yml \
+          -o $GITHUB_WORKSPACE/CHANGELOG.md \
+          ${{ steps.version.outputs.VERSION }}
+    - name: release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        # https://github.com/itchio/gothub#gothub
+        $(go env GOPATH)/bin/gothub release \
+          --user m0nhawk \
+          --repo grafana_api \
+          --tag ${{ steps.version.outputs.VERSION }} \
+          --name ${{ steps.version.outputs.VERSION }} \
+          --description "$(cat $GITHUB_WORKSPACE/CHANGELOG.md)"

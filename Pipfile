@@ -11,4 +11,4 @@ coverage = "~=5.0"
 mock = {version = "*",markers = "python_version <= '2.7'"}
 pylint = ">=1.9"
 requests-mock = "~=1.7"
-unittest-xml-reporting = "~=2.5"
+unittest-xml-reporting = "~=3.0"

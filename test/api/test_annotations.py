@@ -87,12 +87,6 @@ class AnnotationsTestCase(unittest.TestCase):
         self.assertEqual(len(annotations), 1)
 
     @requests_mock.Mocker()
-    def test_delete_annotations_by_region_id(self, m):
-        m.delete("http://localhost/api/annotations/region/99", json={"message": "Annotation region deleted"})
-        response = self.cli.annotations.delete_annotations_by_region_id(99)
-        self.assertEqual(response['message'], "Annotation region deleted")
-
-    @requests_mock.Mocker()
     def test_delete_annotations_by_id(self, m):
         m.delete('http://localhost/api/annotations/99', json={"message": "Annotation deleted"})
         annotation = self.cli.annotations.delete_annotations_by_id(annotations_id=99)

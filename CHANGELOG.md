@@ -1,4 +1,17 @@
-# Changelog
+# CHANGELOG
+
+<a name="1.0.1"></a>
+## [1.0.1](https://github.com/m0nhawk/grafana_api/compare/1.0.0...1.0.1) (2020-03-18)
+
+### Features
+
+* new release pipeline (ae1bad3)
+
+### Pull Requests
+
+* Merge pull request [#60](https://github.com/m0nhawk/grafana_api/issues/60) from teodoryantcheff/master
+* Merge pull request [#57](https://github.com/m0nhawk/grafana_api/issues/57) from m0nhawk/dependabot/pip/unittest-xml-reporting-approx-eq-3.0
+
 
 <a name="1.0.0"></a>
 ## [1.0.0](https://github.com/m0nhawk/grafana_api/compare/0.9.3...1.0.0) (2020-02-07)

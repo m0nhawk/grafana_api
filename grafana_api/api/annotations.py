@@ -13,16 +13,22 @@ class Annotations(Base):
         alert_id=None,
         dashboard_id=None,
         panel_id=None,
+        user_id=None,
+        ann_type=None,
         tags=None,
         limit=None,
     ):
 
         """
+        https://grafana.com/docs/grafana/latest/http_api/annotations/#find-annotations
+
         :param time_from:
         :param time_to:
         :param alert_id:
         :param dashboard_id:
         :param panel_id:
+        :param user_id:
+        :param ann_type: Annotation type. On of alert|annotation
         :param tags:
         :param limit:
         :return:
@@ -45,6 +51,12 @@ class Annotations(Base):
         if panel_id:
             params.append("panelId=%s" % panel_id)
 
+        if user_id:
+            params.append("userId=%s", user_id)
+
+        if ann_type:
+            params.append("type=%s", ann_type)
+
         if tags:
             for tag in tags:
                 params.append("tags=%s" % tag)
@@ -61,29 +73,34 @@ class Annotations(Base):
 
     def add_annotation(
             self,
+            dashboard_id=None,
+            panel_id=None,
             time_from=None,
             time_to=None,
-            is_region=True,
             tags=[],
             text=None,
     ):
 
         """
+        https://grafana.com/docs/grafana/latest/http_api/annotations/#create-annotation
+
+        :param dashboard_id:
+        :param panel_id
         :param time_from:
         :param time_to:
-        :param is_region:
         :param tags:
         :param text:
         :return:
         """
+
         annotations_path = "/annotations"
         payload = {
+            "dashboardId": dashboard_id,
+            "panelId": panel_id,
             "time": time_from,
             "timeEnd": time_to,
-            "isRegion": bool(is_region),
             "tags": tags,
-            "text": text
-
+            "text": text,
         }
 
         r = self.api.POST(annotations_path, json=payload)
@@ -98,6 +115,8 @@ class Annotations(Base):
             data=None,
     ):
         """
+        https://grafana.com/docs/grafana/latest/http_api/annotations/#create-annotation-in-graphite-format
+
         :param what:
         :param tags:
         :param when:
@@ -111,7 +130,6 @@ class Annotations(Base):
             "tags": tags,
             "when": when,
             "data": data
-
         }
 
         r = self.api.POST(annotations_path, json=payload)
@@ -123,15 +141,14 @@ class Annotations(Base):
             annotations_id,
             time_from=None,
             time_to=None,
-            is_region=True,
             tags=[],
             text=None,
     ):
         """
+        https://grafana.com/docs/grafana/latest/http_api/annotations/#update-annotation
 
         :param time_from:
         :param time_to:
-        :param is_region:
         :param tags:
         :param text:
         :return:
@@ -140,10 +157,8 @@ class Annotations(Base):
         payload = {
             "time": time_from,
             "timeEnd": time_to,
-            "isRegion": bool(is_region),
             "tags": tags,
             "text": text
-
         }
 
         r = self.api.PUT(annotations_path, json=payload)
@@ -155,48 +170,30 @@ class Annotations(Base):
             annotations_id,
             time_from=None,
             time_to=None,
-            is_region=None,
             tags=[],
             text=None,
     ):
         """
+        https://grafana.com/docs/grafana/latest/http_api/annotations/#patch-annotation
 
         :param annotations_id:
         :param time_from:
         :param time_to:
-        :param is_region:
         :param tags:
         :param text:
         :return:
         """
         annotations_path = "/annotations/{}".format(annotations_id)
         payload = {}
-        if time_from:
-            payload['time'] = time_from
-        if time_to:
-            payload['timeEnd'] = time_to
-        if is_region:
-            payload['isRegion'] = bool(is_region)
-        if tags:
-            payload['tags'] = tags
-        if text:
-            payload['text'] = text
+
+        payload = {
+            "time": time_from,
+            "timeEnd": time_to,
+            "tags": tags,
+            "text": text
+        }
 
         r = self.api.PATCH(annotations_path, json=payload)
-
-        return r
-
-    def delete_annotations_by_region_id(
-            self,
-            region_id=None
-    ):
-
-        """
-        :param region_id:
-        :return:
-        """
-        annotations_path = "/annotations/region/{}".format(region_id)
-        r = self.api.DELETE(annotations_path)
 
         return r
 
@@ -206,6 +203,8 @@ class Annotations(Base):
     ):
 
         """
+        https://grafana.com/docs/grafana/latest/http_api/annotations/#delete-annotation-by-id
+
         :param annotations_id:
         :return:
         """

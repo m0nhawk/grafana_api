@@ -33,7 +33,6 @@ class AnnotationsTestCase(unittest.TestCase):
                     "updated": 1563280160455,
                     "time": 1563156456006,
                     "text": "Annotation Description",
-                    "regionId": 79,
                     "tags": [
                         "tags-test"
                     ],
@@ -72,7 +71,6 @@ class AnnotationsTestCase(unittest.TestCase):
                     "updated": 1563280160455,
                     "time": 1563156456006,
                     "text": "Annotation Description",
-                    "regionId": 79,
                     "tags": [
                         "tags-test"
                     ],
@@ -85,12 +83,6 @@ class AnnotationsTestCase(unittest.TestCase):
         )
         annotations = self.cli.annotations.get_annotation()
         self.assertEqual(len(annotations), 1)
-
-    @requests_mock.Mocker()
-    def test_delete_annotations_by_region_id(self, m):
-        m.delete("http://localhost/api/annotations/region/99", json={"message": "Annotation region deleted"})
-        response = self.cli.annotations.delete_annotations_by_region_id(99)
-        self.assertEqual(response['message'], "Annotation region deleted")
 
     @requests_mock.Mocker()
     def test_delete_annotations_by_id(self, m):
@@ -132,8 +124,8 @@ class AnnotationsTestCase(unittest.TestCase):
             "http://localhost/api/annotations",
             json={"endId": 80, "id": 79, "message": "Annotation added"},
         )
-        annotation = self.cli.annotations.add_annotation(time_from=1563183710618, time_to=1563185212275
-                                                         , is_region=True, tags=["tags-test"], text="Test")
+        annotation = self.cli.annotations.add_annotation(time_from=1563183710618, time_to=1563185212275,
+                                                         tags=["tags-test"], text="Test")
         self.assertEqual(annotation["endId"], 80)
         self.assertEqual(annotation["id"], 79)
         self.assertEqual(annotation["message"], "Annotation added")
@@ -144,8 +136,8 @@ class AnnotationsTestCase(unittest.TestCase):
             "http://localhost/api/annotations/79",
             json={"endId": 80, "id": 79, "message": "Annotation updated"},
         )
-        annotation = self.cli.annotations.update_annotation(annotations_id=79, time_from=1563183710618, time_to=1563185212275
-                                                            , is_region=True, tags=["tags-test"], text="Test")
+        annotation = self.cli.annotations.update_annotation(annotations_id=79, time_from=1563183710618, time_to=1563185212275,
+                                                            tags=["tags-test"], text="Test")
         self.assertEqual(annotation["endId"], 80)
         self.assertEqual(annotation["id"], 79)
         self.assertEqual(annotation["message"], "Annotation updated")

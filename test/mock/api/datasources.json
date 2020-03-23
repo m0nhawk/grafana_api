@@ -1,0 +1,36 @@
+[
+  {
+    "withCredentials": false,
+    "user": "",
+    "url": "api/plugin-proxy/raintank-worldping-app/api/graphite",
+    "typeLogoUrl": "public/app/plugins/datasource/graphite/img/graphite_logo.png",
+    "type": "graphite",
+    "password": "",
+    "orgId": 1,
+    "name": "raintank",
+    "isDefault": false,
+    "id": 1,
+    "database": "",
+    "basicAuthUser": "",
+    "basicAuthPassword": "",
+    "basicAuth": false,
+    "access": "direct"
+  },
+  {
+    "withCredentials": false,
+    "user": "",
+    "url": "api/plugin-proxy/raintank-worldping-app/api/elasticsearch",
+    "typeLogoUrl": "public/app/plugins/datasource/elasticsearch/img/logo_large.png",
+    "type": "elasticsearch",
+    "password": "",
+    "orgId": 1,
+    "name": "raintankEvents",
+    "isDefault": false,
+    "id": 2,
+    "database": "[events-]YYYY-MM-DD",
+    "basicAuthUser": "",
+    "basicAuthPassword": "",
+    "basicAuth": false,
+    "access": "direct"
+  }
+]

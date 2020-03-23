@@ -1,0 +1,38 @@
+{
+  "meta":{
+    "isSnapshot":true,
+    "type":"snapshot",
+    "canSave":false,
+    "canEdit":false,
+    "canStar":false,
+    "slug":"",
+    "expires":"2200-13-32T25:23:23+02:00",
+    "created":"2200-13-32T28:24:23+02:00"
+    },
+  "dashboard": {
+    "editable":false,
+    "hideControls":true,
+    "nav":[
+    {
+      "enable":false,
+    "type":"timepicker"
+    }
+    ],
+    "rows": [
+      {
+
+      }
+    ],
+    "style":"dark",
+    "tags":[],
+    "templating":{
+      "list":[
+      ]
+    },
+    "time":{
+    },
+    "timezone":"browser",
+    "title":"Home",
+    "version":5
+  }
+}

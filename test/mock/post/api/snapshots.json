@@ -1,0 +1,6 @@
+{
+  "deleteKey":"delete_key",
+  "deleteUrl":"myurl/dashboard/snapshot/delete_key",
+  "key":"my_key",
+  "url":"myurl/dashboard/snapshot/my_key"
+}

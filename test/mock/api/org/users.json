@@ -1,0 +1,15 @@
+[
+  {
+    "userId":1,
+    "role":"Admin",
+    "orgId":1,
+    "login":"admin",
+    "email":"admin@localhost"},
+  {
+    "userId":2,
+    "role":"Viewer",
+    "orgId":1,
+    "login":"noone",
+    "email":"noone@boringbutgreat.com"
+  }
+]

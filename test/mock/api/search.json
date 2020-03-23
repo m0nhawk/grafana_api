@@ -1,0 +1,42 @@
+[
+  {
+    "uri":"db/worldping-endpoint-comparison",
+    "type":"dash-db",
+    "title":"worldPing Endpoint: Comparison",
+    "tags":["Endpoints","worldPing"],
+    "isStarred":false,
+    "id":8
+  },
+  {
+    "uri":"db/worldping-endpoint-summary",
+    "type":"dash-db",
+    "title":"worldPing Endpoint: Summary",
+    "tags":["Endpoints","worldPing"],
+    "isStarred":false,
+    "id":7
+  },
+  {
+    "uri":"db/worldping-endpoint-dns",
+    "type":"dash-db",
+    "title":"worldPing Endpoint: |--- DNS",
+    "tags":["Endpoints","worldPing"],
+    "isStarred":false,
+    "id":6
+  },
+  {
+    "uri":"db/worldping-endpoint-ping",
+    "type":"dash-db",
+    "title":"worldPing Endpoint: |--- Ping",
+    "tags":["Endpoints","worldPing"],
+    "isStarred":false,
+    "id":5
+  },
+  {
+    "uri":"db/worldping-endpoint-web",
+    "type":"dash-db",
+    "title":"worldPing Endpoint: |--- Web",
+    "tags":["Endpoints","worldPing"],
+    "isStarred":false,
+    "id":4
+  }
+]

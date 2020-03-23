@@ -1,0 +1,8 @@
+{
+  "email": "admin@mygraf.com",
+  "name": "Admin",
+  "login": "admin",
+  "theme": "light",
+  "orgId": 1,
+  "isGrafanaAdmin": true
+}

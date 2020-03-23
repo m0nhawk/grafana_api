@@ -1,0 +1,5 @@
+{
+  "state": "new state",
+  "message": "alerts pause/unpaused",
+  "alertsAffected": 100
+}

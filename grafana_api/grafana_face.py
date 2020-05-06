@@ -12,6 +12,7 @@ from .api import (
     Teams,
     Snapshots,
     Annotations,
+    Notifications
 )
 
 
@@ -47,3 +48,4 @@ class GrafanaFace:
         self.teams = Teams(self.api)
         self.annotations = Annotations(self.api)
         self.snapshots = Snapshots(self.api)
+        self.notifications = Notifications(self.api)

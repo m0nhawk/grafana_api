@@ -9,4 +9,5 @@ from .user import User, Users
 from .team import Teams
 from .annotations import Annotations
 from .snapshots import Snapshots
+from .notifications import Notifications
 

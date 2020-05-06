@@ -84,7 +84,7 @@ class Notifications(Base):
         :return: result of deletion
         """
         delete_notification_by_uid_path = (
-            "alert-notifications/uid/%s" % notification_uid
+            "/alert-notifications/uid/%s" % notification_uid
         )
         return self.api.DELETE(delete_notification_by_uid_path)
 
@@ -95,5 +95,5 @@ class Notifications(Base):
         :param notification_id: notification channel id
         :return: result of deletion
         """
-        delete_notification_by_id_path = "alert-notifications/uid/%s" % notification_id
+        delete_notification_by_id_path = "/alert-notifications/%s" % notification_id
         return self.api.DELETE(delete_notification_by_id_path)

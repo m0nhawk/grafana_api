@@ -32,8 +32,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_RELEASE_TOKEN }}
       run: |
-        # https://github.com/itchio/gothub#gothub
-        $(go env GOPATH)/bin/gothub release \
+        $(go env GOPATH)/bin/github-release release \
           --user m0nhawk \
           --repo grafana_api \
           --tag ${{ steps.version.outputs.VERSION }} \

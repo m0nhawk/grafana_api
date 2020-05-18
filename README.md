@@ -49,6 +49,7 @@ Work on API implementation still in progress.
 |---|---|
 | Admin | + |
 | Alerting | - |
+| Alerting Notification Channels | + |
 | Annotations | + |
 | Authentication | +- |
 | Dashboard | + |

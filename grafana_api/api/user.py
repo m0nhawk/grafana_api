@@ -34,8 +34,10 @@ class Users(Base):
         show_users_path += "&".join(params)
 
         if iterate:
-            while users_on_page is not []:
+            while True:
                 users_on_page = self.api.GET(show_users_path % page)
+                if not users_on_page:
+                    break
                 list_of_users += users_on_page
                 page += 1
         else:

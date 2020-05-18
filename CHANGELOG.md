@@ -1,5 +1,14 @@
 # CHANGELOG
 
+<a name="1.0.2"></a>
+## [1.0.2](https://github.com/m0nhawk/grafana_api/compare/1.0.1...1.0.2) (2020-05-17)
+
+### Pull Requests
+
+* Merge pull request [#66](https://github.com/m0nhawk/grafana_api/issues/66) from beingnikhilarora/master
+* Merge pull request [#65](https://github.com/m0nhawk/grafana_api/issues/65) from djessedirckx/feature/notifications
+
+
 <a name="1.0.1"></a>
 ## [1.0.1](https://github.com/m0nhawk/grafana_api/compare/1.0.0...1.0.1) (2020-03-18)
 

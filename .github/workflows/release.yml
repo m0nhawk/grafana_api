@@ -20,7 +20,7 @@ jobs:
     - name: install
       run: |
         go get github.com/git-chglog/git-chglog/cmd/git-chglog
-        go get github.com/itchio/gothub
+        go get github.com/github-release/github-release
     - name: changelog
       run: |
         # https://github.com/git-chglog/git-chglog#git-chglog

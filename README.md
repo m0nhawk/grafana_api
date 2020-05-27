@@ -41,6 +41,29 @@ grafana_api.dashboard.update_dashboard(dashboard={'dashboard': {...}, 'folderId'
 grafana_api.dashboard.delete_dashboard(dashboard_uid='abcdefgh')
 ```
 
+
+## Authentication
+
+There are two ways to autheticate to grafana api. Either use api token or basic auth.
+
+To use admin API you need to use basic auth [as stated here](https://grafana.com/docs/grafana/latest/http_api/admin/)
+
+```python
+# Use basic authentication:
+
+grafana_api = GrafanaFace(
+          auth=("username","password"),
+          host='api.my-grafana-host.com'
+          )
+
+# Use token
+grafana_api = GrafanaFace(
+          auth='abcdetoken...',
+          host='api.my-grafana-host.com'
+          )
+```
+
+
 ## Status of REST API realization
 
 Work on API implementation still in progress.

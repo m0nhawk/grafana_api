@@ -37,10 +37,10 @@ class Annotations(Base):
         params = []
 
         if time_from:
-            params.append("time_from=%s" % time_from)
+            params.append("from=%s" % time_from)
 
         if time_to:
-            params.append("time_to=%s" % time_to)
+            params.append("to=%s" % time_to)
 
         if alert_id:
             params.append("alertId=%s" % alert_id)

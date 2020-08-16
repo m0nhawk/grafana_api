@@ -3,10 +3,10 @@ name: Publish Python 🐍 distributions 📦 to PyPI, TestPyPI and Anaconda
 on: push
 
 jobs:
-  publish:
+  build-n-push:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@2
+    - uses: actions/checkout@v2
     - name: Set up Python 3.7
       uses: actions/setup-python@v1
       with:

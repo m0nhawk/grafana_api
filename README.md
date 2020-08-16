@@ -4,11 +4,11 @@
 
 ## What is this library for?
 
-Yet another Grafana API library for Python. Support both 2 and 3 Python versions.
+Yet another Grafana API library for Python. Support Python 3 only.
 
 ## Requirements
 
-You need either 2nd or 3rd version of Python and only the `requests` library installed.
+You need Python 3 and only the `requests` library installed.
 
 ## Quick start
 

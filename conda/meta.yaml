@@ -1,0 +1,40 @@
+{% set data = load_setup_py_data(setup_file='conda_setup.py') %}
+{% set version = data.get('version') %}
+
+package:
+  name: grafana_api
+  version: {{ version }}
+
+source:
+  path: ..
+
+build:
+  noarch: python
+  number: 0
+  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv
+
+requirements:
+  host:
+    - python
+    - requests
+  run:
+    - python
+    - requests
+
+test:
+  imports:
+    - grafana_api
+    - grafana_api.api
+
+about:
+  home: https://m0nhawk.github.io/grafana_api/
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: Yet another Python library for Grafana API
+  doc_url: https://m0nhawk.github.io/grafana_api/
+  dev_url: https://m0nhawk.github.io/grafana_api/
+
+extra:
+  recipe-maintainers:
+    - m0nhawk

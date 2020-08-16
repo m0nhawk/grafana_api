@@ -1,5 +1,5 @@
-# ignore lock file, it's a library
-Pipfile.lock
+#
+grafana_api/version.py
 
 # Created by .ignore support plugin (hsz.mobi)
 ### Python template

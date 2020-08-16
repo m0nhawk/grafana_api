@@ -30,7 +30,7 @@ jobs:
           ${{ steps.version.outputs.VERSION }}
     - name: release
       env:
-        GITHUB_TOKEN: ${{ secrets.GH_RELEASE_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         $(go env GOPATH)/bin/github-release -v release \
           --user m0nhawk \

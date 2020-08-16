@@ -17,7 +17,7 @@ class AnnotationsTestCase(unittest.TestCase):
     @requests_mock.Mocker()
     def test_annotations(self, m):
         m.get(
-            "http://localhost/api/annotations?time_from=1563183710618&time_to=1563185212275"
+            "http://localhost/api/annotations?from=1563183710618&to=1563185212275"
             "&alertId=11&dashboardID=111&panelId=22&tags=tags-test&limit=1",
             json=[
                 {

@@ -16,7 +16,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        python-version: [3.7, 3.8, pypy3]
+        python-version: [3.6, 3.7, 3.8, pypy3]
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
@@ -26,11 +26,11 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install pipenv
-          pipenv install --dev
+          python -m pip install poetry
+          poetry install
         shell: bash
       - name: Run tests
         run: |
-          pipenv run coverage run --source grafana_api -m xmlrunner discover -o test-reports
-          pipenv run codecov
+          poetry run coverage run --source grafana_api -m xmlrunner discover -o test-reports
+          poetry run codecov
         shell: bash

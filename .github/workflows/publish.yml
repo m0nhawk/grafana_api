@@ -1,26 +1,38 @@
-name: Publish
+name: Publish Python 🐍 distributions 📦 to PyPI, TestPyPI and Anaconda
 
-on:
-  release:
-    types: [published]
+on: push
 
 jobs:
-  publish:
+  build-n-push:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Install release dependencies
-      run: |
-        python3 -m pip install --upgrade pip
-        python3 -m pip install setuptools wheel twine
-        python3 setup.py sdist bdist_wheel
-    - name: Publish package
-      uses: pypa/gh-action-pypi-publish@master
       with:
-        user: __token__
+        fetch-depth: 0
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+    - name: Install pep517
+      run: >-
+        python -m pip install pep517 --user
+    - name: Build a binary wheel and a source tarball
+      run: >-
+        python -m pep517.build --source --binary --out-dir dist/ .
+    - name: Publish distribution 📦 to Test PyPI
+      uses: pypa/gh-action-pypi-publish@v1.3.1
+      with:
+        password: ${{ secrets.TEST_PYPI_TOKEN }}
+        repository_url: https://test.pypi.org/legacy/
+    - name: Publish distribution 📦 to PyPI
+      if: startsWith(github.ref, 'refs/tags')
+      uses: pypa/gh-action-pypi-publish@v1.3.1
+      with:
         password: ${{ secrets.PYPI_TOKEN }}
     - name: publish-to-conda
+      if: startsWith(github.ref, 'refs/tags')
       uses: m0nhawk/conda-package-publish-action@master
       with:
+        subDir: './conda'
         AnacondaUsername: ${{ secrets.ANACONDA_USERNAME }}
         AnacondaPassword: ${{ secrets.ANACONDA_PASSWORD }}

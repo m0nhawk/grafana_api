@@ -1,4 +1,4 @@
-{% set data = load_setup_py_data(setup_file='setup.py') %}
+{% set data = load_setup_py_data(setup_file='conda/setup.py') %}
 {% set version = data.get('version') %}
 
 package:

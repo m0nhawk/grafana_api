@@ -25,6 +25,12 @@ from grafana_api.grafana_face import GrafanaFace
 
 grafana_api = GrafanaFace(auth='abcde....', host='api.my-grafana-host.com')
 
+# Create user
+user = grafana_api.admin.create_user({"name": "User", "email": "user@domain.com", "login": "user", "password": "userpassword", "OrgId": 1})
+
+# Change user password
+user = grafana_api.admin.change_user_password(2, "464tw4eyw4y4yw")
+
 # Search dashboards based on tag
 grafana_api.search.search_dashboards(tag='applications')
 

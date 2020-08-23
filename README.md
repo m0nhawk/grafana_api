@@ -29,7 +29,7 @@ grafana_api = GrafanaFace(auth='abcde....', host='api.my-grafana-host.com')
 user = grafana_api.admin.create_user({"name": "User", "email": "user@domain.com", "login": "user", "password": "userpassword", "OrgId": 1})
 
 # Change user password
-user = grafana_api.admin.change_user_password(2, "464tw4eyw4y4yw")
+user = grafana_api.admin.change_user_password(2, "newpassword")
 
 # Search dashboards based on tag
 grafana_api.search.search_dashboards(tag='applications')
@@ -45,6 +45,9 @@ grafana_api.dashboard.update_dashboard(dashboard={'dashboard': {...}, 'folderId'
 
 # Delete a dashboard by UID
 grafana_api.dashboard.delete_dashboard(dashboard_uid='abcdefgh')
+
+# Create organization
+grafana_api.organization.create_organization({"name":"new_organization"})
 ```
 
 

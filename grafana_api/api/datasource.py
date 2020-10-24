@@ -98,8 +98,8 @@ class Datasource(Base):
 
     def get_datasource_proxy_data(self, datasource_id
 	, query_type='query'
-        , version='v1'
-        , expr=None
+	, version='v1'
+	, expr=None
 	, time=None
 	, start=None
 	, end=None

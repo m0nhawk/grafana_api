@@ -1,8 +1,45 @@
-[build-system]
-requires = [
-    "pip>=20.0",
-    "setuptools>=40.0",
-    "setuptools_scm[toml]>=4.0",
-    "wheel"
+[tool.poetry]
+name = "grafana_api"
+version = "0.1.0"
+description = "Yet another Python library for Grafana API"
+readme = "README.md"
+homepage = "https://m0nhawk.github.io/grafana_api/"
+repository = "https://github.com/m0nhawk/grafana_api/"
+keywords = ["grafana", "api"]
+packages = [
+    { include = "grafana_api" }
 ]
-build-backend = "setuptools.build_meta"
+authors = ["Andrew Prokhorenkov <andrew.prokhorenkov@gmail.com>"]
+license = "MIT"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Internet",
+    "Topic :: Software Development",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+requests = "^2.27.1"
+
+[tool.poetry.dev-dependencies]
+codecov = "^2.1.12"
+coverage = "^6.2"
+unittest-xml-reporting = "^3.0.4"
+requests-mock = "^1.9.3"
+
+[tool.poetry.urls]
+"Source" = "https://github.com/m0nhawk/grafana_api/"
+"Tracker" = "https://github.com/m0nhawk/grafana_api/issues"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

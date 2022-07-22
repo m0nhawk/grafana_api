@@ -1,3 +1,7 @@
+This project is not supported anymore. Prefer using other options.
+
+---
+
 # grafana_api [![Github Actions Test](https://github.com/m0nhawk/grafana_api/workflows/Test/badge.svg)](https://github.com/m0nhawk/grafana_api/actions?query=workflow%3ATest) [![GitHub license](https://img.shields.io/github/license/m0nhawk/grafana_api.svg?style=flat-square)](https://github.com/m0nhawk/grafana_api/blob/master/LICENSE)  [![Codecov](https://img.shields.io/codecov/c/gh/m0nhawk/grafana_api.svg?style=flat-square)](https://codecov.io/gh/m0nhawk/grafana_api/)
 
 [![PyPI](https://img.shields.io/pypi/v/grafana_api.svg?style=flat-square)](https://pypi.org/project/grafana-api/) [![Conda](https://img.shields.io/conda/v/m0nhawk/grafana_api.svg?style=flat-square)](https://anaconda.org/m0nhawk/grafana_api)

@@ -7,4 +7,6 @@ setup(
         "version_scheme": "python-simplified-semver",
         "write_to": "grafana_api/version.py",
     },
+    # For all dependent libraries
+    install_requires=['requests'],
 )

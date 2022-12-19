@@ -50,6 +50,7 @@ nosetests.xml
 coverage.xml
 *.cover
 .hypothesis/
+test-reports/
 
 # Translations
 *.mo
@@ -108,3 +109,5 @@ venv.bak/
 # mypy
 .mypy_cache/
 
+# Editors
+.idea/
